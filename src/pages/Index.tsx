@@ -2,12 +2,9 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Hero from '@/components/home/Hero';
-import FeaturedDestinations from '@/components/home/FeaturedDestinations';
-import Services from '@/components/home/Services';
-import Testimonials from '@/components/home/Testimonials';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CalendarDays, MapPin, Phone } from 'lucide-react';
+import { ArrowRight, Home, Briefcase, BookOpen, Users, Wallet, MapPin } from 'lucide-react';
 
 const Index = () => {
   // Trigger animations on first render with scroll position
@@ -15,323 +12,652 @@ const Index = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  // Motion variants
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { 
+        duration: 0.6,
+      }
+    }
+  };
+
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3
+      }
+    }
+  };
+
   return (
     <>
       {/* Hero Section */}
       <Hero />
 
-      {/* Stats Section */}
-      <section className="py-16 bg-white">
+      {/* Introduction Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <motion.div 
+            initial="hidden" 
+            whileInView="visible" 
+            viewport={{ once: true, margin: "-100px" }}
+            variants={staggerContainer}
+            className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center"
+          >
+            <motion.div variants={fadeInUp} className="relative">
+              <img 
+                src="https://images.unsplash.com/photo-1522163723043-478ef79a5bb4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1993&q=80" 
+                alt="Nous facilitons la vie de l'étudiant" 
+                className="rounded-2xl shadow-xl w-full h-auto object-cover"
+              />
+              <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-xl shadow-lg">
+                <div className="flex items-center space-x-2">
+                  <div className="bg-green-500 rounded-full w-3 h-3 animate-pulse"></div>
+                  <span className="font-semibold text-gray-800">Accompagnement personnalisé</span>
+                </div>
+              </div>
+            </motion.div>
+            
+            <motion.div variants={fadeInUp}>
+              <span className="inline-block py-1 px-3 rounded-full bg-[#FFC3BC]/20 text-[#18133E] text-sm font-medium mb-4">
+                Notre Mission
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-[#18133E]">
+                Nous facilitons la vie <br />de l'étudiant
+              </h2>
+              <p className="text-gray-700 mb-6">
+                Vous souhaitez poursuivre vos études loin de chez vous. Vous avez commencé les démarches nécessaires, mais vous ne savez pas ce qui vous attend une fois arrivé(e) en France ? Nous vous aidons à y voir plus clair. Pour mener à bien votre projet d'études, vous avez besoin de visibilité. Et si nous commencions par vous trouver un logement avant votre départ...
+              </p>
+              
+              <Button asChild className="bg-[#18133E] hover:bg-[#18133E]/90 text-white rounded-full">
+                <Link to="/about">
+                  QUI SOMMES-NOUS ? 
+                  <ArrowRight size={18} className="ml-2" />
+                </Link>
+              </Button>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <motion.div 
+            initial="hidden" 
+            whileInView="visible" 
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="text-center mb-16"
+          >
+            <motion.h2 variants={fadeInUp} className="text-3xl md:text-4xl font-bold mb-6 text-[#18133E]">
+              Nos Services
+            </motion.h2>
+            <motion.p variants={fadeInUp} className="text-gray-600 max-w-3xl mx-auto">
+              Nous proposons un accompagnement global aux jeunes qui nous confient leur projet d'études. Notre offre est basée sur vos besoins et ne cesse de s'enrichir pour répondre à vos préoccupations.
+            </motion.p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* Service 1 */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+            >
+              <div className="p-8">
+                <div className="bg-[#FFC3BC]/20 rounded-full w-16 h-16 flex items-center justify-center mb-6">
+                  <BookOpen className="h-8 w-8 text-[#18133E]" />
+                </div>
+                <h3 className="text-xl font-semibold mb-4 text-[#18133E]">Orientation & coaching</h3>
+                <p className="text-gray-600 mb-6">Inscription dans nos établissements partenaires</p>
+                <a href="#" className="text-[#18133E] font-medium inline-flex items-center">
+                  En savoir plus <ArrowRight size={16} className="ml-2" />
+                </a>
+              </div>
+            </motion.div>
+
+            {/* Service 2 */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+            >
+              <div className="p-8">
+                <div className="bg-[#FFC3BC]/20 rounded-full w-16 h-16 flex items-center justify-center mb-6">
+                  <Home className="h-8 w-8 text-[#18133E]" />
+                </div>
+                <h3 className="text-xl font-semibold mb-4 text-[#18133E]">Se loger</h3>
+                <p className="text-gray-600 mb-6">Bail, réservation & attestation d'hébergement</p>
+                <a href="#" className="text-[#18133E] font-medium inline-flex items-center">
+                  En savoir plus <ArrowRight size={16} className="ml-2" />
+                </a>
+              </div>
+            </motion.div>
+
+            {/* Service 3 */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+            >
+              <div className="p-8">
+                <div className="bg-[#FFC3BC]/20 rounded-full w-16 h-16 flex items-center justify-center mb-6">
+                  <Wallet className="h-8 w-8 text-[#18133E]" />
+                </div>
+                <h3 className="text-xl font-semibold mb-4 text-[#18133E]">AVI</h3>
+                <p className="text-gray-600 mb-6">Justificatif de ressources financières pour vos études à l'étranger</p>
+                <a href="#" className="text-[#18133E] font-medium inline-flex items-center">
+                  En savoir plus <ArrowRight size={16} className="ml-2" />
+                </a>
+              </div>
+            </motion.div>
+
+            {/* Service 4 */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+            >
+              <div className="p-8">
+                <div className="bg-[#FFC3BC]/20 rounded-full w-16 h-16 flex items-center justify-center mb-6">
+                  <Briefcase className="h-8 w-8 text-[#18133E]" />
+                </div>
+                <h3 className="text-xl font-semibold mb-4 text-[#18133E]">Travailler</h3>
+                <p className="text-gray-600 mb-6">Job étudiant, stage, alternance & premier emploi post formation</p>
+                <a href="#" className="text-[#18133E] font-medium inline-flex items-center">
+                  En savoir plus <ArrowRight size={16} className="ml-2" />
+                </a>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* New Partnership Section */}
+      <section className="py-16 bg-[#18133E] text-white">
         <div className="container mx-auto px-4">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
+            className="text-center max-w-3xl mx-auto"
           >
-            <div>
-              <div className="text-4xl md:text-5xl font-bold text-senfrance-blue mb-2">15+</div>
-              <p className="text-gray-600">Années d'expérience</p>
-            </div>
-            <div>
-              <div className="text-4xl md:text-5xl font-bold text-senfrance-blue mb-2">5000+</div>
-              <p className="text-gray-600">Clients satisfaits</p>
-            </div>
-            <div>
-              <div className="text-4xl md:text-5xl font-bold text-senfrance-blue mb-2">25+</div>
-              <p className="text-gray-600">Destinations</p>
-            </div>
-            <div>
-              <div className="text-4xl md:text-5xl font-bold text-senfrance-blue mb-2">100%</div>
-              <p className="text-gray-600">Garantie satisfaction</p>
-            </div>
+            <h3 className="text-2xl md:text-3xl font-bold mb-6">
+              NOUVEAU PARTENARIAT AVEC LUKO
+            </h3>
+            <p className="text-xl mb-8 text-[#FFC3BC]">
+              néo-assurance habitation n°1 en France
+            </p>
+            <Button className="bg-[#FFC3BC] hover:bg-[#FFC3BC]/90 text-[#18133E] font-bold rounded-full px-8 py-6">
+              En savoir plus
+            </Button>
           </motion.div>
         </div>
       </section>
 
-      {/* Featured Destinations */}
-      <FeaturedDestinations />
-
-      {/* About Section */}
-      <section className="py-24 bg-white relative overflow-hidden">
-        {/* Background decoration */}
-        <div className="absolute inset-0 pointer-events-none">
-          <motion.div 
-            animate={{
-              y: [0, 15, 0],
-              opacity: [0.3, 0.5, 0.3],
-            }}
-            transition={{ duration: 8, repeat: Infinity }}
-            className="absolute right-0 bottom-0 w-1/3 h-1/2 bg-gradient-radial from-senfrance-lightBlue to-transparent opacity-30 rounded-full blur-3xl"
-          />
-        </div>
-        
+      {/* Housing and AVI Section */}
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <motion.div
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+            {/* Housing Section */}
+            <motion.div 
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="bg-gray-50 rounded-xl p-8 shadow-lg"
+            >
+              <h3 className="text-2xl font-bold mb-4 text-[#18133E]">Commençons par vous trouver un logement</h3>
+              <p className="text-gray-600 mb-6">
+                Nos services ont identifié trois axes essentiels à la réussite des étudiants : un logement décent, une autonomie financière et le choix d'une formation qui te correspond.
+              </p>
+              <Button asChild className="bg-[#18133E] hover:bg-[#18133E]/90 rounded-full">
+                <Link to="/housing">
+                  SE LOGER <ArrowRight size={18} className="ml-2" />
+                </Link>
+              </Button>
+            </motion.div>
+
+            {/* AVI Section */}
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="bg-gray-50 rounded-xl p-8 shadow-lg"
+            >
+              <h3 className="text-2xl font-bold mb-4 text-[#18133E]">Obtenez votre AVI pour justifier de vos ressources</h3>
+              <p className="text-gray-600 mb-6">
+                L'attestation de virement irrévocable est l'une des méthodes agréées par les services consulaires pour prouver que tu as les moyens de financer ton projet.
+              </p>
+              <Button asChild className="bg-[#18133E] hover:bg-[#18133E]/90 rounded-full">
+                <Link to="/avi">
+                  AVI <ArrowRight size={18} className="ml-2" />
+                </Link>
+              </Button>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Housing Options Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            {/* Reservation */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-xl shadow-lg overflow-hidden"
+            >
+              <div className="p-8">
+                <h3 className="text-2xl font-bold mb-4 text-[#18133E]">Hébergement</h3>
+                <h4 className="text-lg font-semibold mb-6 text-[#FFC3BC]">Réservation</h4>
+                <p className="text-gray-600 mb-6">
+                  Tu as été accepté dans une école française, mais tu es ressortissant étranger et tu dois passer par une demande de visa... Pour faciliter tes démarches, obtiens d'ores et déjà une réservation de logement SenFrance et une attestation d'hébergement. Complète les étapes pour la signature du bail quand tu seras en France.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Lease */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="bg-white rounded-xl shadow-lg overflow-hidden"
+            >
+              <div className="p-8">
+                <h3 className="text-2xl font-bold mb-4 text-[#18133E]">Bail</h3>
+                <p className="text-gray-600 mb-6">
+                  Si tu veux signer ton bail à distance avant même ton arrivée en France, tu en as la possibilité. Le bail te servira d'attestation d'hébergement et sera suffisant pour toutes tes démarches, y compris la demande de visa. Cette solution est plus coûteuse. Mais si tu es déjà en France pour tes études, pouvoir signer un bail avec nos partenaires est une vraie opportunité.
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Partners Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h3 className="text-2xl font-bold mb-4 text-[#18133E]">Nos Partenaires</h3>
+            <p className="text-gray-600">400 résidences étudiantes dans 120 villes</p>
+          </motion.div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
+            {[1, 2, 3, 4, 5, 6, 7, 8].map((index) => (
+              <motion.div 
+                key={index}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-gray-50 p-6 rounded-lg flex items-center justify-center h-24"
+              >
+                <div className="h-12 w-32 bg-gray-200 rounded animate-pulse"></div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Guarantor Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+            {/* Rental Guarantee */}
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-xl shadow-lg overflow-hidden"
+            >
+              <div className="p-8">
+                <h3 className="text-2xl font-bold mb-4 text-[#18133E]">Garantie locative</h3>
+                <div className="h-20 w-40 bg-gray-200 rounded mb-6 animate-pulse"></div>
+                <p className="text-gray-600 mb-6">
+                  Avec notre partenaire privilégié, remplis ton dossier et charge tes pièces justificatives en seulement 5 minutes. Si tu ne les as pas toutes, aucun problème, tu peux les charger plus tard !
+                </p>
+                <a href="#" className="text-[#18133E] font-medium inline-flex items-center">
+                  En savoir plus <ArrowRight size={16} className="ml-2" />
+                </a>
+              </div>
+            </motion.div>
+
+            {/* Housing Insurance */}
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-xl shadow-lg overflow-hidden"
+            >
+              <div className="p-8">
+                <h3 className="text-2xl font-bold mb-4 text-[#18133E]">Assurance habitation</h3>
+                <div className="h-20 w-40 bg-gray-200 rounded mb-6 animate-pulse"></div>
+                <p className="text-gray-600 mb-6">
+                  Profite d'une expérience client unique et d'une alternative crédible aux assureurs traditionnels avec une offre simple, transparente et éthique qui génère la meilleure satisfaction client du marché.
+                </p>
+                <a href="#" className="text-[#18133E] font-medium inline-flex items-center">
+                  En savoir plus <ArrowRight size={16} className="ml-2" />
+                </a>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Student Job Section */}
+      <section className="py-20 bg-[#18133E] text-white">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                Postulez pour un <span className="text-[#FFC3BC]">job étudiant</span>
+              </h2>
+              <p className="text-white/80 mb-8">
+                Travailler pendant ses études, c'est possible. Vous pouvez prendre un emploi à temps partiel sans compromettre votre formation et vos chances de réussite.
+              </p>
+              <Button asChild className="bg-[#FFC3BC] hover:bg-[#FFC3BC]/90 text-[#18133E] font-bold rounded-full">
+                <Link to="/jobs">
+                  TRAVAILLER <ArrowRight size={18} className="ml-2" />
+                </Link>
+              </Button>
+            </motion.div>
+            
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
               className="relative"
             >
-              <div className="relative z-10">
-                <img 
-                  src="https://images.unsplash.com/photo-1523805009345-7448845a9e53?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1972&q=80" 
-                  alt="À propos de SenFrance" 
-                  className="rounded-2xl shadow-xl w-full h-auto object-cover"
-                />
-                <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-xl shadow-lg">
-                  <div className="flex items-center space-x-2">
-                    <div className="bg-green-500 rounded-full w-3 h-3 animate-pulse"></div>
-                    <span className="font-semibold text-gray-800">Guides disponibles</span>
-                  </div>
-                </div>
-              </div>
+              <img 
+                src="https://images.unsplash.com/photo-1577412647305-991150c7d163?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" 
+                alt="Job étudiant" 
+                className="rounded-xl shadow-lg w-full h-auto object-cover"
+              />
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Discovery Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center max-w-3xl mx-auto"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-[#18133E]">
+              Découvrez nos autres services
+            </h2>
+            <p className="text-gray-600 mb-8">
+              Nous proposons un accompagnement global aux jeunes qui nous confient leur projet d'études. Notre offre est basée sur vos besoins et ne cesse de s'enrichir pour répondre à vos préoccupations.
+            </p>
+            <Button asChild className="bg-[#18133E] hover:bg-[#18133E]/90 rounded-full px-8 py-6">
+              <Link to="/services">
+                CENTRE DE SERVICES <ArrowRight size={18} className="ml-2" />
+              </Link>
+            </Button>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Office in Dakar Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-3xl font-bold mb-6 text-[#18133E]">
+                SENFRANCE arrive à Dakar
+              </h2>
               
-              <div className="absolute top-1/2 -left-12 transform -translate-y-1/2 bg-white p-6 rounded-xl shadow-lg hidden md:block">
-                <div className="flex items-center space-x-4">
-                  <div className="bg-senfrance-blue rounded-full w-12 h-12 flex items-center justify-center">
-                    <MapPin className="text-white" size={20} />
-                  </div>
-                  <div>
-                    <p className="text-gray-500 text-sm">Destinations</p>
-                    <p className="font-semibold">25+ lieux exceptionnels</p>
-                  </div>
+              <div className="space-y-6 mb-8">
+                <div>
+                  <h3 className="text-lg font-semibold mb-2 text-[#18133E]">Adresse</h3>
+                  <p className="text-gray-600">
+                    Liberté 6 Extension,<br />
+                    route du Camp Leclerc
+                  </p>
                 </div>
-              </div>
-              
-              <div className="absolute -bottom-12 left-1/4 transform -translate-x-1/2 bg-white p-6 rounded-xl shadow-lg hidden md:block">
-                <div className="flex items-center space-x-4">
-                  <div className="bg-senfrance-pink rounded-full w-12 h-12 flex items-center justify-center">
-                    <CalendarDays className="text-white" size={20} />
-                  </div>
-                  <div>
-                    <p className="text-gray-500 text-sm">Départs</p>
-                    <p className="font-semibold">Toute l'année</p>
-                  </div>
+                
+                <div>
+                  <h3 className="text-lg font-semibold mb-2 text-[#18133E]">Contact</h3>
+                  <p className="text-gray-600">
+                    +221 33 856 52 94<br />
+                    +221 78 738 62 21
+                  </p>
+                </div>
+                
+                <div>
+                  <h3 className="text-lg font-semibold mb-2 text-[#18133E]">Heures d'ouverture</h3>
+                  <p className="text-gray-600">
+                    Lun - Sam<br />
+                    9 h - 12h | 14h - 18 h
+                  </p>
                 </div>
               </div>
             </motion.div>
             
-            <motion.div
+            <motion.div 
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="h-96 bg-gray-200 rounded-xl overflow-hidden"
             >
-              <span className="inline-block py-1 px-3 rounded-full bg-senfrance-lightBlue text-senfrance-blue text-sm font-medium mb-4">
-                Notre Histoire
-              </span>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                Bienvenue chez <span className="text-gradient">SenFrance</span>
-              </h2>
-              <p className="text-lg mb-6 text-gray-600">
-                Depuis plus de 15 ans, <strong>SenFrance</strong> est le spécialiste des voyages sur mesure au Sénégal. Notre équipe franco-sénégalaise vous propose des expériences authentiques pour découvrir les merveilles de la Teranga.
-              </p>
-              <p className="mb-8 text-gray-600">
-                Nous mettons à votre service notre connaissance approfondie du pays pour créer des séjours inoubliables qui allient confort, découverte et authenticité. Notre engagement: vous offrir un voyage exceptionnel au cœur de l'Afrique de l'Ouest.
-              </p>
-              
-              <div className="space-y-5">
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 bg-senfrance-lightBlue rounded-full p-2 mr-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-senfrance-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-lg mb-1">Expertise locale</h3>
-                    <p className="text-gray-600">Notre équipe vit et travaille au Sénégal, garantissant une connaissance intime du territoire</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 bg-senfrance-lightBlue rounded-full p-2 mr-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-senfrance-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-lg mb-1">Voyages personnalisés</h3>
-                    <p className="text-gray-600">Des circuits adaptés à vos envies, avec un accompagnement sur mesure</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 bg-senfrance-lightBlue rounded-full p-2 mr-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-senfrance-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-lg mb-1">Tourisme durable</h3>
-                    <p className="text-gray-600">Nous privilégions les partenariats avec les communautés locales et les initiatives écologiques</p>
-                  </div>
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d123859.04446766463!2d-17.54438661810553!3d14.716663795128974!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xec172f5b3c5bb71%3A0xb17c17d92d5db21f!2sDakar%2C%20Senegal!5e0!3m2!1sen!2sus!4v1621371735810!5m2!1sen!2sus" 
+                width="100%" 
+                height="100%" 
+                style={{ border: 0 }} 
+                allowFullScreen 
+                loading="lazy"
+                title="SenFrance Dakar location"
+              ></iframe>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Blog Preview Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl font-bold mb-12 text-center text-[#18133E]"
+          >
+            Derniers Articles
+          </motion.h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Article 1 */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="bg-gray-50 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+            >
+              <div className="h-48 bg-gray-200 relative">
+                <img
+                  src="https://images.unsplash.com/photo-1523805009345-7448845a9e53?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1972&q=80"
+                  alt="Les premières démarches en arrivant en France"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold mb-3 text-[#18133E]">Les premières démarches en arrivant en France</h3>
+                <p className="text-gray-600 mb-4">À votre arrivée en France, vous avez encore des étapes à franchir... Source : Campus France Maroc #arrivéeétudiantenfrance...</p>
+                <div className="flex justify-between text-sm text-gray-500">
+                  <span>8 avr. 2021</span>
+                  <span>1 min de lecture</span>
                 </div>
               </div>
-              
-              <div className="mt-10">
-                <Button asChild className="bg-senfrance-blue hover:bg-senfrance-blue/90 rounded-full py-6 px-8 shadow-button">
-                  <Link to="/about">
-                    En savoir plus
-                    <ArrowRight size={18} className="ml-2" />
-                  </Link>
-                </Button>
+            </motion.div>
+            
+            {/* Article 2 */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="bg-gray-50 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+            >
+              <div className="h-48 bg-gray-200 relative">
+                <img
+                  src="https://images.unsplash.com/photo-1548946621-31653ef7bcef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                  alt="Se loger pendant ses études"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold mb-3 text-[#18133E]">Se loger pendant ses études, tant de possibilités !</h3>
+                <p className="text-gray-600 mb-4">Cette première étape est la plus cruciale pour l'étudiant étranger qui souhaite s'installer en France. Source : Campus France Maroc...</p>
+                <div className="flex justify-between text-sm text-gray-500">
+                  <span>22 mars 2021</span>
+                  <span>1 min de lecture</span>
+                </div>
+              </div>
+            </motion.div>
+            
+            {/* Article 3 */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="bg-gray-50 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+            >
+              <div className="h-48 bg-gray-200 relative">
+                <img
+                  src="https://images.unsplash.com/photo-1598257006458-087169a1f08d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                  alt="Vidéo : le job étudiant"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold mb-3 text-[#18133E]">Vidéo : le job étudiant devient essentiel pour les jeunes</h3>
+                <p className="text-gray-600 mb-4">Pour financer leurs études ou leur logement, les jeunes se mobilisent pour trouver un emploi à côté de leurs cours. Réalisation :...</p>
+                <div className="flex justify-between text-sm text-gray-500">
+                  <span>3 sept. 2020</span>
+                  <span>1 min de lecture</span>
+                </div>
               </div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Services Section */}
-      <Services />
-
-      {/* Testimonials Section */}
-      <Testimonials />
-      
-      {/* Instagram Feed Section */}
-      <section className="py-16 bg-white">
+      {/* Pricing Section */}
+      <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
-          <motion.div
+          <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            viewport={{ once: true }}
+            className="text-3xl font-bold mb-12 text-center text-[#18133E]"
           >
-            <span className="inline-block py-1 px-3 rounded-full bg-senfrance-lightBlue text-senfrance-blue text-sm font-medium mb-4">
-              #VoyagezAvecSenFrance
-            </span>
-            <h2 className="text-4xl font-bold mb-4">
-              Inspirez-vous sur Instagram
-            </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Suivez nos aventures et découvrez les plus beaux moments de nos voyages
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
-            {[
-              "https://images.unsplash.com/photo-1553984840-b8cbc34f5215?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
-              "https://images.unsplash.com/photo-1635224921851-e31fba6feb33?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
-              "https://images.unsplash.com/photo-1528277342758-f1d7613953a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
-              "https://images.unsplash.com/photo-1548796374-5e540d6115f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1939&q=80",
-              "https://images.unsplash.com/photo-1522163723043-478ef79a5bb4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1993&q=80",
-              "https://images.unsplash.com/photo-1566726667785-6a73a7fb9bc5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80",
-            ].map((image, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ scale: 1.05 }}
-                className="relative overflow-hidden rounded-lg aspect-square"
-              >
-                <img 
-                  src={image} 
-                  alt={`Instagram post ${index + 1}`}
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                />
-              </motion.div>
-            ))}
-          </div>
+            Nos Offres
+          </motion.h2>
           
-          <div className="text-center mt-10">
-            <a 
-              href="https://instagram.com/senfrance" 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-senfrance-pink to-senfrance-purple text-white hover:opacity-90 transition-opacity font-medium"
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Pricing 1 */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
             >
-              Suivez-nous sur Instagram
-              <ArrowRight size={18} className="ml-2" />
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-senfrance-blue to-primary relative overflow-hidden">
-        {/* Decorative elements */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 left-0 w-full h-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDBweCIgdmlld0JveD0iMCAwIDEyODAgMTQwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxnIGZpbGw9IiNmZmZmZmYiPjxwYXRoIGQ9Ik0xMjgwIDBIMHYxNDBoMTI4MHoiLz48L2c+PC9zdmc+')] bg-center bg-no-repeat" style={{ transform: "rotateX(180deg)" }}></div>
-        </div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
-            <div className="grid grid-cols-1 md:grid-cols-2">
-              <div className="p-8 md:p-12">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                >
-                  <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                    Prêt à vivre l'aventure <span className="text-senfrance-blue">sénégalaise</span>?
-                  </h2>
-                  <p className="text-gray-600 mb-8">
-                    Contactez notre équipe d'experts pour planifier votre voyage sur mesure et découvrir toutes les merveilles du Sénégal.
-                  </p>
-                  
-                  <div className="space-y-6 mb-8">
-                    <div className="flex items-center">
-                      <div className="bg-senfrance-lightBlue rounded-full p-3 mr-4">
-                        <Phone className="text-senfrance-blue" size={20} />
-                      </div>
-                      <div>
-                        <div className="text-sm text-gray-500">Appelez-nous</div>
-                        <div className="font-semibold">+33 (0)1 23 45 67 89</div>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-center">
-                      <div className="bg-senfrance-lightBlue rounded-full p-3 mr-4">
-                        <MapPin className="text-senfrance-blue" size={20} />
-                      </div>
-                      <div>
-                        <div className="text-sm text-gray-500">Nos bureaux</div>
-                        <div className="font-semibold">Paris & Dakar</div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <Button asChild className="bg-senfrance-blue hover:bg-senfrance-blue/90 rounded-full">
-                      <Link to="/contact">
-                        Nous contacter
-                      </Link>
-                    </Button>
-                    <Button asChild variant="outline" className="rounded-full">
-                      <Link to="/tours">
-                        Voir nos circuits
-                      </Link>
-                    </Button>
-                  </div>
-                </motion.div>
-              </div>
-              
-              <div className="relative h-64 md:h-auto">
-                <img 
-                  src="https://images.unsplash.com/photo-1516426122078-c23e76319801?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2068&q=80"
-                  alt="Contact SenFrance"
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-senfrance-blue/40 to-primary/40 flex items-center justify-center">
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    className="bg-white rounded-full w-16 h-16 flex items-center justify-center cursor-pointer"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-senfrance-blue">
-                      <path fillRule="evenodd" d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653z" clipRule="evenodd" />
-                    </svg>
-                  </motion.div>
+              <div className="p-8">
+                <div className="w-16 h-16 bg-[#FFC3BC]/20 rounded-full flex items-center justify-center mb-6">
+                  <Wallet className="h-8 w-8 text-[#18133E]" />
                 </div>
+                <h3 className="text-xl font-bold mb-2 text-[#18133E]">AVI + carte de débit</h3>
+                <div className="text-3xl font-bold mb-6 text-[#18133E]">450 €</div>
+                <p className="text-gray-600 mb-4">Caution pour études</p>
+                <p className="text-gray-600 mb-8">Document édité en 48h pour demande de visa</p>
+                <Button className="w-full bg-[#18133E] hover:bg-[#18133E]/90 rounded-full">
+                  Faire une demande
+                </Button>
               </div>
-            </div>
+            </motion.div>
+            
+            {/* Pricing 2 */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+            >
+              <div className="p-8">
+                <div className="w-16 h-16 bg-[#FFC3BC]/20 rounded-full flex items-center justify-center mb-6">
+                  <MapPin className="h-8 w-8 text-[#18133E]" />
+                </div>
+                <h3 className="text-xl font-bold mb-2 text-[#18133E]">Réservation de logement</h3>
+                <div className="text-3xl font-bold mb-6 text-[#18133E]">149 €</div>
+                <p className="text-gray-600 mb-4">Attestation d'hébergement</p>
+                <p className="text-gray-600 mb-8">Document édité en 2h pour demande de visa</p>
+                <Button className="w-full bg-[#18133E] hover:bg-[#18133E]/90 rounded-full">
+                  Faire une demande
+                </Button>
+              </div>
+            </motion.div>
+            
+            {/* Pricing 3 */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+            >
+              <div className="p-8">
+                <div className="w-16 h-16 bg-[#FFC3BC]/20 rounded-full flex items-center justify-center mb-6">
+                  <Home className="h-8 w-8 text-[#18133E]" />
+                </div>
+                <h3 className="text-xl font-bold mb-2 text-[#18133E]">Logement étudiant</h3>
+                <div className="text-3xl font-bold mb-6 text-[#18133E]">359 €</div>
+                <p className="text-gray-600 mb-4">Bail renouvelable</p>
+                <p className="text-gray-600 mb-8">Studio meublé dans une résidence moderne</p>
+                <Button className="w-full bg-[#18133E] hover:bg-[#18133E]/90 rounded-full">
+                  Faire une demande
+                </Button>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
