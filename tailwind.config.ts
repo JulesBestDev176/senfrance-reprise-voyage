@@ -69,6 +69,8 @@ export default {
 				},
 				// SenFrance modern colors
 				senfrance: {
+					darkBlue: '#18133E',
+					rose: '#FFC3BC',
 					blue: '#5B61EB',
 					purple: '#9181F4',
 					pink: '#FF6B98',
@@ -76,7 +78,6 @@ export default {
 					gold: '#FFD166',
 					teal: '#0CCEA6',
 					lightBlue: '#EEF2FF',
-					darkBlue: '#2D3A8C',
 				}
 			},
 			borderRadius: {
@@ -88,7 +89,7 @@ export default {
 				'soft': '0 10px 30px -5px rgba(0, 0, 0, 0.1)',
 				'card': '0 8px 32px rgba(0, 0, 0, 0.08)',
 				'card-hover': '0 20px 65px rgba(0, 0, 0, 0.1)',
-				'button': '0 4px 14px rgba(91, 97, 235, 0.3)',
+				'button': '0 4px 14px rgba(24, 19, 62, 0.3)',
 			},
 			keyframes: {
 				'accordion-down': {

@@ -39,6 +39,7 @@ const Hero = () => {
     }
   };
 
+  // Fixed variants for blobs with correct type "loop" | "mirror" | "reverse"
   const blobVariants = {
     initial: {
       opacity: 0.7,
@@ -50,30 +51,30 @@ const Hero = () => {
       transition: {
         duration: 8,
         repeat: Infinity,
-        repeatType: "reverse",
+        repeatType: "mirror" as const,
       },
     },
   };
 
   return (
-    <section className="relative min-h-[90vh] overflow-hidden bg-gradient-to-r from-senfrance-darkBlue via-senfrance-blue to-primary">
+    <section className="relative min-h-[90vh] overflow-hidden bg-gradient-to-r from-senfrance-darkBlue to-primary">
       {/* Decorative blobs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div 
-          className="absolute top-[10%] right-[15%] w-72 h-72 bg-senfrance-purple rounded-full filter blur-3xl opacity-40"
+          className="absolute top-[10%] right-[15%] w-72 h-72 bg-senfrance-rose rounded-full filter blur-3xl opacity-40"
           variants={blobVariants}
           initial="initial"
           animate="animate"
         />
         <motion.div 
-          className="absolute bottom-[20%] left-[20%] w-96 h-96 bg-senfrance-orange rounded-full filter blur-3xl opacity-30"
+          className="absolute bottom-[20%] left-[20%] w-96 h-96 bg-senfrance-rose rounded-full filter blur-3xl opacity-30"
           variants={blobVariants}
           initial="initial"
           animate="animate"
           transition={{ delay: 2 }}
         />
         <motion.div 
-          className="absolute top-[40%] left-[10%] w-64 h-64 bg-senfrance-pink rounded-full filter blur-3xl opacity-20"
+          className="absolute top-[40%] left-[10%] w-64 h-64 bg-secondary rounded-full filter blur-3xl opacity-20"
           variants={blobVariants}
           initial="initial"
           animate="animate"
@@ -89,8 +90,10 @@ const Hero = () => {
           animate="visible"
           className="max-w-4xl mx-auto text-center"
         >
-          <motion.h1 variants={itemVariants} className="font-heading font-bold mb-6 text-gradient">
-            Explorez la Magie du Sénégal
+          <motion.h1 variants={itemVariants} className="font-heading font-bold mb-6">
+            <span className="bg-gradient-to-r from-white via-senfrance-rose to-secondary bg-clip-text text-transparent">
+              Explorez la Magie du Sénégal
+            </span>
           </motion.h1>
           
           <motion.p variants={itemVariants} className="text-xl md:text-2xl opacity-90 mb-12 max-w-3xl mx-auto">
@@ -106,7 +109,7 @@ const Hero = () => {
               <div className="space-y-2">
                 <label className="text-sm font-medium text-white/90">Destination</label>
                 <div className="relative">
-                  <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 text-primary" size={18} />
+                  <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 text-secondary" size={18} />
                   <Input 
                     type="text" 
                     placeholder="Où voulez-vous aller?"
@@ -141,7 +144,7 @@ const Hero = () => {
               <div className="space-y-2">
                 <label className="text-sm font-medium text-white/90">Voyageurs</label>
                 <div className="relative">
-                  <Users className="absolute left-3 top-1/2 -translate-y-1/2 text-primary" size={18} />
+                  <Users className="absolute left-3 top-1/2 -translate-y-1/2 text-secondary" size={18} />
                   <Select value={travelers} onValueChange={setTravelers}>
                     <SelectTrigger className="pl-10 bg-white bg-opacity-20 border-white/30 text-white focus:ring-white/50">
                       <SelectValue placeholder="Nombre de personnes" />
@@ -159,7 +162,7 @@ const Hero = () => {
               
               <div className="space-y-2">
                 <label className="text-sm font-medium opacity-0">Rechercher</label>
-                <Button className="w-full bg-senfrance-pink hover:bg-senfrance-pink/90 shadow-button">
+                <Button className="w-full bg-secondary hover:bg-secondary/90 text-primary font-semibold shadow-button">
                   <Search size={18} className="mr-2" />
                   <span>Rechercher</span>
                 </Button>
@@ -173,8 +176,8 @@ const Hero = () => {
             className="flex flex-wrap gap-4 justify-center mt-12"
           >
             <div className="flex items-center px-5 py-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/10">
-              <div className="mr-3 p-2 bg-white/20 rounded-full">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="mr-3 p-2 bg-secondary/20 rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
@@ -182,8 +185,8 @@ const Hero = () => {
             </div>
             
             <div className="flex items-center px-5 py-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/10">
-              <div className="mr-3 p-2 bg-white/20 rounded-full">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="mr-3 p-2 bg-secondary/20 rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
@@ -191,8 +194,8 @@ const Hero = () => {
             </div>
             
             <div className="flex items-center px-5 py-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/10">
-              <div className="mr-3 p-2 bg-white/20 rounded-full">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="mr-3 p-2 bg-secondary/20 rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
