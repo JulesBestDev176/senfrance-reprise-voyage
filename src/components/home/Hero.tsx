@@ -1,19 +1,11 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Search, MapPin, CalendarDays, Users } from 'lucide-react';
+import { BookOpen, Home, Briefcase, Wallet } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { Calendar } from '@/components/ui/calendar';
-import { format } from 'date-fns';
-import { fr } from 'date-fns/locale';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
-  const [date, setDate] = useState<Date>();
-  const [travelers, setTravelers] = useState("2");
-
   // Motion variants
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -39,7 +31,7 @@ const Hero = () => {
     }
   };
 
-  // Fixed variants for blobs with correct type "loop" | "mirror" | "reverse"
+  // Fixed variants for blobs with correct type
   const blobVariants = {
     initial: {
       opacity: 0.7,
@@ -57,17 +49,17 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-[90vh] overflow-hidden bg-gradient-to-r from-senfrance-darkBlue to-primary">
+    <section className="relative min-h-[90vh] overflow-hidden bg-gradient-to-r from-[#18133E] to-[#18133E]/90">
       {/* Decorative blobs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div 
-          className="absolute top-[10%] right-[15%] w-72 h-72 bg-senfrance-rose rounded-full filter blur-3xl opacity-40"
+          className="absolute top-[10%] right-[15%] w-72 h-72 bg-[#FFC3BC] rounded-full filter blur-3xl opacity-40"
           variants={blobVariants}
           initial="initial"
           animate="animate"
         />
         <motion.div 
-          className="absolute bottom-[20%] left-[20%] w-96 h-96 bg-senfrance-rose rounded-full filter blur-3xl opacity-30"
+          className="absolute bottom-[20%] left-[20%] w-96 h-96 bg-[#FFC3BC] rounded-full filter blur-3xl opacity-30"
           variants={blobVariants}
           initial="initial"
           animate="animate"
@@ -90,116 +82,94 @@ const Hero = () => {
           animate="visible"
           className="max-w-4xl mx-auto text-center"
         >
-          <motion.h1 variants={itemVariants} className="font-heading font-bold mb-6">
-            <span className="bg-gradient-to-r from-white via-senfrance-rose to-secondary bg-clip-text text-transparent">
-              Explorez la Magie du Sénégal
+          <motion.h1 variants={itemVariants} className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+            <span className="bg-gradient-to-r from-white via-[#FFC3BC] to-white bg-clip-text text-transparent">
+              Nous facilitons la vie de l'étudiant
             </span>
           </motion.h1>
           
           <motion.p variants={itemVariants} className="text-xl md:text-2xl opacity-90 mb-12 max-w-3xl mx-auto">
-            Voyages d'exception & circuits personnalisés au cœur de l'Afrique de l'Ouest
+            avec un accompagnement sur mesure
           </motion.p>
 
-          {/* Search Box */}
-          <motion.div 
-            variants={itemVariants}
-            className="bg-white backdrop-blur-lg bg-opacity-10 rounded-2xl p-6 shadow-lg mx-auto max-w-4xl mt-8 border border-white/20"
-          >
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-white/90">Destination</label>
-                <div className="relative">
-                  <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 text-secondary" size={18} />
-                  <Input 
-                    type="text" 
-                    placeholder="Où voulez-vous aller?"
-                    className="pl-10 bg-white bg-opacity-20 border-white/30 text-white placeholder:text-white/60 focus:ring-white/50"
-                  />
-                </div>
-              </div>
-              
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-white/90">Date</label>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <Button
-                      variant="outline"
-                      className="w-full justify-start text-left font-normal bg-white bg-opacity-20 border-white/30 text-white"
-                    >
-                      <CalendarDays className="mr-2 h-4 w-4" />
-                      {date ? format(date, 'PPP', { locale: fr }) : <span className="text-white/60">Choisir une date</span>}
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0" align="start">
-                    <Calendar
-                      mode="single"
-                      selected={date}
-                      onSelect={setDate}
-                      initialFocus
-                    />
-                  </PopoverContent>
-                </Popover>
-              </div>
-              
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-white/90">Voyageurs</label>
-                <div className="relative">
-                  <Users className="absolute left-3 top-1/2 -translate-y-1/2 text-secondary" size={18} />
-                  <Select value={travelers} onValueChange={setTravelers}>
-                    <SelectTrigger className="pl-10 bg-white bg-opacity-20 border-white/30 text-white focus:ring-white/50">
-                      <SelectValue placeholder="Nombre de personnes" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="1">1 voyageur</SelectItem>
-                      <SelectItem value="2">2 voyageurs</SelectItem>
-                      <SelectItem value="3">3 voyageurs</SelectItem>
-                      <SelectItem value="4">4 voyageurs</SelectItem>
-                      <SelectItem value="5+">5+ voyageurs</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
-              
-              <div className="space-y-2">
-                <label className="text-sm font-medium opacity-0">Rechercher</label>
-                <Button className="w-full bg-secondary hover:bg-secondary/90 text-primary font-semibold shadow-button">
-                  <Search size={18} className="mr-2" />
-                  <span>Rechercher</span>
-                </Button>
-              </div>
-            </div>
+          <motion.p variants={itemVariants} className="text-base md:text-lg opacity-80 mb-12 max-w-3xl mx-auto">
+            Vous souhaitez poursuivre vos études loin de chez vous. Vous avez commencé les démarches nécessaires, mais vous ne savez pas ce qui vous attend une fois arrivé(e) en France ? Nous vous aidons à y voir plus clair. Pour mener à bien votre projet d'études, vous avez besoin de visibilité. Et si nous commencions par vous trouver un logement avant votre départ...
+          </motion.p>
+
+          <motion.div variants={itemVariants}>
+            <Button asChild className="bg-[#FFC3BC] hover:bg-[#FFC3BC]/90 text-[#18133E] rounded-full px-8 py-6 text-lg">
+              <Link to="/about">
+                QUI SOMMES-NOUS ? 
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5-5 5M5 7l5 5-5 5" />
+                </svg>
+              </Link>
+            </Button>
           </motion.div>
 
-          {/* Call to actions */}
+          {/* Services Panel */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-wrap gap-4 justify-center mt-12"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-16"
           >
-            <div className="flex items-center px-5 py-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/10">
-              <div className="mr-3 p-2 bg-secondary/20 rounded-full">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
+            {/* Service 1 */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-colors">
+              <div className="bg-[#FFC3BC]/20 rounded-full w-14 h-14 flex items-center justify-center mb-4 mx-auto">
+                <BookOpen className="h-6 w-6 text-[#FFC3BC]" />
               </div>
-              <span className="text-sm">Séjours personnalisés</span>
+              <h3 className="text-xl font-semibold mb-2 text-white">Orientation & coaching</h3>
+              <p className="text-white/80 text-sm">Inscription dans nos établissements partenaires</p>
+              <Link to="/services/orientation" className="inline-flex items-center text-[#FFC3BC] mt-4 text-sm">
+                En savoir plus
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
             </div>
-            
-            <div className="flex items-center px-5 py-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/10">
-              <div className="mr-3 p-2 bg-secondary/20 rounded-full">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
+
+            {/* Service 2 */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-colors">
+              <div className="bg-[#FFC3BC]/20 rounded-full w-14 h-14 flex items-center justify-center mb-4 mx-auto">
+                <Home className="h-6 w-6 text-[#FFC3BC]" />
               </div>
-              <span className="text-sm">Guides locaux francophones</span>
+              <h3 className="text-xl font-semibold mb-2 text-white">Se loger</h3>
+              <p className="text-white/80 text-sm">Bail, réservation & attestation d'hébergement</p>
+              <Link to="/visa/hebergement" className="inline-flex items-center text-[#FFC3BC] mt-4 text-sm">
+                En savoir plus
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
             </div>
-            
-            <div className="flex items-center px-5 py-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/10">
-              <div className="mr-3 p-2 bg-secondary/20 rounded-full">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
+
+            {/* Service 3 */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-colors">
+              <div className="bg-[#FFC3BC]/20 rounded-full w-14 h-14 flex items-center justify-center mb-4 mx-auto">
+                <Wallet className="h-6 w-6 text-[#FFC3BC]" />
               </div>
-              <span className="text-sm">Service client 24/7</span>
+              <h3 className="text-xl font-semibold mb-2 text-white">AVI</h3>
+              <p className="text-white/80 text-sm">Justificatif de ressources financières pour vos études à l'étranger</p>
+              <Link to="/visa/avi" className="inline-flex items-center text-[#FFC3BC] mt-4 text-sm">
+                En savoir plus
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
+
+            {/* Service 4 */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-colors">
+              <div className="bg-[#FFC3BC]/20 rounded-full w-14 h-14 flex items-center justify-center mb-4 mx-auto">
+                <Briefcase className="h-6 w-6 text-[#FFC3BC]" />
+              </div>
+              <h3 className="text-xl font-semibold mb-2 text-white">Travailler</h3>
+              <p className="text-white/80 text-sm">Job étudiant, stage, alternance & premier emploi post formation</p>
+              <Link to="/vivre-en-france/job-etudiant" className="inline-flex items-center text-[#FFC3BC] mt-4 text-sm">
+                En savoir plus
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
             </div>
           </motion.div>
         </motion.div>
