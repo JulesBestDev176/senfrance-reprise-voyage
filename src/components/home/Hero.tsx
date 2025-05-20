@@ -1,187 +1,302 @@
-
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { BookOpen, Home, Briefcase, Wallet } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { motion, useAnimation } from 'framer-motion';
+import { BookOpen, Home, Briefcase, Wallet, ArrowRight, Star, Zap, Target, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
 const Hero = () => {
-  // Motion variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { 
-      opacity: 1, 
-      transition: { 
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
+  const controls = useAnimation();
+  const [isInView, setIsInView] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10 && !isInView) {
+        setIsInView(true);
+        controls.start("visible");
       }
-    }
-  };
-  
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { 
-        type: "spring",
-        stiffness: 100,
-        damping: 10
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    
+    // Trigger animation on initial load after a slight delay
+    const timer = setTimeout(() => {
+      setIsInView(true);
+      controls.start("visible");
+    }, 300);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(timer);
+    };
+  }, [controls, isInView]);
+
+  // Heading text animation
+  const headingVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.12,
+        delayChildren: 0.1,
       }
     }
   };
 
-  // Fixed variants for blobs with correct type
-  const blobVariants = {
-    initial: {
-      opacity: 0.7,
-      scale: 0.8,
+  const letterVariants = {
+    hidden: { 
+      opacity: 0,
+      y: 20
     },
-    animate: {
-      opacity: [0.7, 0.9, 0.7],
-      scale: [0.8, 1.1, 0.8],
+    visible: {
+      opacity: 1,
+      y: 0,
       transition: {
-        duration: 8,
-        repeat: Infinity,
-        repeatType: "mirror" as const,
-      },
-    },
+        type: "spring",
+        damping: 12,
+        stiffness: 100
+      }
+    }
   };
+
+  const mainText = "Poursuivez vos rêves d'études en France";
+  const letters = Array.from(mainText);
 
   return (
-    <section className="relative min-h-[90vh] overflow-hidden bg-gradient-to-r from-[#18133E] to-[#18133E]/90">
-      {/* Decorative blobs */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div 
-          className="absolute top-[10%] right-[15%] w-72 h-72 bg-[#FFC3BC] rounded-full filter blur-3xl opacity-40"
-          variants={blobVariants}
-          initial="initial"
-          animate="animate"
-        />
-        <motion.div 
-          className="absolute bottom-[20%] left-[20%] w-96 h-96 bg-[#FFC3BC] rounded-full filter blur-3xl opacity-30"
-          variants={blobVariants}
-          initial="initial"
-          animate="animate"
-          transition={{ delay: 2 }}
-        />
-        <motion.div 
-          className="absolute top-[40%] left-[10%] w-64 h-64 bg-secondary rounded-full filter blur-3xl opacity-20"
-          variants={blobVariants}
-          initial="initial"
-          animate="animate"
-          transition={{ delay: 4 }}
-        />
-      </div>
-
-      {/* Content */}
-      <div className="container mx-auto px-4 relative z-10 h-full flex flex-col justify-center items-center text-white pt-24 pb-16">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="max-w-4xl mx-auto text-center"
-        >
-          <motion.h1 variants={itemVariants} className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-white via-[#FFC3BC] to-white bg-clip-text text-transparent">
-              Nous facilitons la vie de l'étudiant
-            </span>
-          </motion.h1>
+    <div className="relative overflow-hidden bg-gradient-to-br from-indigo-950 via-purple-900 to-indigo-900 min-h-screen">
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full">
+          {/* Pattern overlay */}
+          <div className="absolute top-0 right-0 w-full h-full bg-[url('/hero-pattern.svg')] bg-no-repeat bg-cover opacity-10"></div>
           
-          <motion.p variants={itemVariants} className="text-xl md:text-2xl opacity-90 mb-12 max-w-3xl mx-auto">
-            avec un accompagnement sur mesure
-          </motion.p>
+          {/* Abstract gradient blobs */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
+            animate={{ opacity: 0.15, scale: 1, rotate: 0 }}
+            transition={{ duration: 2, ease: "easeOut" }}
+            className="absolute top-20 right-[10%] w-80 h-80 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 blur-3xl"
+          />
+          
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ 
+              opacity: [0.1, 0.15, 0.1],
+              scale: [0.8, 1, 0.8],
+            }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute -bottom-20 left-[5%] w-96 h-96 rounded-full bg-gradient-to-tr from-blue-500 to-purple-500 blur-3xl"
+          />
+          
+          {/* Floating particles */}
+          {[...Array(5)].map((_, i) => (
+            <motion.div 
+              key={i}
+              className={`absolute rounded-full bg-white/50 blur-sm`}
+              style={{
+                top: `${20 + Math.random() * 60}%`,
+                left: `${10 + Math.random() * 80}%`,
+                width: `${3 + Math.random() * 5}px`,
+                height: `${3 + Math.random() * 5}px`,
+              }}
+              animate={{
+                y: [0, -15, 0],
+                opacity: [0.4, 0.7, 0.4]
+              }}
+              transition={{
+                duration: 3 + Math.random() * 3,
+                repeat: Infinity,
+                delay: Math.random() * 2
+              }}
+            />
+          ))}
+        </div>
+      </div>
 
-          <motion.p variants={itemVariants} className="text-base md:text-lg opacity-80 mb-12 max-w-3xl mx-auto">
-            Vous souhaitez poursuivre vos études loin de chez vous. Vous avez commencé les démarches nécessaires, mais vous ne savez pas ce qui vous attend une fois arrivé(e) en France ? Nous vous aidons à y voir plus clair. Pour mener à bien votre projet d'études, vous avez besoin de visibilité. Et si nous commencions par vous trouver un logement avant votre départ...
-          </motion.p>
+      {/* Main Content */}
+      <div className="container relative mx-auto px-6 py-32 z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          {/* Text Column */}
+          <div className="lg:col-span-6 text-white">
+            <motion.div 
+              initial="hidden"
+              animate={controls}
+              variants={headingVariants}
+              className="overflow-hidden mb-6"
+            >
+              
+              <h1 className="text-4xl md:text-5xl lg:text-5xl font-bold leading-tight mb-6">
+                {letters.map((letter, index) => (
+                  <motion.span
+                    key={index}
+                    variants={letterVariants}
+                    className="inline-block"
+                  >
+                    {letter === " " ? "\u00A0" : letter}
+                  </motion.span>
+                ))}
+              </h1>
+            </motion.div>
 
-          <motion.div variants={itemVariants}>
-            <Button asChild className="bg-[#FFC3BC] hover:bg-[#FFC3BC]/90 text-[#18133E] rounded-full px-8 py-6 text-lg">
-              <Link to="/about">
-                QUI SOMMES-NOUS ? 
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5-5 5M5 7l5 5-5 5" />
-                </svg>
-              </Link>
-            </Button>
-          </motion.div>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 1.5 }}
+              className="text-xl text-indigo-100 mb-8 max-w-2xl leading-relaxed"
+            >
+              Nous facilitons votre parcours étudiant avec un accompagnement personnalisé, 
+              de la recherche de logement à l'intégration professionnelle.
+            </motion.p>
 
-          {/* Services Panel */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 1.8 }}
+              className="flex flex-wrap gap-4 mt-8"
+            >
+              <Button 
+                asChild
+                className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white rounded-full px-8 py-6 text-lg font-medium transition-all duration-300 border-none shadow-lg hover:shadow-xl hover:shadow-purple-600/20"
+              >
+                <Link to="/etudiants" className="flex items-center gap-2">
+                  <span>Commencer Maintenant</span>
+                  <motion.div
+                    whileHover={{ x: 5 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  >
+                    <ArrowRight className="h-5 w-5" />
+                  </motion.div>
+                </Link>
+              </Button>
+
+              <Button 
+                asChild
+                variant="outline"
+                className="bg-transparent text-white hover:bg-white/10 border-white/30 hover:border-white/50 rounded-full px-8 py-6 text-lg font-medium transition-all duration-300 backdrop-blur-sm"
+              >
+                <Link to="/about">
+                  Qui Sommes-Nous
+                </Link>
+              </Button>
+            </motion.div>
+
+            {/* Trusted Partners */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : {}}
+              transition={{ duration: 1, delay: 2.2 }}
+              className="mt-16"
+            >
+              <p className="text-white/60 text-sm mb-4">Nos partenaires de confiance</p>
+              <div className="flex flex-wrap items-center gap-8">
+                <img src="/logo-placeholder-1.svg" alt="Partner" className="h-8 opacity-70 hover:opacity-100 transition-opacity" />
+                <img src="/logo-placeholder-2.svg" alt="Partner" className="h-8 opacity-70 hover:opacity-100 transition-opacity" />
+                <img src="/logo-placeholder-3.svg" alt="Partner" className="h-8 opacity-70 hover:opacity-100 transition-opacity" />
+              </div>
+            </motion.div>
+          </div>
+          
+          {/* Feature Highlights Column */}
+          <div className="lg:col-span-6">
+            <motion.div 
+              initial={{ opacity: 0, x: 50 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 p-6 lg:p-8 shadow-xl hover:shadow-2xl transition-all duration-500 hover:bg-white/15"
+            >
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-2xl font-bold text-white">Votre parcours simplifié</h2>
+                <motion.div 
+                  initial={{ scale: 0.8, rotate: -10, opacity: 0.8 }}
+                  animate={{ scale: 1, rotate: 0, opacity: 1 }}
+                  transition={{ duration: 0.5 }}
+                  className="bg-white/20 rounded-lg py-1 px-3 flex items-center gap-1 text-sm"
+                >
+                  <CheckCircle className="text-green-400 h-4 w-4" />
+                  <span className="text-white">100% Accompagné</span>
+                </motion.div>
+              </div>
+              
+              <div className="space-y-6">
+                <FeatureItem 
+                  icon={<Target />}
+                  title="Orientation académique"
+                  description="Conseils personnalisés pour choisir votre établissement idéal"
+                  delay={0.6}
+                  isInView={isInView}
+                />
+                
+                <FeatureItem 
+                  icon={<Home />}
+                  title="Hébergement garanti"
+                  description="Trouvez votre logement avant même d'arriver en France"
+                  delay={0.8}
+                  isInView={isInView}
+                />
+                
+                <FeatureItem 
+                  icon={<Wallet />}
+                  title="Financement facilité"
+                  description="Assistance pour l'obtention de votre AVI et aides financières"
+                  delay={1}
+                  isInView={isInView}
+                />
+                
+                <FeatureItem 
+                  icon={<Zap />}
+                  title="Intégration rapide"
+                  description="Accompagnement pour vos démarches administratives et votre intégration"
+                  delay={1.2}
+                  isInView={isInView}
+                />
+              </div>
+              
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 1.4 }}
+                className="mt-8 flex justify-center"
+              >
+                <div className="bg-gradient-to-r from-white/20 to-white/10 rounded-full py-3 px-6 flex items-center gap-2 shadow-inner">
+                  <Star className="text-yellow-400 h-5 w-5 fill-yellow-400" />
+                  <span className="text-white font-medium">Plus de 2000 étudiants accompagnés</span>
+                </div>
+              </motion.div>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Feature item component with animation
+const FeatureItem = ({ icon, title, description, delay, isInView }) => {
+  return (
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, delay }}
+      whileHover={{ x: 5 }}
+      className="flex items-start gap-4 group"
+    >
+      <div className="bg-gradient-to-br from-pink-500 to-purple-600 rounded-full p-3 text-white mt-1 shadow-lg group-hover:shadow-pink-500/30 transition-all duration-300 group-hover:scale-110">
+        {React.cloneElement(icon, { className: "h-5 w-5" })}
+      </div>
+      <div>
+        <h3 className="text-xl font-semibold text-white mb-1 group-hover:text-purple-300 transition-colors flex items-center">
+          <span>{title}</span>
           <motion.div
-            variants={itemVariants}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-16"
+            initial={{ width: 0 }}
+            whileHover={{ width: 'auto' }}
+            className="overflow-hidden ml-2"
           >
-            {/* Service 1 */}
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-colors">
-              <div className="bg-[#FFC3BC]/20 rounded-full w-14 h-14 flex items-center justify-center mb-4 mx-auto">
-                <BookOpen className="h-6 w-6 text-[#FFC3BC]" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2 text-white">Orientation & coaching</h3>
-              <p className="text-white/80 text-sm">Inscription dans nos établissements partenaires</p>
-              <Link to="/services/orientation" className="inline-flex items-center text-[#FFC3BC] mt-4 text-sm">
-                En savoir plus
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </Link>
-            </div>
-
-            {/* Service 2 */}
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-colors">
-              <div className="bg-[#FFC3BC]/20 rounded-full w-14 h-14 flex items-center justify-center mb-4 mx-auto">
-                <Home className="h-6 w-6 text-[#FFC3BC]" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2 text-white">Se loger</h3>
-              <p className="text-white/80 text-sm">Bail, réservation & attestation d'hébergement</p>
-              <Link to="/visa/hebergement" className="inline-flex items-center text-[#FFC3BC] mt-4 text-sm">
-                En savoir plus
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </Link>
-            </div>
-
-            {/* Service 3 */}
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-colors">
-              <div className="bg-[#FFC3BC]/20 rounded-full w-14 h-14 flex items-center justify-center mb-4 mx-auto">
-                <Wallet className="h-6 w-6 text-[#FFC3BC]" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2 text-white">AVI</h3>
-              <p className="text-white/80 text-sm">Justificatif de ressources financières pour vos études à l'étranger</p>
-              <Link to="/visa/avi" className="inline-flex items-center text-[#FFC3BC] mt-4 text-sm">
-                En savoir plus
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </Link>
-            </div>
-
-            {/* Service 4 */}
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-colors">
-              <div className="bg-[#FFC3BC]/20 rounded-full w-14 h-14 flex items-center justify-center mb-4 mx-auto">
-                <Briefcase className="h-6 w-6 text-[#FFC3BC]" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2 text-white">Travailler</h3>
-              <p className="text-white/80 text-sm">Job étudiant, stage, alternance & premier emploi post formation</p>
-              <Link to="/vivre-en-france/job-etudiant" className="inline-flex items-center text-[#FFC3BC] mt-4 text-sm">
-                En savoir plus
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </Link>
-            </div>
+            <ArrowRight className="h-4 w-4 text-purple-400" />
           </motion.div>
-        </motion.div>
+        </h3>
+        <p className="text-indigo-200/80">{description}</p>
       </div>
-      
-      {/* Wave divider */}
-      <div className="absolute bottom-0 left-0 w-full">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" fill="#ffffff">
-          <path fillOpacity="1" d="M0,192L48,170.7C96,149,192,107,288,112C384,117,480,171,576,176C672,181,768,139,864,122.7C960,107,1056,117,1152,128C1248,139,1344,149,1392,154.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-        </svg>
-      </div>
-    </section>
+    </motion.div>
   );
 };
 

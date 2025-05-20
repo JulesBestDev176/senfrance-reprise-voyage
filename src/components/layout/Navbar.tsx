@@ -1,9 +1,8 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { Menu, X, Phone, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, User } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   NavigationMenu,
@@ -15,18 +14,8 @@ import {
 } from "@/components/ui/navigation-menu";
 
 const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   // Close mobile menu when route changes
   useEffect(() => {
@@ -35,31 +24,28 @@ const Navbar = () => {
 
   return (
     <header 
-      className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-        isScrolled 
-          ? 'bg-white/90 backdrop-blur-md shadow-md py-2' 
-          : 'bg-transparent py-4'
-      )}
+      className="fixed top-0 left-0 right-0 z-50 bg-white py-4"
     >
-      <div className="container mx-auto px-4 flex justify-between items-center">
-        {/* Logo */}
+      <div className="container mx-auto px-6 flex justify-between items-center">
+        {/* Logo redesigné */}
         <Link to="/" className="flex items-center">
-          <span className="text-2xl font-heading font-bold text-primary">
-            SenFrance
-          </span>
+          <div className="bg-primary text-white px-3 py-1 rounded">
+            <span className="text-xl font-black tracking-wide uppercase">
+              SENFRANCE
+            </span>
+          </div>
         </Link>
 
-        {/* Desktop Navigation */}
+        {/* Desktop Navigation - Redesigné */}
         <nav className="hidden md:flex items-center">
           <NavigationMenu>
-            <NavigationMenuList className="gap-1">
+            <NavigationMenuList className="gap-2">
               {/* Étudiants */}
               <NavigationMenuItem>
                 <Link to="/etudiants" className={cn(
-                  'group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none',
+                  'group inline-flex h-10 w-max items-center justify-center rounded-full px-5 py-2 text-sm font-medium transition-all duration-200 hover:bg-primary/10 hover:text-primary',
                   location.pathname.includes('/etudiants') 
-                    ? 'text-primary font-semibold' 
+                    ? 'text-primary font-semibold bg-primary/5' 
                     : 'text-foreground'
                 )}>
                   Étudiants
@@ -69,9 +55,9 @@ const Navbar = () => {
               {/* Parents */}
               <NavigationMenuItem>
                 <Link to="/parents" className={cn(
-                  'group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none',
+                  'group inline-flex h-10 w-max items-center justify-center rounded-full px-5 py-2 text-sm font-medium transition-all duration-200 hover:bg-primary/10 hover:text-primary',
                   location.pathname.includes('/parents') 
-                    ? 'text-primary font-semibold' 
+                    ? 'text-primary font-semibold bg-primary/5' 
                     : 'text-foreground'
                 )}>
                   Parents
@@ -80,17 +66,18 @@ const Navbar = () => {
               
               {/* Demande de visa */}
               <NavigationMenuItem>
-                <NavigationMenuTrigger className={
+                <NavigationMenuTrigger className={cn(
+                  'rounded-full px-5 transition-all duration-200 hover:bg-primary/10',
                   location.pathname.includes('/visa') || location.pathname.includes('/avi') || location.pathname.includes('/hebergement')
-                    ? 'text-primary font-semibold' 
+                    ? 'text-primary font-semibold bg-primary/5' 
                     : 'text-foreground'
-                }>
+                )}>
                   Demande de visa
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <ul className="grid w-[200px] gap-2 p-4 md:w-[300px]">
+                  <ul className="grid w-[240px] gap-1 p-3 md:w-[320px] bg-white/95 backdrop-blur-md rounded-lg shadow-lg">
                     <li>
-                      <Link to="/visa/avi" className="block select-none space-y-1 rounded-md p-3 hover:bg-accent hover:text-accent-foreground">
+                      <Link to="/visa/avi" className="block select-none space-y-1 rounded-md p-3 hover:bg-primary/5 transition-all duration-200">
                         <div className="font-medium">AVI</div>
                         <p className="text-sm text-muted-foreground">
                           Attestation de virement irrévocable
@@ -98,7 +85,7 @@ const Navbar = () => {
                       </Link>
                     </li>
                     <li>
-                      <Link to="/visa/hebergement" className="block select-none space-y-1 rounded-md p-3 hover:bg-accent hover:text-accent-foreground">
+                      <Link to="/visa/hebergement" className="block select-none space-y-1 rounded-md p-3 hover:bg-primary/5 transition-all duration-200">
                         <div className="font-medium">Hébergement</div>
                         <p className="text-sm text-muted-foreground">
                           Réservation et attestation d'hébergement
@@ -111,17 +98,18 @@ const Navbar = () => {
               
               {/* Vivre en France */}
               <NavigationMenuItem>
-                <NavigationMenuTrigger className={
+                <NavigationMenuTrigger className={cn(
+                  'rounded-full px-5 transition-all duration-200 hover:bg-primary/10',
                   location.pathname.includes('/vivre-en-france') 
-                    ? 'text-primary font-semibold' 
+                    ? 'text-primary font-semibold bg-primary/5' 
                     : 'text-foreground'
-                }>
+                )}>
                   Vivre en France
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <ul className="grid w-[200px] gap-2 p-4 md:w-[300px]">
+                  <ul className="grid w-[240px] gap-1 p-3 md:w-[320px] bg-white/95 backdrop-blur-md rounded-lg shadow-lg">
                     <li>
-                      <Link to="/vivre-en-france/job-etudiant" className="block select-none space-y-1 rounded-md p-3 hover:bg-accent hover:text-accent-foreground">
+                      <Link to="/vivre-en-france/job-etudiant" className="block select-none space-y-1 rounded-md p-3 hover:bg-primary/5 transition-all duration-200">
                         <div className="font-medium">Job étudiant</div>
                         <p className="text-sm text-muted-foreground">
                           Opportunités de travail pendant vos études
@@ -129,7 +117,7 @@ const Navbar = () => {
                       </Link>
                     </li>
                     <li>
-                      <Link to="/vivre-en-france/assurances" className="block select-none space-y-1 rounded-md p-3 hover:bg-accent hover:text-accent-foreground">
+                      <Link to="/vivre-en-france/assurances" className="block select-none space-y-1 rounded-md p-3 hover:bg-primary/5 transition-all duration-200">
                         <div className="font-medium">Assurances</div>
                         <p className="text-sm text-muted-foreground">
                           Protégez-vous pendant votre séjour
@@ -143,9 +131,9 @@ const Navbar = () => {
               {/* Tarifs */}
               <NavigationMenuItem>
                 <Link to="/tarifs" className={cn(
-                  'group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none',
+                  'group inline-flex h-10 w-max items-center justify-center rounded-full px-5 py-2 text-sm font-medium transition-all duration-200 hover:bg-primary/10 hover:text-primary',
                   location.pathname.includes('/tarifs') 
-                    ? 'text-primary font-semibold' 
+                    ? 'text-primary font-semibold bg-primary/5' 
                     : 'text-foreground'
                 )}>
                   Tarifs
@@ -154,58 +142,59 @@ const Navbar = () => {
             </NavigationMenuList>
           </NavigationMenu>
           
-          <Button className="ml-4 bg-accent hover:bg-accent/90 flex items-center gap-2">
+          <Button className="ml-6 rounded-full bg-primary hover:bg-primary/90 text-white flex items-center gap-2 px-6 transition-all duration-300 hover:shadow-md">
+            <User size={16} />
             <span>Connexion</span>
           </Button>
         </nav>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Menu Button - Redesigné */}
         <button 
-          className="md:hidden text-foreground"
+          className="md:hidden text-foreground bg-primary/5 p-2 rounded-full hover:bg-primary/10 transition-all duration-200"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+          aria-label={mobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
         >
-          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
-      {/* Mobile Navigation */}
+      {/* Mobile Navigation - Redesigné */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
-            className="md:hidden bg-white shadow-lg absolute top-full left-0 right-0"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="md:hidden bg-white/95 backdrop-blur-md shadow-md absolute top-full left-0 right-0 overflow-hidden"
           >
-            <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
+            <div className="container mx-auto px-6 py-4 flex flex-col space-y-2">
               <Link
                 to="/etudiants"
-                className="py-2 px-4 font-medium hover:bg-muted rounded-md"
+                className="py-3 px-4 font-medium hover:bg-primary/5 rounded-lg transition-all duration-200"
               >
                 Étudiants
               </Link>
               <Link
                 to="/parents"
-                className="py-2 px-4 font-medium hover:bg-muted rounded-md"
+                className="py-3 px-4 font-medium hover:bg-primary/5 rounded-lg transition-all duration-200"
               >
                 Parents
               </Link>
               
               {/* Demande de visa - mobile */}
               <div className="py-2 px-4">
-                <div className="font-medium mb-2">Demande de visa</div>
-                <div className="ml-4 flex flex-col space-y-2">
+                <div className="font-medium mb-2 text-primary/80">Demande de visa</div>
+                <div className="ml-4 flex flex-col space-y-1">
                   <Link
                     to="/visa/avi"
-                    className="py-1 px-3 text-sm hover:bg-muted rounded-md"
+                    className="py-2 px-3 text-sm hover:bg-primary/5 rounded-md transition-all duration-200"
                   >
                     AVI
                   </Link>
                   <Link
                     to="/visa/hebergement"
-                    className="py-1 px-3 text-sm hover:bg-muted rounded-md"
+                    className="py-2 px-3 text-sm hover:bg-primary/5 rounded-md transition-all duration-200"
                   >
                     Hébergement
                   </Link>
@@ -214,17 +203,17 @@ const Navbar = () => {
               
               {/* Vivre en France - mobile */}
               <div className="py-2 px-4">
-                <div className="font-medium mb-2">Vivre en France</div>
-                <div className="ml-4 flex flex-col space-y-2">
+                <div className="font-medium mb-2 text-primary/80">Vivre en France</div>
+                <div className="ml-4 flex flex-col space-y-1">
                   <Link
                     to="/vivre-en-france/job-etudiant"
-                    className="py-1 px-3 text-sm hover:bg-muted rounded-md"
+                    className="py-2 px-3 text-sm hover:bg-primary/5 rounded-md transition-all duration-200"
                   >
                     Job étudiant
                   </Link>
                   <Link
                     to="/vivre-en-france/assurances"
-                    className="py-1 px-3 text-sm hover:bg-muted rounded-md"
+                    className="py-2 px-3 text-sm hover:bg-primary/5 rounded-md transition-all duration-200"
                   >
                     Assurances
                   </Link>
@@ -233,12 +222,13 @@ const Navbar = () => {
               
               <Link
                 to="/tarifs"
-                className="py-2 px-4 font-medium hover:bg-muted rounded-md"
+                className="py-3 px-4 font-medium hover:bg-primary/5 rounded-lg transition-all duration-200"
               >
                 Tarifs
               </Link>
               
-              <Button className="bg-accent hover:bg-accent/90 flex items-center gap-2 justify-center mt-2">
+              <Button className="bg-primary hover:bg-primary/90 text-white flex items-center gap-2 justify-center mt-3 py-6 rounded-lg">
+                <User size={18} />
                 <span>Connexion</span>
               </Button>
             </div>

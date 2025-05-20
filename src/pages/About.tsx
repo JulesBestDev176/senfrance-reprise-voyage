@@ -2,6 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle } from 'lucide-react';
+import Testimonials from '@/components/home/Testimonials';
 
 // Team members data
 const team = [
@@ -281,6 +282,7 @@ const About = () => {
             ))}
           </div>
         </div>
+        
       </section>
     </>
   );

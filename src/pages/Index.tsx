@@ -11,6 +11,8 @@ import DakarOffice from '@/components/home/DakarOffice';
 import BlogPreview from '@/components/home/BlogPreview';
 import Pricing from '@/components/home/Pricing';
 import LukoPartnership from '@/components/home/LukoPartnership';
+import Testimonials from '@/components/home/Testimonials';
+import Services from '@/components/home/Services';
 
 const Index = () => {
   // Trigger animations on first render with scroll position
@@ -43,6 +45,12 @@ const Index = () => {
 
       {/* Services Discovery */}
       <ServicesDiscovery />
+
+      {/* Testimonials */}
+      <Testimonials/>
+
+      {/* services */}
+      <Services/>
 
       {/* Dakar Office */}
       <DakarOffice />
