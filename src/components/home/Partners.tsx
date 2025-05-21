@@ -94,7 +94,7 @@ const Partners = () => {
           />
           <StatItem 
             icon={<Award />}
-            value="15+"
+            value="50+"
             label="Années d'expertise"
             color="purple"
             delay={0.3}

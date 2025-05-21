@@ -30,36 +30,21 @@ const Hero = () => {
     };
   }, [controls, isInView]);
 
-  // Heading text animation
+  // Heading animation (now treating the heading as a whole)
   const headingVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.12,
-        delayChildren: 0.1,
-      }
-    }
-  };
-
-  const letterVariants = {
-    hidden: { 
-      opacity: 0,
-      y: 20
-    },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
         type: "spring",
         damping: 12,
-        stiffness: 100
+        stiffness: 100,
+        duration: 0.8,
+        delay: 0.3
       }
     }
   };
-
-  const mainText = "Poursuivez vos rêves d'études en France";
-  const letters = Array.from(mainText);
 
   return (
     <div className="relative overflow-hidden bg-gradient-to-br from-indigo-950 via-purple-900 to-indigo-900 min-h-screen">
@@ -113,7 +98,7 @@ const Hero = () => {
       </div>
 
       {/* Main Content */}
-      <div className="container relative mx-auto px-6 py-32 z-10">
+      <div className="container relative mx-auto px-6 py-8 z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* Text Column */}
@@ -122,19 +107,10 @@ const Hero = () => {
               initial="hidden"
               animate={controls}
               variants={headingVariants}
-              className="overflow-hidden mb-6"
+              className="mb-6"
             >
-              
               <h1 className="text-4xl md:text-5xl lg:text-5xl font-bold leading-tight mb-6">
-                {letters.map((letter, index) => (
-                  <motion.span
-                    key={index}
-                    variants={letterVariants}
-                    className="inline-block"
-                  >
-                    {letter === " " ? "\u00A0" : letter}
-                  </motion.span>
-                ))}
+                Nous facilitons <br/> la vie de l'étudiant
               </h1>
             </motion.div>
 
@@ -142,10 +118,9 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 1.5 }}
-              className="text-xl text-indigo-100 mb-8 max-w-2xl leading-relaxed"
+              className="text-base text-indigo-100 mb-8 max-w-2xl leading-relaxed"
             >
-              Nous facilitons votre parcours étudiant avec un accompagnement personnalisé, 
-              de la recherche de logement à l'intégration professionnelle.
+              Vous souhaitez poursuivre vos études loin de chez vous. Vous avez commencé les démarches nécessaires, mais vous ne savez pas ce qui vous attend une fois arrivé(e) en France ? Nous vous aidons à y voir plus clair. Pour mener à bien votre projet d'études, vous avez besoin de visibilité. Et si nous commencions par vous trouver un logement avant votre départ...
             </motion.p>
 
             <motion.div 

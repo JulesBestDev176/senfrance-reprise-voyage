@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { Menu, X, ChevronDown, User } from 'lucide-react';
+import { Menu, X, ChevronDown, User, Search, Mail } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   NavigationMenu,
@@ -24,13 +24,13 @@ const Navbar = () => {
 
   return (
     <header 
-      className="fixed top-0 left-0 right-0 z-50 bg-white py-4"
+      className="fixed top-0 left-0 right-0 z-50 bg-white py-2"
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
         {/* Logo redesigné */}
         <Link to="/" className="flex items-center">
-          <div className="bg-primary text-white px-3 py-1 rounded">
-            <span className="text-xl font-black tracking-wide uppercase">
+          <div className="bg-primary text-white px-2 py-1 rounded">
+            <span className="text-lg font-black tracking-wide uppercase">
               SENFRANCE
             </span>
           </div>
@@ -39,11 +39,28 @@ const Navbar = () => {
         {/* Desktop Navigation - Redesigné */}
         <nav className="hidden md:flex items-center">
           <NavigationMenu>
-            <NavigationMenuList className="gap-2">
+            <NavigationMenuList className="gap-1">
+              {/* Bouton Vérificateur */}
+              <NavigationMenuItem>
+                <a
+  href="https://www.senfrance.fr/verificateur"
+  className={cn(
+    'group inline-flex h-10 w-max items-center justify-center rounded-full px-5 py-2 text-sm font-medium transition-all duration-200 border border-green-600 bg-green-100 hover:bg-green-200 text-green-700',
+    location.pathname.includes('/verificateur') 
+      ? 'font-semibold bg-green-200' 
+      : ''
+  )}
+>
+  <Search size={16} className="mr-2" />
+  Vérificateur
+</a>
+
+              </NavigationMenuItem>
+            
               {/* Étudiants */}
               <NavigationMenuItem>
                 <Link to="/etudiants" className={cn(
-                  'group inline-flex h-10 w-max items-center justify-center rounded-full px-5 py-2 text-sm font-medium transition-all duration-200 hover:bg-primary/10 hover:text-primary',
+                  'group inline-flex h-8 w-max items-center justify-center rounded-full px-3 py-1 text-sm font-medium transition-all duration-200 hover:bg-primary/10 hover:text-primary',
                   location.pathname.includes('/etudiants') 
                     ? 'text-primary font-semibold bg-primary/5' 
                     : 'text-foreground'
@@ -55,7 +72,7 @@ const Navbar = () => {
               {/* Parents */}
               <NavigationMenuItem>
                 <Link to="/parents" className={cn(
-                  'group inline-flex h-10 w-max items-center justify-center rounded-full px-5 py-2 text-sm font-medium transition-all duration-200 hover:bg-primary/10 hover:text-primary',
+                  'group inline-flex h-8 w-max items-center justify-center rounded-full px-3 py-1 text-sm font-medium transition-all duration-200 hover:bg-primary/10 hover:text-primary',
                   location.pathname.includes('/parents') 
                     ? 'text-primary font-semibold bg-primary/5' 
                     : 'text-foreground'
@@ -67,7 +84,7 @@ const Navbar = () => {
               {/* Demande de visa */}
               <NavigationMenuItem>
                 <NavigationMenuTrigger className={cn(
-                  'rounded-full px-5 transition-all duration-200 hover:bg-primary/10',
+                  'rounded-full h-8 px-3 transition-all duration-200 hover:bg-primary/10',
                   location.pathname.includes('/visa') || location.pathname.includes('/avi') || location.pathname.includes('/hebergement')
                     ? 'text-primary font-semibold bg-primary/5' 
                     : 'text-foreground'
@@ -99,7 +116,7 @@ const Navbar = () => {
               {/* Vivre en France */}
               <NavigationMenuItem>
                 <NavigationMenuTrigger className={cn(
-                  'rounded-full px-5 transition-all duration-200 hover:bg-primary/10',
+                  'rounded-full h-8 px-3 transition-all duration-200 hover:bg-primary/10',
                   location.pathname.includes('/vivre-en-france') 
                     ? 'text-primary font-semibold bg-primary/5' 
                     : 'text-foreground'
@@ -131,7 +148,7 @@ const Navbar = () => {
               {/* Tarifs */}
               <NavigationMenuItem>
                 <Link to="/tarifs" className={cn(
-                  'group inline-flex h-10 w-max items-center justify-center rounded-full px-5 py-2 text-sm font-medium transition-all duration-200 hover:bg-primary/10 hover:text-primary',
+                  'group inline-flex h-8 w-max items-center justify-center rounded-full px-3 py-1 text-sm font-medium transition-all duration-200 hover:bg-primary/10 hover:text-primary',
                   location.pathname.includes('/tarifs') 
                     ? 'text-primary font-semibold bg-primary/5' 
                     : 'text-foreground'
@@ -139,13 +156,26 @@ const Navbar = () => {
                   Tarifs
                 </Link>
               </NavigationMenuItem>
+              
+              {/* Contact */}
+              <NavigationMenuItem>
+                <Link to="/contact" className={cn(
+                  'group inline-flex h-8 w-max items-center justify-center rounded-full px-3 py-1 text-sm font-medium transition-all duration-200 hover:bg-primary/10 hover:text-primary',
+                  location.pathname.includes('/contact') 
+                    ? 'text-primary font-semibold bg-primary/5' 
+                    : 'text-foreground'
+                )}>
+                  <Mail size={15} className="mr-1" />
+                  Contact
+                </Link>
+              </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
           
-          <Button className="ml-6 rounded-full bg-primary hover:bg-primary/90 text-white flex items-center gap-2 px-6 transition-all duration-300 hover:shadow-md">
-            <User size={16} />
+          <a href="https://www.senfrance.fr/login-senfrance/student" className="ml-3 rounded-full bg-primary hover:bg-primary/90 text-white flex items-center gap-1 px-4 py-1 transition-all duration-300 hover:shadow-md">
+            <User size={15} />
             <span>Connexion</span>
-          </Button>
+          </a>
         </nav>
 
         {/* Mobile Menu Button - Redesigné */}
@@ -169,6 +199,15 @@ const Navbar = () => {
             className="md:hidden bg-white/95 backdrop-blur-md shadow-md absolute top-full left-0 right-0 overflow-hidden"
           >
             <div className="container mx-auto px-6 py-4 flex flex-col space-y-2">
+              {/* Bouton Vérificateur - mobile */}
+              <a
+                href="https://www.senfrance.fr/verificateur"
+                className="py-3 px-4 font-medium bg-primary/10 text-primary hover:bg-primary/20 rounded-lg transition-all duration-200 flex items-center"
+              >
+                <Search size={18} className="mr-2" />
+                Vérificateur
+              </a>
+              
               <Link
                 to="/etudiants"
                 className="py-3 px-4 font-medium hover:bg-primary/5 rounded-lg transition-all duration-200"
@@ -227,10 +266,19 @@ const Navbar = () => {
                 Tarifs
               </Link>
               
-              <Button className="bg-primary hover:bg-primary/90 text-white flex items-center gap-2 justify-center mt-3 py-6 rounded-lg">
+              {/* Contact - mobile */}
+              <Link
+                to="/contact"
+                className="py-3 px-4 font-medium hover:bg-primary/5 rounded-lg transition-all duration-200 flex items-center"
+              >
+                <Mail size={18} className="mr-2" />
+                Contact
+              </Link>
+              
+              <a href="https://www.senfrance.fr/login-senfrance/student" className="bg-primary hover:bg-primary/90 text-white flex items-center gap-2 justify-center mt-3 py-6 rounded-lg">
                 <User size={18} />
                 <span>Connexion</span>
-              </Button>
+              </a>
             </div>
           </motion.div>
         )}

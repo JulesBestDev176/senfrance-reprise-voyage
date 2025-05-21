@@ -20,6 +20,7 @@ import AVIPage from "./pages/AviPage";
 import HousingPage from "./pages/HousingPage";
 import PageJobEtudiant from "./pages/PageJobEtudiant";
 import PageAssurances from "./pages/PageAssurances";
+import ContactPage from "./pages/ContactPage";
 
 // Placeholder components for new routes
 
@@ -49,7 +50,7 @@ const App = () => (
               <Route path="/tarifs" element={<PricingPage />} />
               <Route path="/about" element={<About />} />
               <Route path="/services" element={<Services />} />
-              <Route path="/contact" element={<Contact />} />
+              <Route path="/contact" element={<ContactPage />} />
               <Route path="/destinations" element={<Destinations />} />
               <Route path="/tours" element={<Tours />} />
 
