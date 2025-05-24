@@ -1,3 +1,0 @@
-[build]
-  command = "CI= pnpm install --legacy-peer-deps && pnpm run build"
-  publish = "dist" # ou "build" selon ton framework
