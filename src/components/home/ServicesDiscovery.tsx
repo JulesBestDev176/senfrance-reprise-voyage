@@ -27,19 +27,19 @@ const ServicesDiscovery = () => {
     {
       icon: <Search className="h-5 w-5" />,
       title: "Orientation",
-      description: "Conseils personnalisés pour votre parcours académique",
+      description: "Conseils pour ton parcours académique",
       color: "indigo"
     },
     {
       icon: <Clock className="h-5 w-5" />,
       title: "Accompagnement",
-      description: "Suivi régulier tout au long de votre cursus",
+      description: "Suivi régulier tout au long de ton cursus",
       color: "purple"
     },
     {
       icon: <Settings className="h-5 w-5" />,
       title: "Démarches administratives",
-      description: "Assistance pour vos formalités en France",
+      description: "Assistance pour tes formalités en France",
       color: "rose"
     }
   ];
@@ -85,7 +85,7 @@ const ServicesDiscovery = () => {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="text-3xl md:text-4xl font-bold mb-6 text-[#18133E] tracking-tight"
             >
-              Découvrez nos autres services
+              Découvre une gamme complète
             </motion.h2>
             
             <motion.div
@@ -112,9 +112,9 @@ const ServicesDiscovery = () => {
               className="space-y-3 mb-10"
             >
               {[
-                "Accompagnement personnalisé",
-                "Experts en éducation internationale",
-                "Services adaptés à vos besoins"
+                "Expertise en mobilité étudiante",
+                "Écoute et disponibilité",
+                "Documents fiables et sécurisés"
               ].map((feature, index) => (
                 <div key={index} className="flex items-center gap-2">
                   <div className="bg-[#FFC3BC]/10 rounded-full p-1">
@@ -172,7 +172,7 @@ const ServicesDiscovery = () => {
         >
           <div className="flex items-center gap-2 text-sm bg-[#18133E]/5 py-2 px-4 rounded-full">
             <Star className="h-4 w-4 text-[#FFC3BC] fill-[#FFC3BC]" />
-            <span className="text-[#18133E]">Des solutions adaptées à vos besoins</span>
+            <span className="text-[#18133E]">Des solutions adaptées à tes besoins</span>
           </div>
         </motion.div>
       </div>

@@ -134,7 +134,7 @@ const Hero = () => {
                 className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white rounded-full px-8 py-6 text-lg font-medium transition-all duration-300 border-none shadow-lg hover:shadow-xl hover:shadow-purple-600/20"
               >
                 <Link to="/etudiants" className="flex items-center gap-2">
-                  <span>Commencer Maintenant</span>
+                  <span>Commencer</span>
                   <motion.div
                     whileHover={{ x: 5 }}
                     transition={{ type: "spring", stiffness: 400, damping: 10 }}
@@ -150,7 +150,7 @@ const Hero = () => {
                 className="bg-transparent text-white hover:bg-white/10 border-white/30 hover:border-white/50 rounded-full px-8 py-6 text-lg font-medium transition-all duration-300 backdrop-blur-sm"
               >
                 <Link to="/about">
-                  Qui Sommes-Nous
+                  Qui Sommes-Nous ?
                 </Link>
               </Button>
             </motion.div>
@@ -196,7 +196,7 @@ const Hero = () => {
                 <FeatureItem 
                   icon={<Target />}
                   title="Orientation académique"
-                  description="Conseils personnalisés pour choisir votre établissement idéal"
+                  description="Conseils personnalisés pour trouver l’établissement idéal"
                   delay={0.6}
                   isInView={isInView}
                 />
@@ -204,7 +204,7 @@ const Hero = () => {
                 <FeatureItem 
                   icon={<Home />}
                   title="Hébergement garanti"
-                  description="Trouvez votre logement avant même d'arriver en France"
+                  description="Réserve ton logement avant d'arriver en France"
                   delay={0.8}
                   isInView={isInView}
                 />
@@ -212,7 +212,7 @@ const Hero = () => {
                 <FeatureItem 
                   icon={<Wallet />}
                   title="Financement facilité"
-                  description="Assistance pour l'obtention de votre AVI et aides financières"
+                  description="Assistance pour la prise en charge financière"
                   delay={1}
                   isInView={isInView}
                 />
@@ -220,7 +220,7 @@ const Hero = () => {
                 <FeatureItem 
                   icon={<Zap />}
                   title="Intégration rapide"
-                  description="Accompagnement pour vos démarches administratives et votre intégration"
+                  description="Accompagnement dans tes démarches administratives"
                   delay={1.2}
                   isInView={isInView}
                 />
@@ -234,7 +234,7 @@ const Hero = () => {
               >
                 <div className="bg-gradient-to-r from-white/20 to-white/10 rounded-full py-3 px-6 flex items-center gap-2 shadow-inner">
                   <Star className="text-yellow-400 h-5 w-5 fill-yellow-400" />
-                  <span className="text-white font-medium">Plus de 2000 étudiants accompagnés</span>
+                  <span className="text-white font-medium">Plus de 2000 étudiants conseillés</span>
                 </div>
               </motion.div>
             </motion.div>

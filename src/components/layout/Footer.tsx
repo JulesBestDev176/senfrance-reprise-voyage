@@ -12,9 +12,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* Company Info */}
           <div>
-            <h3 className="text-xl font-bold mb-4">SenFrance</h3>
+            <h3 className="text-xl font-bold mb-4">SenFrance depuis 2021</h3>
             <p className="text-white/80 mb-4">
-              Spécialiste du voyage au Sénégal depuis plus de 15 ans. Des circuits touristiques authentiques et des séjours sur mesure.
+              Spécialiste de la mobilité étudiante vers la France. Des centaines d’étudiants accompagnés et conseillés. Une satisfaction client incomparable.
             </p>
             <div className="flex space-x-4">
               <a 
@@ -54,16 +54,6 @@ const Footer = () => {
               <li>
                 <Link to="/" className="text-white/80 hover:text-white transition-colors">
                   Accueil
-                </Link>
-              </li>
-              <li>
-                <Link to="/destinations" className="text-white/80 hover:text-white transition-colors">
-                  Destinations
-                </Link>
-              </li>
-              <li>
-                <Link to="/tours" className="text-white/80 hover:text-white transition-colors">
-                  Nos Circuits
                 </Link>
               </li>
               <li>

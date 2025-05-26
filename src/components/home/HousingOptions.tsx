@@ -48,10 +48,10 @@ const HousingOptions = () => {
             Solutions de logement
           </span>
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
-            Trouvez l'hébergement parfait pour vos études
+            Trouve l'hébergement parfait pour tes études
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Des solutions adaptées à votre situation, que vous soyez encore dans votre pays ou déjà en France
+            Des solutions adaptées à chaque situation, que vous soyez encore dans votre pays ou déjà en France
           </p>
         </motion.div>
 
@@ -60,11 +60,11 @@ const HousingOptions = () => {
           <HousingCard 
             icon={<Home />}
             title="Hébergement avec réservation"
-            subtitle="Sécurisez votre logement à distance"
+            subtitle="Sécurise ton logement à distance"
             description="Tu as été accepté dans une école française, mais tu es ressortissant étranger et tu dois passer par une demande de visa... Pour faciliter tes démarches, obtiens d'ores et déjà une réservation de logement SenFrance et une attestation d'hébergement. Complète les étapes pour la signature du bail quand tu seras en France."
             features={[
-              "Attestation d'hébergement pour visa",
-              "Réservation sans engagement",
+              "Attestation de logement",
+              "Réservation rapide",
               "Processus simplifié"
             ]}
             link="/visa/hebergement"

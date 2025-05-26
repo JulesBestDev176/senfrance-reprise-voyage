@@ -89,7 +89,7 @@ const LukoPartnership = () => {
             animate="pulse"
           >
             <Sparkles className="h-4 w-4" />
-            <span>NOUVEAU</span>
+            <span>IMPORTANT</span>
           </motion.div>
 
           {/* Effet de halo */}

@@ -10,8 +10,6 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import About from "./pages/About";
 import { Contact } from "lucide-react";
-import Destinations from "./pages/Destinations";
-import Tours from "./pages/Tours";
 import Pricing from "./components/home/Pricing";
 import StudentPage from "./pages/StudentPage";
 import ParentsPage from "./pages/ParentsPage";
@@ -51,8 +49,6 @@ const App = () => (
               <Route path="/about" element={<About />} />
               <Route path="/services" element={<Services />} />
               <Route path="/contact" element={<ContactPage />} />
-              <Route path="/destinations" element={<Destinations />} />
-              <Route path="/tours" element={<Tours />} />
 
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />

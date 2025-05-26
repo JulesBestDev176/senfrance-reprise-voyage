@@ -2,6 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { Building, MapPin, Award, ExternalLink } from 'lucide-react';
 
+// Liste des logos des partenaires
+const partnerLogos = [
+  { name: 'Partner 1', image: '/assets/images/partners/vivawallet.jpg' },
+  { name: 'Partner 2', image: '/assets/images/partners/luko.jpg' },
+  { name: 'Partner 3', image: '/assets/images/partners/garantme.jpg' },
+  { name: 'Partner 4', image: '/assets/images/partners/bellesannees.jpg' },
+  { name: 'Partner 5', image: '/assets/images/partners/studelites.jpg' },
+  { name: 'Partner 6', image: '/assets/images/partners/studently.jpg' },
+  { name: 'Partner 7', image: '/assets/images/partners/studyo.jpg' },
+  { name: 'Partner 8', image: '/assets/images/partners/sweetly.jpg' },
+  { name: 'Partner 9', image: '/assets/images/partners/yourfist.jpg' },
+  { name: 'Partner 10', image: '/assets/images/partners/studea.jpg' },
+  { name: 'Partner 11', image: '/assets/images/partners/estudines.jpg' },
+];
+
 const Partners = () => {
   // Animation pour le défilement automatique des logos
   const [currentBatch, setCurrentBatch] = useState(0);
@@ -95,7 +110,7 @@ const Partners = () => {
           <StatItem 
             icon={<Award />}
             value="50+"
-            label="Années d'expertise"
+            label="Écoles de qualité"
             color="purple"
             delay={0.3}
           />
@@ -134,13 +149,25 @@ const Partners = () => {
             className="flex"
           >
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 w-full flex-shrink-0">
-              {[1, 2, 3, 4, 5, 6, 7, 8].slice(0, 8).map((index) => (
-                <PartnerLogo key={index} index={index} delay={index * 0.05} />
+              {partnerLogos.slice(0, 8).map((partner, index) => (
+                <PartnerLogo 
+                  key={index} 
+                  index={index} 
+                  delay={index * 0.05}
+                  image={partner.image}
+                  name={partner.name}
+                />
               ))}
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 w-full flex-shrink-0">
-              {[9, 10, 11, 12, 13, 14, 15, 16].slice(0, 8).map((index) => (
-                <PartnerLogo key={index} index={index} delay={index * 0.05} />
+              {partnerLogos.slice(8).map((partner, index) => (
+                <PartnerLogo 
+                  key={index + 8} 
+                  index={index + 8} 
+                  delay={(index + 8) * 0.05}
+                  image={partner.image}
+                  name={partner.name}
+                />
               ))}
             </div>
           </motion.div>
@@ -201,64 +228,20 @@ const StatItem = ({ icon, value, label, color, delay }) => {
 };
 
 // Composant pour les logos des partenaires
-const PartnerLogo = ({ index, delay }) => {
-  // Animation subtile pour simuler un logo
-  const logoAnimation = useAnimation();
-  const [isHovered, setIsHovered] = useState(false);
-  
-  // Changer l'animation au survol
-  useEffect(() => {
-    if (isHovered) {
-      logoAnimation.start({ 
-        scale: 1.05,
-        boxShadow: "0 10px 30px -15px rgba(0, 0, 0, 0.2)"
-      });
-    } else {
-      logoAnimation.start({ 
-        scale: 1,
-        boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.05)"
-      });
-    }
-  }, [isHovered, logoAnimation]);
-  
+const PartnerLogo = ({ index, delay, image, name }) => {
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ delay: delay + 0.2 }}
-      onHoverStart={() => setIsHovered(true)}
-      onHoverEnd={() => setIsHovered(false)}
-      animate={logoAnimation}
-      className="overflow-hidden relative group"
+      transition={{ duration: 0.5, delay }}
+      className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow duration-300 aspect-[3/2] flex items-center justify-center"
     >
-      <div className="absolute inset-0 bg-gradient-to-tr from-indigo-50 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
-      <div className="bg-white border border-gray-100 p-6 rounded-xl flex items-center justify-center h-24 relative transition-all duration-300 group-hover:border-indigo-100">
-        {/* Logo simulé avec une mise en page élégante */}
-        <div className="relative flex flex-col items-center justify-center w-full">
-          <div className={`h-5 w-${10 + (index % 5) * 2} rounded-md bg-gradient-to-r ${
-            index % 3 === 0 ? 'from-indigo-300 to-indigo-200' : 
-            index % 3 === 1 ? 'from-pink-300 to-pink-200' : 
-            'from-purple-300 to-purple-200'
-          } mb-2 relative z-10`}></div>
-          <div className={`h-3 w-${16 - (index % 4) * 2} rounded-md bg-gray-200 relative z-10`}></div>
-          
-          {/* Effet de brillance au survol */}
-          <motion.div 
-            className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-70"
-            style={{ 
-              transform: "skewX(45deg) translateX(-150%)",
-            }}
-            animate={{ 
-              translateX: isHovered ? ["0%", "250%"] : "0%"
-            }}
-            transition={{ 
-              duration: 0.8, 
-              ease: "easeInOut",
-            }}
-          />
-        </div>
-      </div>
+      <img
+        src={image}
+        alt={name}
+        className="max-w-full max-h-full object-contain"
+      />
     </motion.div>
   );
 };

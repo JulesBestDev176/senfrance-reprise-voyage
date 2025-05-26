@@ -52,7 +52,7 @@ const MainServices = () => {
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Nos services essentiels</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Nous avons identifié les éléments clés pour réussir votre projet d'études en France
+              Nous avons identifié les éléments clés pour réussir ta demande de visa étudiant
             </p>
           </motion.div>
 
@@ -60,7 +60,7 @@ const MainServices = () => {
             {/* Housing Section */}
             <ServiceCard 
               icon={<Home />}
-              title="Trouvez votre logement idéal"
+              title="Trouvez le logement idéal"
               description="Nos services ont identifié trois axes essentiels à la réussite des étudiants : un logement décent, une autonomie financière et le choix d'une formation qui te correspond."
               buttonText="SE LOGER"
               link="/visa/hebergement"
@@ -72,7 +72,7 @@ const MainServices = () => {
             {/* AVI Section */}
             <ServiceCard 
               icon={<Wallet />}
-              title="Justifiez vos ressources avec l'AVI"
+              title="Justifie tes ressources avec l'AVI"
               description="L'attestation de virement irrévocable est l'une des méthodes agréées par les services consulaires pour prouver que tu as les moyens de financer ton projet."
               buttonText="AVI"
               link="/visa/avi"

@@ -27,12 +27,17 @@ const Index = () => {
 
       {/* Main Services */}
       <MainServices />
+
+      {/* Testimonials */}
+      <Testimonials/>
+
+      {/* Housing Options */}
+      <HousingOptions />
       
       {/* Luko Partnership */}
       <LukoPartnership />
 
-      {/* Housing Options */}
-      <HousingOptions />
+      
 
       {/* Partners */}
       <Partners />
@@ -46,11 +51,10 @@ const Index = () => {
       {/* Services Discovery */}
       <ServicesDiscovery />
 
-      {/* Testimonials */}
-      <Testimonials/>
+      
 
       {/* services */}
-      <Services/>
+      {/* <Services/> */}
 
       {/* Dakar Office */}
       <DakarOffice />

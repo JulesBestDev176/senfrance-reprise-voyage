@@ -207,7 +207,7 @@ const Testimonials = () => {
             Témoignages
           </span>
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
-            Ce que nos voyageurs <span className="text-[#FFC3BC]">adorent</span>
+            Ce qu’en disent les <span className="text-[#FFC3BC]">étudiants</span>
           </h2>
           
           <motion.div
@@ -218,9 +218,10 @@ const Testimonials = () => {
             className="h-1 w-20 bg-gradient-to-r from-[#FFC3BC] to-[#FFC3BC]/30 rounded-full mx-auto mb-6"
           />
           
-          <p className="text-xl text-white/80 max-w-3xl mx-auto">
+          {/* <p className="text-xl text-white/80 max-w-3xl mx-auto">
             Découvrez les expériences authentiques vécues par nos clients au Sénégal
-          </p>
+          </p> */
+          }
         </motion.div>
 
         {/* Enhanced Testimonials Slider */}
@@ -389,7 +390,7 @@ const Testimonials = () => {
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
             <Star className="h-4 w-4 text-yellow-400 fill-yellow-400" />
-            <span className="text-white text-sm">Plus de 2000 avis vérifiés | Note moyenne: 4.9/5</span>
+            <span className="text-white text-sm">Avis Google vérifiés  | Note moyenne: 5/5</span>
           </div>
         </motion.div>
       </div>

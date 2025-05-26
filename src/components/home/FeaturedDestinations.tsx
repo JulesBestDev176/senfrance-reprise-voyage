@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, MapPin } from 'lucide-react';
@@ -109,10 +108,10 @@ const FeaturedDestinations = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="inline-block py-1 px-3 rounded-full bg-senfrance-lightBlue text-senfrance-blue text-sm font-medium mb-4">
+          <span className="inline-block py-1 px-3 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
             Explorez
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-senfrance-darkBlue to-senfrance-blue bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
             Destinations populaires
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -155,7 +154,7 @@ const FeaturedDestinations = () => {
                   
                   <div className="p-6 flex-1 flex flex-col justify-between bg-white">
                     <div>
-                      <h3 className="text-xl font-bold mb-2 group-hover:text-senfrance-blue transition-colors">
+                      <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
                         {destination.name}
                       </h3>
                       <p className="text-gray-600">{destination.description}</p>
@@ -163,7 +162,7 @@ const FeaturedDestinations = () => {
                     
                     <div className="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between">
                       <span className="text-sm text-gray-500">Découvrir</span>
-                      <span className="flex items-center justify-center w-8 h-8 rounded-full bg-senfrance-lightBlue text-senfrance-blue group-hover:bg-senfrance-blue group-hover:text-white transition-colors">
+                      <span className="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
                         <ArrowRight size={16} />
                       </span>
                     </div>
@@ -178,7 +177,7 @@ const FeaturedDestinations = () => {
         <div className="text-center mt-16">
           <Link 
             to="/destinations"
-            className="inline-flex items-center px-6 py-3 rounded-full bg-senfrance-lightBlue text-senfrance-blue hover:bg-senfrance-blue hover:text-white transition-colors font-medium"
+            className="inline-flex items-center px-6 py-3 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-white transition-colors font-medium"
           >
             Voir toutes les destinations
             <ArrowRight size={18} className="ml-2" />

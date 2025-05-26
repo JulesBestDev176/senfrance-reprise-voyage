@@ -97,7 +97,7 @@ const DakarOffice = () => {
                   transition={{ delay: 0.3, duration: 0.5 }}
                 >
                   <span className="text-sm font-medium text-[#FFC3BC] bg-[#FFC3BC]/10 py-1 px-3 rounded-full border border-[#FFC3BC]/20">
-                    Nouveau Bureau
+                    Bureau Afrique
                   </span>
                 </motion.div>
                 <motion.h2 
@@ -344,7 +344,7 @@ const DakarOffice = () => {
               whileHover={{ y: -3, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)" }}
             >
               <Zap className="h-4 w-4 text-[#FFC3BC]" />
-              <span className="text-xs font-medium text-gray-800">Inauguration récente</span>
+              <span className="text-xs font-medium text-gray-800">Plus de proximité</span>
             </motion.div>
           </motion.div>
         </div>

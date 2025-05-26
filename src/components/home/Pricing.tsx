@@ -148,7 +148,7 @@ const Pricing = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-3xl md:text-4xl font-bold mb-4 text-[#18133E]"
           >
-            Nos offres pour votre réussite
+            Nos offres pour ton projet
           </motion.h2>
           
           <motion.div
@@ -166,7 +166,7 @@ const Pricing = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-gray-600 max-w-2xl mx-auto"
           >
-            Solutions adaptées pour la réussite de votre projet d'études en France
+            Solutions adaptées et pensées pour les étudiants internationaux
           </motion.p>
         </div>
         
@@ -280,7 +280,7 @@ const Pricing = () => {
             <Shield className="h-5 w-5 text-[#18133E]" />
             <h3 className="text-lg font-medium text-[#18133E]">Garantie de satisfaction</h3>
           </div>
-          <p className="text-gray-600">Tous nos services sont accompagnés d'un suivi personnalisé et d'une garantie de remboursement si vous n'êtes pas satisfait.</p>
+          <p className="text-gray-600">Tous nos services sont accompagnés d'un suivi personnalisé et d'une écoute attentive pendant une période stressante pour les étudiants.</p>
           
           <div className="mt-4 flex flex-wrap justify-center gap-4">
             <div className="flex items-center gap-1.5">

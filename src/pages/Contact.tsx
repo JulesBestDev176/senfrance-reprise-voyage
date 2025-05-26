@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
@@ -34,7 +33,7 @@ const Contact = () => {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative py-24 bg-senfrance-brown">
+      <section className="relative py-24 bg-secondary">
         <div 
           className="absolute inset-0 bg-cover bg-center opacity-20"
           style={{ backgroundImage: "url('https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1961&q=80')" }}
@@ -61,7 +60,7 @@ const Contact = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="bg-white rounded-lg shadow-lg p-8"
+              className="bg-muted p-6 rounded-lg"
             >
               <h2 className="text-2xl font-bold mb-6">Nous écrire</h2>
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -192,7 +191,7 @@ const Contact = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="bg-senfrance-lightSand p-6 rounded-lg"
+                className="bg-muted p-6 rounded-lg"
               >
                 <h3 className="text-xl font-semibold mb-4">Pourquoi nous choisir ?</h3>
                 <ul className="space-y-3">
@@ -242,7 +241,7 @@ const Contact = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16 bg-senfrance-lightSand">
+      <section className="py-16 bg-muted">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Questions Fréquentes</h2>

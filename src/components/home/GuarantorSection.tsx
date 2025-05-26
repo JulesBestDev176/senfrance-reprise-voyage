@@ -68,10 +68,10 @@ const GuarantorSection = () => {
             Protection & Tranquillité
           </span>
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
-            Solutions de garantie pour votre logement
+            Solutions de garantie pour ton logement
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Sécurisez votre location et protégez votre habitat avec nos solutions partenaires simples et efficaces
+            Sécurise ta location et protège ton habitat avec nos solutions d’assurance
           </p>
         </motion.div>
 
@@ -82,9 +82,9 @@ const GuarantorSection = () => {
             icon={<Shield />}
             description="Avec notre partenaire privilégié, remplis ton dossier et charge tes pièces justificatives en seulement 5 minutes. Si tu ne les as pas toutes, aucun problème, tu peux les charger plus tard !"
             benefits={[
-              "Dossier en 5 minutes seulement",
+              "Demande en 5 minutes chrono",
               "Acceptation par tous les propriétaires",
-              "Suivi en temps réel de votre dossier"
+              "Suivi en temps réel de ton dossier"
             ]}
             ctaText="Obtenir une garantie"
             logoText="Garantme"
@@ -104,7 +104,7 @@ const GuarantorSection = () => {
               "Offre transparente et sans surprise",
               "Meilleure satisfaction client du marché"
             ]}
-            ctaText="Souscrire à une assurance"
+            ctaText="Souscrire une assurance"
             logoText="Luko"
             link="/vivre-en-france/assurances"
             color="pink"
@@ -121,10 +121,10 @@ const GuarantorSection = () => {
           transition={{ delay: 0.6, duration: 0.6 }}
           className="mt-16 flex flex-col items-center"
         >
-          <div className="bg-white/80 backdrop-blur-sm py-3 px-5 rounded-full shadow-md flex items-center gap-2 text-sm font-medium text-gray-600">
+          {/* <div className="bg-white/80 backdrop-blur-sm py-3 px-5 rounded-full shadow-md flex items-center gap-2 text-sm font-medium text-gray-600">
             <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
             <span>Plus de 10 000 étudiants nous font confiance</span>
-          </div>
+          </div> */}
         </motion.div>
       </div>
     </section>

@@ -94,7 +94,7 @@ const BlogPreview = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-3xl md:text-4xl font-bold mb-4 text-[#18133E]"
           >
-            Derniers Articles & Conseils
+            Articles & Conseils
           </motion.h2>
           
           <motion.div
@@ -112,7 +112,7 @@ const BlogPreview = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-gray-600 max-w-2xl mx-auto"
           >
-            Restez informé des actualités et conseils pour réussir votre projet d'études en France
+            Suis les dernières actualités pour réussir ton projet d'études en France
           </motion.p>
         </div>
         

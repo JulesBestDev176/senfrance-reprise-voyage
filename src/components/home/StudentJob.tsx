@@ -35,7 +35,7 @@ const StudentJob = () => {
   };
 
   // Title animation
-  const titleWords = "Postulez pour un job étudiant".split(" ");
+  const titleWords = "Postule un job étudiant".split(" ");
   
   // Statistics data
   const stats = [
@@ -180,21 +180,7 @@ const StudentJob = () => {
                     )}
                   </motion.span>
                 ))}
-                <motion.span 
-                  className="text-[#FFC3BC] inline-block"
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ 
-                    delay: titleWords.length * 0.1,
-                    duration: 0.8,
-                    type: "spring",
-                    stiffness: 100,
-                    damping: 15
-                  }}
-                >
-                  étudiant
-                </motion.span>
+               
               </h2>
             </div>
 
@@ -205,7 +191,7 @@ const StudentJob = () => {
               viewport={{ once: true }}
               transition={{ delay: 0.4, duration: 0.6 }}
             >
-              Travailler pendant ses études, c'est possible. Vous pouvez prendre un emploi à temps partiel sans compromettre votre formation et vos chances de réussite.
+              Travailler pendant ses études, c'est possible. Tu peux prendre un emploi à temps partiel sans compromettre ta formation et tes chances de réussite.
             </motion.p>
 
             {/* Statistics */}
@@ -366,7 +352,7 @@ const StudentJob = () => {
               >
                 <div className="flex items-center gap-2 mb-2">
                   <GraduationCap className="h-5 w-5 text-[#FFC3BC]" />
-                  <span className="text-white/90 font-medium">Conciliez études et travail</span>
+                  <span className="text-white/90 font-medium">Concilie études et travail</span>
                 </div>
                 <p className="text-white/70 text-sm">
                   De nombreuses opportunités existent pour les étudiants internationaux
