@@ -4,23 +4,20 @@ import { Building, MapPin, Award, ExternalLink } from 'lucide-react';
 
 // Liste des logos des partenaires
 const partnerLogos = [
-  { name: 'Partner 1', image: '/assets/images/partners/vivawallet.jpg' },
-  { name: 'Partner 2', image: '/assets/images/partners/luko.jpg' },
-  { name: 'Partner 3', image: '/assets/images/partners/garantme.jpg' },
-  { name: 'Partner 4', image: '/assets/images/partners/bellesannees.jpg' },
-  { name: 'Partner 5', image: '/assets/images/partners/studelites.jpg' },
-  { name: 'Partner 6', image: '/assets/images/partners/studently.jpg' },
-  { name: 'Partner 7', image: '/assets/images/partners/studyo.jpg' },
-  { name: 'Partner 8', image: '/assets/images/partners/sweetly.jpg' },
-  { name: 'Partner 9', image: '/assets/images/partners/yourfist.jpg' },
-  { name: 'Partner 10', image: '/assets/images/partners/studea.jpg' },
-  { name: 'Partner 11', image: '/assets/images/partners/estudines.jpg' },
+  { name: 'Partner 1', image: '/assets/images/partners/bellesannees.jpg' },
+  { name: 'Partner 2', image: '/assets/images/partners/studelites.jpg' },
+  { name: 'Partner 3', image: '/assets/images/partners/studently.jpg' },
+  { name: 'Partner 4', image: '/assets/images/partners/studyo.jpg' },
+  { name: 'Partner 5', image: '/assets/images/partners/sweetly.jpg' },
+  { name: 'Partner 6', image: '/assets/images/partners/yourfist.jpg' },
+  { name: 'Partner 7', image: '/assets/images/partners/studea.jpg' },
+  { name: 'Partner 8', image: '/assets/images/partners/estudines.jpg' },
 ];
 
 const Partners = () => {
   // Animation pour le défilement automatique des logos
   const [currentBatch, setCurrentBatch] = useState(0);
-  const totalBatches = 2; // Nombre de groupes pour le carrousel
+  const totalBatches = 1; // Nombre de groupes pour le carrousel
   
   useEffect(() => {
     const timer = setInterval(() => {
@@ -128,7 +125,7 @@ const Partners = () => {
 
           {/* Titre de la section */}
           <div className="relative mb-8 flex justify-between items-center">
-            <h3 className="text-lg font-medium text-gray-900">Partenaires résidentiels</h3>
+            <h3 className="text-lg font-medium text-gray-900">Résidences partenaires</h3>
             <div className="flex space-x-1">
               {[...Array(totalBatches)].map((_, i) => (
                 <button

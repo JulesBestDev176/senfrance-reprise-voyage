@@ -1,52 +1,53 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence, useViewportScroll, useTransform } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform, useInView } from 'framer-motion';
 import { Star, ArrowLeft, ArrowRight, Quote, ChevronRight, Heart, ThumbsUp, MessageCircle } from 'lucide-react';
 
 // Enhanced testimonials data with themes
 const testimonials = [
   {
     id: 1,
-    name: "Sophie Dupont",
-    location: "Paris, France",
-    comment: "Notre séjour au Sénégal avec SenFrance a dépassé toutes nos attentes. L'organisation était impeccable, les guides passionnés et les hébergements de grande qualité. Nous avons découvert le pays en profondeur, loin des sentiers touristiques habituels. Merci pour ces moments magiques !",
+    name: "Mamadou Cissé",
+    comment: "Nous Taysir Orientation Voyage avons le Plaisir de collaborer avec SENFRANCE ces deux dernières années [...] Leur professionnalisme, leur réactivité et leur expertise ont grandement contribué au succès de Taysir Orientation Voyage.",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80",
-    profession: "Enseignante",
-    color: "indigo",
-    highlight: "Organisation impeccable"
+    image: "assets/temoignages/mamadoucisse.png",
+    color: "#f0f8ff",
+    highlight: "Collaboration réussie"
   },
   {
     id: 2,
-    name: "Pierre Martin",
-    location: "Lyon, France",
-    comment: "Un voyage extraordinaire, orchestré à la perfection! Notre guide Amadou était une mine d'informations sur la culture sénégalaise. Les expériences uniques comme la nuit dans le désert de Lompoul et la rencontre avec les communautés locales resteront à jamais gravées dans ma mémoire.",
+    name: "Mariama Diancke Drame",
+    comment: "Je tiens à faire ce témoignage à l'égard de la société SENFrance pour avoir bénéficié de leur service. Je suis le PDG de Perf Consulting Group et j'ai été très satisfait de leur accompagnement.",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80",
-    profession: "Architecte",
-    color: "purple",
-    highlight: "Expériences uniques"
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80",
+    color: "#fff0f5",
+    highlight: "Expérience inoubliable"
   },
   {
     id: 3,
-    name: "Marie Leclerc",
-    location: "Bordeaux, France",
-    comment: "SenFrance a su créer pour nous un itinéraire parfait, mêlant découvertes culturelles, rencontres authentiques et moments de détente. La diversité des paysages sénégalais est incroyable, et grâce à l'équipe, nous avons pu en apprécier toute la beauté sans le moindre souci logistique.",
+    name: "Ibrahima Gassama",
+    comment: "Selon mon expérience personnelle il n'y a pas meilleure agence que SenFrance.",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80",
-    profession: "Médecin",
-    color: "rose",
-    highlight: "Itinéraire parfait"
+    image: "assets/temoignages/ibrahimagassama.png",
+    color: "#f5fffa",
+    highlight: "Itinéraire sur mesure"
   },
   {
     id: 4,
-    name: "Jean Dubois",
-    location: "Nantes, France",
-    comment: "Voyageur expérimenté, je peux dire que ce circuit au Sénégal compte parmi mes meilleures expériences. L'équipe de SenFrance a fait preuve d'un professionnalisme remarquable et d'une attention constante à nos besoins. Chaque jour apportait son lot de découvertes fascinantes!",
+    name: "Arame Diagne",
+    comment: "Si vous êtes étudiant et que vous avez des difficultés pour trouver un logement, je vous conseille fortement de contacter SenFrance. Ils sauront vous aider réellement dans vos démarches pour trouver un logement. Lors des premiers rendez-vous à l'agence, ils vous écoutent, et font le point de votre situation( études suivies, budget loyer max, etc). J'ai pu avoir un logement rapidement grâce à leur bonne volonté et leur perspicacité. C'est une excellente initiative, au vu des nombreuses entraves pour trouver un logement. Ils vont aussi suivre vos dossiers jusqu'à l'obtention de votre nouveau logement, c'est à dire qu'ils ne vont pas lâcher l'affaire, tant que vous n'aurez pas de logement. Ils sont accueillants et professionnels Merci encore pour tout SenFrance!",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
-    profession: "Consultant",
-    color: "blue",
-    highlight: "Professionnalisme remarquable"
+    image: "assets/temoignages/aramediagne.png",
+    color: "#e6f7ff",
+    highlight: "Découvertes fascinantes"
+  },
+  {
+    id: 5,
+    name: "Anna Diop",
+    comment: "SenFrance une superbe initiative pour les nouveaux étudiants qui sont souvent livrés à eux-même. Les accompagnateurs sont agréables et à l'écoute des étudiants ! Je conseille sans hésitation.",
+    rating: 5,
+    image: "assets/temoignages/annadiop.png",
+    color: "#fffbe6",
+    highlight: "Accompagnement personnalisé"
   }
 ];
 
@@ -86,6 +87,10 @@ const Testimonials = () => {
   
   // Refs for intersection observer
   const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { 
+    once: false, 
+    margin: "-20%" 
+  });
 
   // Progress animation for timer
   const [progress, setProgress] = useState(0);
@@ -139,7 +144,7 @@ const Testimonials = () => {
   const currentStyle = colorStyles[testimonials[current].color] || colorStyles.indigo;
   
   // Parallax effect for background elements
-  const { scrollYProgress } = useViewportScroll();
+  const { scrollYProgress } = useScroll();
   const y1 = useTransform(scrollYProgress, [0, 1], [0, -100]);
   const y2 = useTransform(scrollYProgress, [0, 1], [0, -50]);
   const opacity = useTransform(scrollYProgress, [0.3, 0.4, 0.8, 0.9], [0, 1, 1, 0]);
@@ -154,16 +159,58 @@ const Testimonials = () => {
       {/* Enhanced background with gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#18133E] via-[#271D5B] to-[#18133E] -z-10"></div>
       
-      {/* Background decorations with parallax */}
+      {/* Background decorations with parallax and enhanced visibility effects */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden -z-10">
         <motion.div
           style={{ y: y1 }}
           className="absolute -top-48 -left-48 w-96 h-96 rounded-full bg-gradient-to-br from-[#FFC3BC]/20 to-pink-500/10 blur-3xl"
+          animate={isInView ? {
+            scale: [1, 1.2, 1],
+            opacity: [0.2, 0.4, 0.2]
+          } : {
+            scale: 1,
+            opacity: 0.1
+          }}
+          transition={{
+            duration: 8,
+            repeat: isInView ? Infinity : 0,
+            ease: "easeInOut"
+          }}
         />
         <motion.div
           style={{ y: y2 }}
           className="absolute -bottom-24 -right-24 w-64 h-64 rounded-full bg-gradient-to-tr from-indigo-500/20 to-purple-500/10 blur-3xl"
+          animate={isInView ? {
+            scale: [1.1, 0.9, 1.1],
+            opacity: [0.1, 0.3, 0.1]
+          } : {
+            scale: 1,
+            opacity: 0.05
+          }}
+          transition={{
+            duration: 10,
+            repeat: isInView ? Infinity : 0,
+            ease: "easeInOut",
+            delay: 1
+          }}
         />
+        
+        {/* Additional ambient glow when visible */}
+        {isInView && (
+          <motion.div
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-gradient-to-r from-[#FFC3BC]/10 to-purple-500/5 blur-3xl"
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ 
+              opacity: [0, 0.3, 0],
+              scale: [0.5, 1.5, 0.5]
+            }}
+            transition={{
+              duration: 12,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+        )}
         
         {/* Moving particles */}
         <div className="absolute inset-0">
@@ -191,10 +238,34 @@ const Testimonials = () => {
         </div>
       </div>
       
-      {/* Grid overlay for texture */}
-      <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10 -z-10"></div>
+      {/* Grid overlay for texture - Enhanced with visibility */}
+      <motion.div 
+        className="absolute inset-0 bg-[url('/grid-pattern.svg')] -z-10"
+        animate={isInView ? {
+          opacity: [0.05, 0.15, 0.05]
+        } : {
+          opacity: 0.05
+        }}
+        transition={{
+          duration: 6,
+          repeat: isInView ? Infinity : 0,
+          ease: "easeInOut"
+        }}
+      />
       
-      <div className="container mx-auto px-4 relative z-10">
+      <motion.div 
+        className="container mx-auto px-4 relative z-10"
+        animate={isInView ? {
+          scale: [1, 1.005, 1]
+        } : {
+          scale: 1
+        }}
+        transition={{
+          duration: 8,
+          repeat: isInView ? Infinity : 0,
+          ease: "easeInOut"
+        }}
+      >
         {/* Enhanced Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -207,7 +278,7 @@ const Testimonials = () => {
             Témoignages
           </span>
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
-            Ce qu’en disent les <span className="text-[#FFC3BC]">étudiants</span>
+            Ce qu'en disent les <span className="text-[#FFC3BC]">étudiants</span>
           </h2>
           
           <motion.div
@@ -217,11 +288,6 @@ const Testimonials = () => {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="h-1 w-20 bg-gradient-to-r from-[#FFC3BC] to-[#FFC3BC]/30 rounded-full mx-auto mb-6"
           />
-          
-          {/* <p className="text-xl text-white/80 max-w-3xl mx-auto">
-            Découvrez les expériences authentiques vécues par nos clients au Sénégal
-          </p> */
-          }
         </motion.div>
 
         {/* Enhanced Testimonials Slider */}
@@ -241,17 +307,17 @@ const Testimonials = () => {
                   {/* Profile Section */}
                   <div className="md:col-span-4">
                     <div className="flex flex-col items-center md:items-start text-center md:text-left">
-                      {/* Profile image with animated border */}
+                      {/* Profile image with animated border - NOW CIRCULAR */}
                       <div className="relative mb-4 group">
                         <motion.div 
-                          className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${currentStyle.accent} blur-sm opacity-70`}
+                          className={`absolute inset-0 rounded-full bg-gradient-to-r ${currentStyle.accent} blur-sm opacity-70`}
                           animate={{ 
                             scale: [1, 1.05, 1],
                             opacity: [0.7, 0.9, 0.7]
                           }}
                           transition={{ duration: 3, repeat: Infinity }}
                         />
-                        <div className="h-24 w-24 rounded-2xl overflow-hidden border-2 border-white/20 relative">
+                        <div className="h-24 w-24 rounded-full overflow-hidden border-2 border-white/20 relative">
                           <img 
                             src={testimonials[current].image} 
                             alt={testimonials[current].name} 
@@ -261,8 +327,6 @@ const Testimonials = () => {
                       </div>
                       
                       <h3 className="text-xl font-bold text-white">{testimonials[current].name}</h3>
-                      <p className="text-white/70 text-sm mb-1">{testimonials[current].profession}</p>
-                      <p className="text-white/70 text-sm">{testimonials[current].location}</p>
                       
                       {/* Enhanced rating */}
                       <div className="flex mt-4">
@@ -307,23 +371,6 @@ const Testimonials = () => {
                     <p className="text-lg md:text-xl text-white/90 italic relative z-10 leading-relaxed">
                       "{testimonials[current].comment}"
                     </p>
-                    
-                    {/* Read more link */}
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.5 }}
-                      className="mt-6 flex justify-end"
-                    >
-                      <motion.a 
-                        href="#" 
-                        className="flex items-center text-sm text-[#FFC3BC] hover:text-[#ff9d94] transition-colors"
-                        whileHover={{ x: 5 }}
-                      >
-                        <span className="mr-1">Lire l'avis complet</span>
-                        <ChevronRight size={16} />
-                      </motion.a>
-                    </motion.div>
                   </div>
                 </div>
               </motion.div>
@@ -393,7 +440,7 @@ const Testimonials = () => {
             <span className="text-white text-sm">Avis Google vérifiés  | Note moyenne: 5/5</span>
           </div>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 };

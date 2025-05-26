@@ -333,7 +333,7 @@ const PageJobEtudiant = () => {
       </section>
       
       {/* Section formulaire de candidature */}
-      <section id="candidature" className="py-16 bg-white relative">
+      {/* <section id="candidature" className="py-16 bg-white relative">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -578,7 +578,7 @@ const PageJobEtudiant = () => {
             </form>
           </div>
         </div>
-      </section>
+      </section> */}
       
       {/* Section témoignages */}
       <section className="py-16 bg-gray-50 relative">

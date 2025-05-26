@@ -51,7 +51,7 @@ const HousingOptions = () => {
             Trouve l'hébergement parfait pour tes études
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Des solutions adaptées à chaque situation, que vous soyez encore dans votre pays ou déjà en France
+            Des solutions adaptées à chaque situation
           </p>
         </motion.div>
 
