@@ -164,9 +164,9 @@ const Hero = () => {
             >
               <p className="text-white/60 text-sm mb-4">Nos partenaires de confiance</p>
               <div className="flex flex-wrap items-center gap-8">
-                <img src="/logo-placeholder-1.svg" alt="Partner" className="h-8 opacity-70 hover:opacity-100 transition-opacity" />
-                <img src="/logo-placeholder-2.svg" alt="Partner" className="h-8 opacity-70 hover:opacity-100 transition-opacity" />
-                <img src="/logo-placeholder-3.svg" alt="Partner" className="h-8 opacity-70 hover:opacity-100 transition-opacity" />
+                <img src="assets/images/partners/vivawallet.jpg" alt="Partner" className="h-8 opacity-70 hover:opacity-100 transition-opacity" />
+                <img src="assets/images/partners/luko.jpg" alt="Partner" className="h-8 opacity-70 hover:opacity-100 transition-opacity" />
+                <img src="assets/images/partners/garantme.jpg" alt="Partner" className="h-8 opacity-70 hover:opacity-100 transition-opacity" />
               </div>
             </motion.div>
           </div>
