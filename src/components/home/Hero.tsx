@@ -201,7 +201,7 @@ const Hero = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-10 lg:gap-12 items-center w-full">
           {/* Text Column */}
           <div className="lg:col-span-6 text-[#18133E] mb-6 md:mb-8 lg:mb-0">
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.1 }}
@@ -211,7 +211,7 @@ const Hero = () => {
               <span className="text-xs sm:text-sm font-medium text-[#18133E]">
                 Solution complète
               </span>
-            </motion.div>
+            </motion.div> */}
 
             <motion.div
               initial="hidden"
@@ -285,13 +285,13 @@ const Hero = () => {
             >
               {[
                 {
-                  number: "2000+",
-                  label: "Étudiants accompagnés",
+                  number: "1",
+                  label: "Solution complète",
                   icon: <Users className="h-4 w-4 sm:h-5 sm:w-5" />,
                 },
                 {
                   number: "98%",
-                  label: "Taux de réussite",
+                  label: "Taux de satisfaction",
                   icon: <Target className="h-4 w-4 sm:h-5 sm:w-5" />,
                 },
                 {
@@ -328,10 +328,10 @@ const Hero = () => {
               transition={{ duration: 1, delay: 2.2 }}
               className="mt-4 sm:mt-6"
             >
-              <p className="text-gray-500 text-xs sm:text-sm mb-3 sm:mb-4 flex items-center gap-2">
+              {/* <p className="text-gray-500 text-xs sm:text-sm mb-3 sm:mb-4 flex items-center gap-2">
                 <Award className="h-3 w-3 sm:h-4 sm:w-4 text-[#FFC3BC]" />
                 Nos partenaires de confiance
-              </p>
+              </p> */}
               <div className="flex flex-wrap items-center gap-4 md:gap-6 lg:gap-8">
                 <motion.img
                   src="assets/images/partners/vivawallet.png"

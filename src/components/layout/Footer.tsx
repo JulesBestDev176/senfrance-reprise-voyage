@@ -109,6 +109,14 @@ const Footer = () => {
               </li>
               <li>
                 <Link
+                  to="/legals"
+                  className="text-white/80 hover:text-white transition-colors"
+                >
+                  Mentions légales
+                </Link>
+              </li>
+              <li>
+                <Link
                   to="/faq"
                   className="text-white/80 hover:text-white transition-colors"
                 >
@@ -125,7 +133,7 @@ const Footer = () => {
               <div className="flex items-start space-x-3">
                 <MapPin size={20} className="flex-shrink-0 mt-1" />
                 <span className="text-white/80">
-                  15 quai des Chartrons, 33000 Bordeaux - France
+                  15 quai des Chartrons, Bordeaux - France
                 </span>
               </div>
               <div className="flex items-center space-x-3">

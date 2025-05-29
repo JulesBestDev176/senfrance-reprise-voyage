@@ -19,6 +19,10 @@ import HousingPage from "./pages/HousingPage";
 import PageJobEtudiant from "./pages/PageJobEtudiant";
 import PageAssurances from "./pages/PageAssurances";
 import ContactPage from "./pages/ContactPage";
+import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
+import TermsConditionsPage from "./pages/TermsConditionsPage";
+import LegalMentionsPage from "./pages/LegalMentionsPage";
+import FAQPage from "./pages/FaqPage";
 
 // Placeholder components for new routes
 
@@ -49,6 +53,10 @@ const App = () => (
               <Route path="/about" element={<About />} />
               <Route path="/services" element={<Services />} />
               <Route path="/contact" element={<ContactPage />} />
+              <Route path="/privacy" element={<PrivacyPolicyPage />} />
+              <Route path="/terms" element={<TermsConditionsPage />} />
+              <Route path="/legals" element={<LegalMentionsPage />} />
+              <Route path="/faq" element={<FAQPage />} />
 
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
