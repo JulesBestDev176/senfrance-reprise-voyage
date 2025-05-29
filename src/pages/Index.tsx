@@ -60,7 +60,7 @@ const Index = () => {
       <DakarOffice />
 
       {/* Blog Preview */}
-      <BlogPreview />
+      {/* <BlogPreview /> */}
 
       {/* Pricing */}
       <Pricing />
