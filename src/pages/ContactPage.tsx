@@ -21,6 +21,7 @@ import {
   Headphones,
   Shield
 } from "lucide-react";
+import DakarOffice from "@/components/home/DakarOffice";
 
 interface FormData {
   name: string;
@@ -650,6 +651,9 @@ const handleSubmit = async (e: React.FormEvent) => {
           </motion.div>
         </div>
       </section>
+
+       {/* Dakar Office */}
+      <DakarOffice />
     </div>
   );
 };

@@ -13,6 +13,7 @@ import Pricing from '@/components/home/Pricing';
 import LukoPartnership from '@/components/home/LukoPartnership';
 import Testimonials from '@/components/home/Testimonials';
 import Services from '@/components/home/Services';
+import BordeauxLocationCard from '@/components/home/BordeauxLocationCard';
 
 const Index = () => {
   // Trigger animations on first render with scroll position
@@ -56,8 +57,7 @@ const Index = () => {
       {/* services */}
       {/* <Services/> */}
 
-      {/* Dakar Office */}
-      <DakarOffice />
+      <BordeauxLocationCard/>
 
       {/* Blog Preview */}
       {/* <BlogPreview /> */}
