@@ -45,15 +45,6 @@ const Footer = () => {
                 <Facebook size={20} />
               </a>
               <a
-                href="https://x.com/sen_france"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white hover:text-secondary transition-colors"
-                aria-label="Twitter"
-              >
-                <Twitter size={20} />
-              </a>
-              <a
                 href="https://www.instagram.com/senfrance.sas/"
                 target="_blank"
                 rel="noopener noreferrer"
