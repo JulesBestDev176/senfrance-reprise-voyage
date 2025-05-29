@@ -248,16 +248,22 @@ const Hero = () => {
               transition={{ duration: 0.5, delay: 1.5 }}
               className="flex flex-col sm:flex-row gap-3 mt-4 sm:mt-6 mb-4 sm:mb-6 md:mb-8"
             >
-              <motion.button
-                className="bg-gradient-to-r from-[#18133E] to-[#271D5B] hover:from-[#271D5B] hover:to-[#18133E] text-white rounded-full px-5 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-[#18133E]/25 cursor-pointer flex items-center justify-center gap-2 group w-full sm:w-auto"
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
+              <a
+                href="https://www.senfrance.fr/login-senfrance/student"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <span>Commencer</span>
-                <motion.div className="group-hover:translate-x-1 transition-transform duration-200">
-                  <ArrowRight className="h-4 w-4" />
-                </motion.div>
-              </motion.button>
+                <motion.button
+                  className="bg-gradient-to-r from-[#18133E] to-[#271D5B] hover:from-[#271D5B] hover:to-[#18133E] text-white rounded-full px-5 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-[#18133E]/25 cursor-pointer flex items-center justify-center gap-2 group w-full sm:w-auto"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <span>Commencer</span>
+                  <motion.div className="group-hover:translate-x-1 transition-transform duration-200">
+                    <ArrowRight className="h-4 w-4" />
+                  </motion.div>
+                </motion.button>
+              </a>
 
               <Link to="/about">
                 <motion.button
