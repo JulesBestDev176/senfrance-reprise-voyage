@@ -36,7 +36,7 @@ const Index = () => {
       <HousingOptions />
       
       {/* Luko Partnership */}
-      <LukoPartnership />
+      {/* <LukoPartnership /> */}
 
       
 
