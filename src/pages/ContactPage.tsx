@@ -56,7 +56,7 @@ const ContactPage: React.FC = () => {
 
   // URL de l'API
   const API_URL = process.env.NODE_ENV === 'production' 
-    ? 'https://votre-serveur.com' 
+    ? 'https://senfrance-backend.onrender.com' 
     : 'http://localhost:5000';
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
