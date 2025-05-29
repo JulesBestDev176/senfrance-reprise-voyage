@@ -187,7 +187,7 @@ const Hero = () => {
               className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-[#FFC3BC]/20 to-[#FFC3BC]/10 border border-[#FFC3BC]/30 rounded-full mb-4 sm:mb-6"
             >
               <Sparkles className="h-3 w-3 sm:h-4 sm:w-4 text-[#FFC3BC]" />
-              <span className="text-xs sm:text-sm font-medium text-[#18133E]">Solution complète pour étudiants</span>
+              <span className="text-xs sm:text-sm font-medium text-[#18133E]">Solution complète</span>
             </motion.div>
 
             <motion.div 

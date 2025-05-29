@@ -1,29 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { Mail, Phone, MapPin, Send } from "lucide-react";
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
   });
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    
+
     // Simuler l'envoi du formulaire
     setTimeout(() => {
       toast({
@@ -32,10 +32,10 @@ const ContactPage = () => {
         variant: "default",
       });
       setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
       });
       setLoading(false);
     }, 1500);
@@ -46,9 +46,12 @@ const ContactPage = () => {
       <div className="max-w-7xl mx-auto">
         {/* En-tête */}
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">Contactez-nous</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            Contactez-nous
+          </h1>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Notre équipe est à votre disposition pour vous aider dans toutes vos démarches liées aux études en France.
+            Notre équipe est à votre disposition pour vous aider dans toutes vos
+            démarches liées aux études en France.
           </p>
         </div>
 
@@ -57,7 +60,7 @@ const ContactPage = () => {
           <div className="lg:col-span-1 space-y-8">
             <div className="bg-primary/5 rounded-2xl p-8 space-y-6">
               <h2 className="text-2xl font-bold">Nos coordonnées</h2>
-              
+
               <div className="flex items-start space-x-4">
                 <div className="bg-primary/10 p-3 rounded-full text-primary">
                   <MapPin size={24} />
@@ -65,8 +68,9 @@ const ContactPage = () => {
                 <div>
                   <h3 className="font-semibold text-lg">Adresse</h3>
                   <p className="text-muted-foreground">
-                    123 Avenue Cheikh Anta Diop<br />
-                    Dakar, Sénégal
+                    15 quai des Chartrons
+                    <br />
+                    Bordeaux - France
                   </p>
                 </div>
               </div>
@@ -76,10 +80,9 @@ const ContactPage = () => {
                   <Mail size={24} />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg">Email</h3>
+                  <h3 className="font-semibold text-lg">E-mail</h3>
                   <p className="text-muted-foreground">
-                    contact@senfrance.fr<br />
-                    support@senfrance.fr
+                    ccontact@senfrance.com
                   </p>
                 </div>
               </div>
@@ -91,8 +94,9 @@ const ContactPage = () => {
                 <div>
                   <h3 className="font-semibold text-lg">Téléphone</h3>
                   <p className="text-muted-foreground">
-                    +221 XX XXX XX XX<br />
-                    +221 XX XXX XX XX
+                    +33 9 72 14 66 97
+                    <br />
+                    +33 7 44 51 82 96
                   </p>
                 </div>
               </div>
@@ -103,11 +107,11 @@ const ContactPage = () => {
               <div className="space-y-2">
                 <div className="flex justify-between">
                   <span className="font-medium">Lundi - Vendredi</span>
-                  <span>9h - 17h</span>
+                  <span>10h - 20h</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="font-medium">Samedi</span>
-                  <span>9h - 13h</span>
+                  <span>10h - 18h</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="font-medium">Dimanche</span>
@@ -120,8 +124,10 @@ const ContactPage = () => {
           {/* Formulaire de contact */}
           <div className="lg:col-span-2">
             <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
-              <h2 className="text-2xl font-bold mb-6">Envoyez-nous un message</h2>
-              
+              <h2 className="text-2xl font-bold mb-6">
+                Envoyez-nous un message
+              </h2>
+
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
@@ -185,12 +191,14 @@ const ContactPage = () => {
                   />
                 </div>
 
-                <Button 
-                  type="submit" 
+                <Button
+                  type="submit"
                   disabled={loading}
                   className="rounded-full px-8 py-6 bg-primary hover:bg-primary/90 text-white flex items-center gap-2"
                 >
-                  {loading ? "Envoi en cours..." : (
+                  {loading ? (
+                    "Envoi en cours..."
+                  ) : (
                     <>
                       <Send size={18} />
                       <span>Envoyer le message</span>
@@ -204,15 +212,16 @@ const ContactPage = () => {
 
         {/* Carte */}
         <div className="mt-16 rounded-2xl overflow-hidden h-96 shadow-sm border border-gray-100">
-          <div className="w-full h-full bg-primary/5 flex items-center justify-center">
-            <div className="text-center p-6">
-              <MapPin size={48} className="text-primary mx-auto mb-4" />
-              <p className="text-lg font-medium">Carte interactive</p>
-              <p className="text-muted-foreground">
-                123 Avenue Cheikh Anta Diop, Dakar, Sénégal
-              </p>
-            </div>
-          </div>
+          <iframe
+            title="Carte interactive"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2889.397894793511!2d-0.5756728848831083!3d44.84827157909892!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd5527f479f41a9b%3A0x2b6b50f91b6bb366!2s15%20Quai%20des%20Chartrons%2C%2033000%20Bordeaux%2C%20France!5e0!3m2!1sfr!2sfr!4v1699198669254!5m2!1sfr!2sfr"
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
         </div>
       </div>
     </div>

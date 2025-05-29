@@ -1,7 +1,14 @@
-
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Facebook, Twitter, Instagram, Mail, Phone, MapPin } from 'lucide-react';
+import React from "react";
+import { Link } from "react-router-dom";
+import {
+  Facebook,
+  Twitter,
+  Instagram,
+  Mail,
+  Phone,
+  MapPin,
+} from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -14,30 +21,41 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-bold mb-4">SenFrance depuis 2021</h3>
             <p className="text-white/80 mb-4">
-              Spécialiste de la mobilité étudiante vers la France. Des centaines d’étudiants accompagnés et conseillés. Une satisfaction client incomparable.
+              Spécialiste de la mobilité étudiante vers la France. Des centaines
+              d’étudiants accompagnés et conseillés. Une satisfaction client
+              incomparable.
             </p>
             <div className="flex space-x-4">
-              <a 
-                href="https://facebook.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://api.whatsapp.com/message/3EL3Z6GKPQIQE1?autoload=1&app_absent=0"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:text-secondary transition-colors"
+                aria-label="WhatsApp"
+              >
+                <FaWhatsapp size={20} />
+              </a>
+              <a
+                href="https://www.facebook.com/senfrance#"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-white hover:text-secondary transition-colors"
                 aria-label="Facebook"
               >
                 <Facebook size={20} />
               </a>
-              <a 
-                href="https://twitter.com" 
-                target="_blank" 
+              <a
+                href="https://x.com/sen_france"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="text-white hover:text-secondary transition-colors"
                 aria-label="Twitter"
               >
                 <Twitter size={20} />
               </a>
-              <a 
-                href="https://instagram.com" 
-                target="_blank" 
+              <a
+                href="https://www.instagram.com/senfrance.sas/"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="text-white hover:text-secondary transition-colors"
                 aria-label="Instagram"
@@ -52,17 +70,26 @@ const Footer = () => {
             <h3 className="text-xl font-bold mb-4">Liens Rapides</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="text-white/80 hover:text-white transition-colors">
+                <Link
+                  to="/"
+                  className="text-white/80 hover:text-white transition-colors"
+                >
                   Accueil
                 </Link>
               </li>
               <li>
-                <Link to="/about" className="text-white/80 hover:text-white transition-colors">
+                <Link
+                  to="/about"
+                  className="text-white/80 hover:text-white transition-colors"
+                >
                   À propos
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-white/80 hover:text-white transition-colors">
+                <Link
+                  to="/contact"
+                  className="text-white/80 hover:text-white transition-colors"
+                >
                   Contact
                 </Link>
               </li>
@@ -74,17 +101,26 @@ const Footer = () => {
             <h3 className="text-xl font-bold mb-4">Information</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/privacy" className="text-white/80 hover:text-white transition-colors">
+                <Link
+                  to="/privacy"
+                  className="text-white/80 hover:text-white transition-colors"
+                >
                   Politique de confidentialité
                 </Link>
               </li>
               <li>
-                <Link to="/terms" className="text-white/80 hover:text-white transition-colors">
+                <Link
+                  to="/terms"
+                  className="text-white/80 hover:text-white transition-colors"
+                >
                   Conditions générales
                 </Link>
               </li>
               <li>
-                <Link to="/faq" className="text-white/80 hover:text-white transition-colors">
+                <Link
+                  to="/faq"
+                  className="text-white/80 hover:text-white transition-colors"
+                >
                   FAQ
                 </Link>
               </li>
@@ -97,7 +133,9 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-start space-x-3">
                 <MapPin size={20} className="flex-shrink-0 mt-1" />
-                <span className="text-white/80">123 Avenue des Champs-Élysées, 75008 Paris, France</span>
+                <span className="text-white/80">
+                  123 Avenue des Champs-Élysées, 75008 Paris, France
+                </span>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone size={20} />
