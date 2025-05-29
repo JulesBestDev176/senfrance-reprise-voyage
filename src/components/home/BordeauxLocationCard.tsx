@@ -20,7 +20,7 @@ const BordeauxLocationCard = () => {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, type: "spring", damping: 15 }}
-      className="relative w-full bg-gradient-to-r from-[#18133E] via-[#231A54] to-[#18133E] rounded-3xl overflow-hidden"
+      className="relative w-full bg-gradient-to-r from-[#18133E] via-[#231A54] to-[#18133E]  overflow-hidden"
     >
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
