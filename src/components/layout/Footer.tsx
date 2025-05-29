@@ -125,12 +125,16 @@ const Footer = () => {
               <div className="flex items-start space-x-3">
                 <MapPin size={20} className="flex-shrink-0 mt-1" />
                 <span className="text-white/80">
-                  123 Avenue des Champs-Élysées, 75008 Paris, France
+                  15 quai des Chartrons, 33000 Bordeaux - France
                 </span>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone size={20} />
-                <span className="text-white/80">+33 1 23 45 67 89</span>
+                <span className="text-white/80">+33 9 72 14 66 97</span>
+              </div>
+              <div className="flex items-center space-x-3">
+                <Phone size={20} />
+                <span className="text-white/80">+33 7 44 51 82 96</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail size={20} />
