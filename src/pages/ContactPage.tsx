@@ -82,7 +82,7 @@ const ContactPage = () => {
                 <div>
                   <h3 className="font-semibold text-lg">E-mail</h3>
                   <p className="text-muted-foreground">
-                    ccontact@senfrance.com
+                    contact@senfrance.com
                   </p>
                 </div>
               </div>
