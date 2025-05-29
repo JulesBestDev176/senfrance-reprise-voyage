@@ -30,8 +30,8 @@ const Navbar = () => {
         {/* Logo redesigné */}
         <Link to="/" className="flex items-center">
           <div className="bg-primary text-white px-2 py-1 rounded">
-            <span className="text-lg font-black tracking-wide uppercase">
-              SENFRANCE
+            <span className="text-lg text-[#f0b394] font-black tracking-wide uppercase">
+              SENFR
             </span>
           </div>
         </Link>
