@@ -52,7 +52,7 @@ const Hero = () => {
   };
 
   return (
-    <div className="relative overflow-hidden bg-gray-50 h-auto min-h-screen md:min-h-[98vh] lg:h-[98vh]">
+    <div className="relative overflow-hidden bg-gray-50 h-auto min-h-screen md:min-h-[100vh] ">
       {/* Enhanced animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full">
@@ -279,20 +279,26 @@ const Hero = () => {
               </p>
               <div className="flex flex-wrap items-center gap-4 md:gap-6 lg:gap-8">
                 <motion.img 
-                  src="assets/images/partners/vivawallet.jpg" 
+                  src="assets/images/partners/vivawallet.png" 
                   alt="VivaWallet Partner" 
                   className="h-6 md:h-7 lg:h-8 opacity-70 hover:opacity-100 transition-all duration-300 filter hover:brightness-110"
                   whileHover={{ scale: 1.1, y: -2 }}
                 />
                 <motion.img 
-                  src="assets/images/partners/luko.jpg" 
+                  src="assets/images/partners/luko.png" 
                   alt="Luko Partner" 
                   className="h-6 md:h-7 lg:h-8 opacity-70 hover:opacity-100 transition-all duration-300 filter hover:brightness-110"
                   whileHover={{ scale: 1.1, y: -2 }}
                 />
                 <motion.img 
-                  src="assets/images/partners/garantme.jpg" 
+                  src="assets/images/partners/garantme.png" 
                   alt="GarantMe Partner" 
+                  className="h-6 md:h-7 lg:h-8 opacity-70 hover:opacity-100 transition-all duration-300 filter hover:brightness-110"
+                  whileHover={{ scale: 1.1, y: -2 }}
+                />
+                <motion.img 
+                  src="assets/images/partners/smartgarant.png" 
+                  alt="SmartGarant Partner" 
                   className="h-6 md:h-7 lg:h-8 opacity-70 hover:opacity-100 transition-all duration-300 filter hover:brightness-110"
                   whileHover={{ scale: 1.1, y: -2 }}
                 />

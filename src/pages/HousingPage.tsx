@@ -74,20 +74,20 @@ const HousingPage = () => {
   // Abroad section benefits
   const abroadBenefits = [
     {
-      title: "Attestation d'hébergement express",
+      title: "Attestation express",
       description: "Document édité en 2h pour ta demande de visa",
       icon: <FileText />,
       color: "rose"
     },
     {
       title: "Réservation sécurisée",
-      description: "Caution remboursable en cas de refus de visa",
+      description: "Prise en compte de la distance entre l’école et la résidence",
       icon: <Shield />,
       color: "indigo"
     },
     {
-      title: "Choix varié de logements",
-      description: "Studios, résidences étudiantes, colocations",
+      title: "Logements variés",
+      description: "Studios meublé, colocation ou chambre chez l’habitant",
       icon: <Building />,
       color: "amber"
     }
@@ -130,7 +130,7 @@ const HousingPage = () => {
       color: "rose"
     },
     {
-      title: "Résidence étudiante",
+      title: "Chambre chez l’habitant ",
       price: "À partir de 350€/mois",
       features: [
         "Chambre individuelle",
@@ -163,15 +163,15 @@ const HousingPage = () => {
     },
     {
       title: "Attestation",
-      description: "Reçois ton attestation d'hébergement sous 2h pour ta demande de visa"
+      description: "Reçois ton document sous 2h pour ta demande de visa"
     },
     {
       title: "Sélection",
-      description: "Une fois ton visa obtenu, nous te proposons des logements adaptés"
+      description: "Une fois ton visa obtenu, nous finalisons les démarches"
     },
     {
       title: "Installation",
-      description: "À ton arrivée, nous t'accompagnons pour la signature du bail et l'état des lieux"
+      description: "Nous t'accompagnons pour la signature du bail et l'état des lieux"
     }
   ];
   
@@ -374,7 +374,7 @@ const HousingPage = () => {
                     Réserve un logement et obtiens ton attestation d'hébergement
                   </h3>
                   <p className="text-gray-600">
-                    Notre service spécial pré-arrivée te permet de sécuriser ton logement et d'obtenir les documents nécessaires pour ta demande de visa, le tout avec une garantie de remboursement en cas de refus.
+                    Notre service spécial pré-arrivée te permet de sécuriser ton logement et d'obtenir les documents nécessaires pour ta demande de visa, le tout avec une garantie de proximité avec ton université.
                   </p>
                 </div>
                 
@@ -537,7 +537,7 @@ const HousingPage = () => {
               Nos options
             </span>
             <h2 className="text-3xl font-bold mb-4 text-[#18133E]">
-              Des logements adaptés à tes besoins
+              Un logement adapté à tes besoins
             </h2>
             <p className="text-gray-600">
               Découvre nos différentes options de logement et trouve celle qui te correspond.
@@ -653,8 +653,8 @@ const HousingPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {[
                 {
-                  title: "Garantie de remboursement",
-                  description: "En cas de refus de visa, nous te remboursons intégralement les frais de réservation de ton logement.",
+                  title: "Prestations de qualité",
+                  description: "Toutes nos résidences sont modernes, sécurisées et équipées, avec tout le confort nécessaire.",
                   icon: <Shield className="h-6 w-6 text-[#FFC3BC]" />,
                   delay: 0.1
                 },
@@ -707,7 +707,7 @@ const HousingPage = () => {
             >
               <div className="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20 flex items-center gap-2">
                 <Star className="h-5 w-5 text-[#FFC3BC] fill-[#FFC3BC]" />
-                <span className="text-white font-medium">97% de satisfaction parmi nos étudiants logés</span>
+                <span className="text-white font-medium">100% de logements éligibles aux APL</span>
               </div>
             </motion.div>
           </div>
@@ -731,7 +731,7 @@ const HousingPage = () => {
               On répond à tes questions
             </h2>
             <p className="text-gray-600">
-              Voici les questions les plus fréquentes sur notre service de logement.
+              Voici les questions les plus fréquentes à propos du logement
             </p>
           </motion.div>
           
@@ -740,15 +740,15 @@ const HousingPage = () => {
               {[
                 {
                   question: "Quels documents dois-je fournir pour réserver un logement ?",
-                  answer: "Pour réserver, tu as besoin d'une pièce d'identité, de ta préinscription dans un établissement français, et d'un justificatif de ressources. Pour la signature du bail, des documents supplémentaires peuvent être demandés."
-                },
-                {
-                  question: "Comment fonctionne la garantie de remboursement ?",
-                  answer: "Si ta demande de visa est refusée, nous te remboursons intégralement les frais de réservation du logement. Tu dois simplement nous fournir une preuve du refus de visa dans les 30 jours suivant la décision."
+                  answer: "Pour réserver, tu as besoin d'une pièce d'identité et de ta préinscription dans un établissement français. Pour la signature du bail, des documents supplémentaires peuvent être demandés."
                 },
                 {
                   question: "Combien de temps faut-il pour obtenir une attestation d'hébergement ?",
                   answer: "Notre service express te permet d'obtenir ton attestation d'hébergement en 2 heures ouvrées après la validation de ton dossier et le paiement des frais."
+                },
+                {
+                  question: "Quelles sont les démarches complémentaires pour signer mon bail ? ",
+                  answer: "Tu as déjà obtenu ton visa d’études pour la France. Contacte-nous rapidement pour finaliser le processus d’obtention de ton logement. Il faudra payer le 1er mois de loyer et le dépôt de garantie (caution). Des frais de dossier supplémentaires sont à prévoir dans certaines résidences."
                 },
                 {
                   question: "Puis-je visiter le logement avant de signer le bail ?",
@@ -830,10 +830,10 @@ const HousingPage = () => {
               </motion.div>
               
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                Prêt à trouver ton logement idéal ?
+                Nous avons le logement idéal pour toi
               </h2>
               <p className="text-white/80 mb-8 max-w-2xl mx-auto text-lg">
-                Que tu sois en France ou à l'étranger, notre équipe est prête à t'accompagner dans tes démarches de logement. Contacte-nous dès maintenant.
+                Que tu sois déjà en France ou encore à l'étranger, notre équipe est prête à t'accompagner dans ta recherche de logement étudiant. Contacte-nous dès maintenant.
               </p>
               
               <div className="flex flex-wrap gap-4 justify-center">

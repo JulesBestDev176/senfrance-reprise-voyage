@@ -202,7 +202,7 @@ const AVIPage = () => {
               className="bg-gradient-to-br from-[#FFC3BC]/5 to-[#FFC3BC]/10 p-8 rounded-2xl border border-[#FFC3BC]/20 mb-8"
             >
               <p className="text-gray-700 text-lg">
-                Dans le cadre de l'accompagnement global proposé par SenFrance à l'étudiant, il est vite apparu que ce service est essentiel à notre approche. Nous fournissons l'AVI, plus communément appelée <span className="font-semibold text-[#18133E]">« caution bancaire »</span>, à l'étudiant qui en fait la demande.
+                Dans le cadre de l'accompagnement global proposé par SenFrance à l'étudiant, il est vite apparu que ce service est essentiel à notre approche. Nous fournissons l'AVI, plus communément appelée <span className="font-semibold text-[#18133E]">« caution bancaire »</span>, à l'étudiant qui en fait la demande. 
               </p>
             </motion.div>
             
@@ -260,7 +260,7 @@ const AVIPage = () => {
                       </div>
                       <h4 className="font-semibold text-[#18133E]">Option 2</h4>
                     </div>
-                    <p className="text-gray-600">Tu peux déposer directement sur ton "compte bloqué" en Europe.</p>
+                    <p className="text-gray-600">Tu peux faire un dépôt directement sur ton "compte bloqué" en Europe.</p>
                   </div>
                 </div>
               </div>
@@ -327,7 +327,7 @@ const AVIPage = () => {
                       </div>
                       <h4 className="font-semibold text-[#18133E]">Virements mensuels</h4>
                     </div>
-                    <p className="text-gray-600">Réception de 615€ par mois pendant 12 mois une fois arrivé en France.</p>
+                    <p className="text-gray-600">Après obtention du visa, réception de 615€ par mois pendant 12 mois.</p>
                   </div>
                   
                   <div className="bg-gray-50 p-6 rounded-xl border border-gray-100 shadow-sm">
@@ -337,7 +337,7 @@ const AVIPage = () => {
                       </div>
                       <h4 className="font-semibold text-[#18133E]">Remboursement</h4>
                     </div>
-                    <p className="text-gray-600">En cas de refus de visa, remboursement de la caution déposée (hors frais de cautionnement).</p>
+                    <p className="text-gray-600">En cas de refus de visa, remboursement de la caution déposée.</p>
                   </div>
                 </div>
                 <p className="text-xs text-gray-500 mt-4">*remboursement hors frais de cautionnement</p>
@@ -389,7 +389,7 @@ const AVIPage = () => {
               </p>
               
               <p className="text-white/90 text-lg leading-relaxed">
-                <strong>Que tes ressources proviennent de l'étranger (votre pays d'origine) ou qu'elles proviennent d'un proche vivant en Europe, tu as la possibilité de souscrire au service suivant :</strong>
+                <strong>Que tes ressources proviennent de l'étranger (votre pays d'origine) ou qu'elles proviennent d'un proche vivant en Europe, tu as la possibilité de souscrire le service.</strong>
               </p>
             </div>
             
@@ -426,7 +426,7 @@ const AVIPage = () => {
                   AVI + carte de débit
                 </h2>
                 <p className="text-gray-600 mb-6">
-                  Document édité en 48h pour demande de visa. Obtenez votre Attestation de Virement Irrévocable avec SenFrance et simplifiez vos démarches.
+                  Document édité en 48h pour demande de visa. Obtiens ton Attestation de Virement Irrévocable avec SenFrance et simplifie tes démarches.
                 </p>
                 
                 <ul className="space-y-3 mb-8">
@@ -435,7 +435,7 @@ const AVIPage = () => {
                     "Carte bancaire internationale incluse",
                     "Assistance pour la constitution du dossier",
                     "Suivi de votre demande de visa",
-                    "Durée de validité de 3 mois"
+                    "Durée de validité de 12 mois"
                   ].map((feature, idx) => (
                     <li key={idx} className="flex items-start">
                       <div className="p-0.5 rounded-full bg-gradient-to-br from-[#FFC3BC] to-[#ff9d94] text-white mr-2 mt-0.5 flex-shrink-0">
@@ -500,7 +500,7 @@ const AVIPage = () => {
               Encore des questions ?
             </h2>
             <p className="text-gray-600">
-              Nous avons rassemblé les questions les plus fréquentes concernant notre service AVI.
+              Voici les questions les plus fréquentes à propos de l’AVI
             </p>
           </motion.div>
           
@@ -513,15 +513,15 @@ const AVIPage = () => {
                 },
                 {
                   question: "Le montant de 7380€ est-il obligatoire ?",
-                  answer: "Oui, ce montant correspond au minimum exigé par l'administration française pour prouver que vous disposez de ressources suffisantes pour une année d'études (615€ par mois pendant 12 mois)."
+                  answer: "Oui, ce montant correspond au minimum exigé par l'administration française pour prouver que tu disposes de ressources suffisantes pour une année d'études (615€ par mois pendant 12 mois)."
                 },
                 {
-                  question: "Comment fonctionne le débloquage mensuel des fonds ?",
-                  answer: "Une fois arrivé en France, vous recevrez automatiquement 615€ chaque mois sur votre compte bancaire pendant 12 mois. Ces virements programmés commencent après votre arrivée en France."
+                  question: "Comment fonctionne le déblocage mensuel des fonds ?",
+                  answer: "Après l’obtention de ton visa, tu recevras automatiquement 615€ chaque mois pendant 12 mois. Ces virements programmés commencent après ton arrivée en France."
                 },
                 {
                   question: "Que se passe-t-il en cas de refus de visa ?",
-                  answer: "En cas de refus de visa, nous vous remboursons la caution déposée (7380€), déduction faite des frais de cautionnement. Les frais de dossier et de traitement ne sont pas remboursables."
+                  answer: "En cas de refus de visa, nous te remboursons la caution déposée (7380€), déduction faite des frais de cautionnement. Les frais de dossier sont remboursables en cas de refus pour motif 2 : Vous n’avez pas fourni la preuve que vous disposez de ressources suffisantes pour couvrir les frais de toute nature, durant le séjour en France, ou vous n’êtes pas en mesure d’acquérir légalement ces moyens."
                 }
               ].map((faq, index) => (
                 <motion.div

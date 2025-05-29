@@ -254,7 +254,7 @@ const ParentsPage = () => {
                 <span className="text-sm font-medium">Espace Parents</span>
               </div>
               <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                Des parents rassurés pour un avenir serein
+                Des parents rassurés pour un avenir radieux
               </h1>
               <p className="text-xl text-white/80 mb-6 leading-relaxed">
                 Notre <span className="font-semibold text-[#FFC3BC]">offre de services</span> s'adresse aussi bien aux étudiants qu'à <span className="font-semibold text-[#FFC3BC]">leurs parents</span>. Laissez votre enfant <span className="font-semibold text-[#FFC3BC]">entre de bonnes mains</span>.
@@ -351,7 +351,7 @@ const ParentsPage = () => {
                   </div>
                   <div>
                     <p className="text-white/60 text-sm">Besoin d'aide ?</p>
-                    <p className="text-white font-medium">+33 (0)1 23 45 67 89</p>
+                    <p className="text-white font-medium">+33 (0)9 72 14 66 97</p>
                   </div>
                 </motion.div>
               </div>
@@ -493,14 +493,14 @@ const ParentsPage = () => {
                     </div>
                     <div>
                       <h4 className="text-lg font-bold">Expérience de qualité</h4>
-                      <p className="text-white/70 text-sm">Plus de 2000 parents satisfaits</p>
+                      <p className="text-white/70 text-sm">Parents satisfaits et rassurés</p>
                     </div>
                   </div>
                   <p className="text-white/80">
                     "SenFrance a transformé ce qui aurait pu être un processus stressant en une expérience sereine. Ma fille est maintenant épanouie à Paris."
                   </p>
                   <p className="text-right text-white/60 text-sm mt-2">
-                    — Mariama D., parent d'étudiante
+                    — Mariama D., parent d'étudiant
                   </p>
                 </motion.div>
                 
@@ -637,7 +637,7 @@ const ParentsPage = () => {
             </motion.div>
             
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#18133E]">
-              Donnez à votre enfant les meilleures chances de réussite
+              Donnez à votre enfant les meilleures chances
             </h2>
             <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
               Commencez dès aujourd'hui l'aventure SenFrance et accompagnez sereinement votre enfant vers la réussite académique et professionnelle.

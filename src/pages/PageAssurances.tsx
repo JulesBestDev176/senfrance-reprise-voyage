@@ -145,7 +145,7 @@ const PageAssurances = () => {
             className="text-center max-w-3xl mx-auto"
           >
             <div className="inline-block mb-4 px-3 py-1 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm">
-              <span className="text-sm font-medium text-white">Services étudiants</span>
+              <span className="text-sm font-medium text-white">Services essentiels</span>
             </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">
               Assurances
@@ -154,7 +154,7 @@ const PageAssurances = () => {
               Garant & MRH
             </h2>
             <p className="text-xl text-white/80 mb-8 leading-relaxed">
-              <span className="font-semibold text-[#FFC3BC]">Le garant</span> rassure le propriétaire et renforce votre dossier de demande de logement. <span className="font-semibold text-[#FFC3BC]">L'assurance habitation</span> (MRH) est obligatoire pour tous les locataires.
+              <span className="font-semibold text-[#FFC3BC]">Le garant</span> rassure le propriétaire et renforce votre ton dossier de demande de logement. <span className="font-semibold text-[#FFC3BC]">L'assurance habitation</span> (MRH) est obligatoire pour tous les locataires.
             </p>
           </motion.div>
         </div>

@@ -61,23 +61,6 @@ const PricingPage = () => {
       color: "indigo"
     },
     {
-      id: "caution",
-      title: "Caution pour études",
-      price: "299 €",
-      icon: <FileText />,
-      description: "Document édité en 48h pour demande de visa",
-      features: [
-        "Garantie financière pour votre logement",
-        "Document reconnu par les services consulaires",
-        "Édité en français et en anglais",
-        "Vérification de conformité incluse",
-        "Support téléphonique prioritaire"
-      ],
-      popular: false,
-      promo: "Gratuit avec Pack Complet",
-      color: "purple"
-    },
-    {
       id: "reservation",
       title: "Attestation d'hébergement",
       price: "149 €",
@@ -166,7 +149,7 @@ const PricingPage = () => {
       id: "airport",
       title: "Accueil à l'aéroport",
       price: "79 €",
-      description: "Accueil personnalisé dès votre arrivée",
+      description: "Accueil personnalisé à l'arrivée",
       icon: <Briefcase />
     },
     {
@@ -180,7 +163,7 @@ const PricingPage = () => {
       id: "administrative",
       title: "Accompagnement démarches",
       price: "199 €",
-      description: "Assistance pour toutes vos formalités",
+      description: "Assistance pour toutes tes formalités",
       icon: <FileText />
     },
     {
@@ -372,13 +355,13 @@ const PricingPage = () => {
             className="text-center max-w-3xl mx-auto"
           >
             <div className="inline-block mb-4 px-3 py-1 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm">
-              <span className="text-sm font-medium text-white">Services étudiants</span>
+              <span className="text-sm font-medium text-white">Facturation avantageuse</span>
             </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">
               Nos tarifs et services
             </h1>
             <p className="text-xl text-white/80 mb-8 leading-relaxed">
-              Des services <span className="font-semibold text-[#FFC3BC]">adaptés à vos besoins</span> pour faciliter votre parcours d'études en France. Une tarification <span className="font-semibold text-[#FFC3BC]">claire et sans surprise</span>.
+              Des services <span className="font-semibold text-[#FFC3BC]">adaptés à ton parcours</span> d'études en France. Une tarification claire et sans surprise. 
             </p>
             
             <motion.div
@@ -438,7 +421,7 @@ const PricingPage = () => {
             </span>
             <h2 className="text-3xl md:text-5xl font-bold mb-3 text-center text-[#18133E]">
               {selectedTab === "individuel" 
-                ? "Choisissez vos services" 
+                ? "Choisissez tes services" 
                 : "Économisez avec nos packs"}
             </h2>
             <motion.div
@@ -449,8 +432,8 @@ const PricingPage = () => {
             />
             <p className="text-gray-600 text-center max-w-2xl">
               {selectedTab === "individuel" 
-                ? "Nous proposons une gamme complète de services pour vous accompagner dans toutes vos démarches. Souscrivez à plusieurs services et bénéficiez de -15% sur votre deuxième souscription."
-                : "Économisez en optant pour nos packs de services. Nous avons regroupé les services les plus complémentaires pour vous offrir une solution complète à un tarif avantageux."}
+                ? "Nous proposons une gamme complète de services pour vous t’accompagner dans toutes vos tes démarches. Souscris plusieurs services et bénéficie d’une remise de -15% sur la deuxième souscription."
+                : "Économisez en optant pour nos packs de services. Nous avons regroupé les services les plus complémentaires pour t’offrir une solution complète à un tarif avantageux."}
             </p>
           </div>
         </div>
@@ -480,12 +463,12 @@ const PricingPage = () => {
               />
             </div>
             
-            <div className="container mx-auto px-4 relative z-10">
+            <div className="container mx-auto px-16 relative z-10">
               <motion.div
                 variants={staggerContainer}
                 initial="hidden"
                 animate={isServicesSectionInView ? "show" : "hidden"}
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8"
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
               >
                 {pricingPlans.map((plan, index) => {
                   const style = colorStyles[plan.color];
@@ -637,7 +620,7 @@ const PricingPage = () => {
                     className="h-1 bg-gradient-to-r from-[#18133E] to-[#18133E]/30 rounded-full mx-auto mb-6"
                   />
                   <p className="text-gray-600">
-                    Complétez votre parcours avec nos services additionnels. Ces services peuvent être ajoutés à n'importe quelle offre principale.
+                    Complète ton parcours avec nos services additionnels. Ces services peuvent être ajoutés à n'importe quelle offre principale.
                   </p>
                 </motion.div>
                 
@@ -786,7 +769,7 @@ const PricingPage = () => {
                       Besoin d'aide pour choisir ?
                     </h3>
                     <p className="text-gray-600 mb-4">
-                      Notre équipe est disponible pour vous guider vers les services les plus adaptés à votre situation. Prenez rendez-vous pour un conseil personnalisé et gratuit.
+                      Notre équipe est disponible pour vous guider vers les services les plus adaptés à ta situation. Prends rendez-vous pour un conseil personnalisé et gratuit.
                     </p>
                     <Button asChild className="bg-[#18133E] hover:bg-[#231A54] text-white">
                       <Link to="/contact">
@@ -947,10 +930,10 @@ const PricingPage = () => {
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold mb-2 text-center md:text-left">
-                      Un pack sur mesure pour vous
+                      Un pack sur mesure pour toi
                     </h3>
                     <p className="text-white/80 mb-6 text-center md:text-left">
-                      Vous ne trouvez pas exactement ce dont vous avez besoin ? Nous pouvons créer un pack personnalisé selon vos besoins spécifiques. Contactez notre équipe pour obtenir une proposition adaptée.
+                      Tu ne trouves pas exactement ce dont tu as besoin ? Nous pouvons créer un pack personnalisé pour tes besoins spécifiques. Contactez notre équipe pour recevoir une proposition adaptée.
                     </p>
                     <div className="flex flex-wrap justify-center md:justify-start gap-3">
                       <Button asChild className="bg-gradient-to-r from-[#FFC3BC] to-[#ff9d94] text-[#18133E] hover:from-[#ff9d94] hover:to-[#FFC3BC]">
@@ -1005,7 +988,7 @@ const PricingPage = () => {
               {[
                 {
                   question: "Puis-je payer en plusieurs fois ?",
-                  answer: "Oui, nous proposons un paiement en 2 ou 3 fois sans frais pour tous nos services. Contactez notre équipe pour en savoir plus sur les modalités."
+                  answer: "Non, nous ne proposons pas de paiement en plusieurs fois. Contactez notre équipe pour en savoir plus sur les modalités de paiement."
                 },
                 {
                   question: "Les frais de dossier sont-ils inclus ?",
@@ -1021,7 +1004,7 @@ const PricingPage = () => {
                 },
                 {
                   question: "Que se passe-t-il en cas de refus de visa ?",
-                  answer: "En cas de refus de visa, nous vous remboursons 70% du montant payé pour l'AVI et la caution pour études. Les frais de dossier et de traitement ne sont pas remboursables."
+                  answer: "En cas de refus de visa pour motif 2 seulement (ressources financières), nous vous remboursons le montant des frais payés pour l'AVI (caution pour études). Les autres services ne sont pas remboursables."
                 },
                 {
                   question: "Combien de temps faut-il pour recevoir les documents ?",
@@ -1128,10 +1111,10 @@ const PricingPage = () => {
               </motion.div>
               
               <h2 className="text-3xl md:text-5xl font-bold mb-6">
-                Prêt à démarrer votre projet ?
+                Prêt à démarrer ton projet ?
               </h2>
               <p className="text-white/80 mb-8 max-w-2xl mx-auto text-lg">
-                Prenez rendez-vous avec l'un de nos conseillers pour un accompagnement personnalisé. Nous vous aiderons à choisir les services les plus adaptés à votre situation.
+                Prends rendez-vous avec l'un de nos conseillers pour un accompagnement personnalisé. Nous t’aiderons à choisir les services les plus mieux adaptés à ta situation.
               </p>
               
               <div className="flex flex-wrap gap-4 justify-center">

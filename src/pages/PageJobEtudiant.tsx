@@ -146,7 +146,7 @@ const PageJobEtudiant = () => {
               Postule avec SenFrance
             </h1>
             <p className="text-xl text-white/80 mb-8 leading-relaxed">
-              Que ce soit pour financer ta scolarité, payer ton loyer ou gérer tes dépenses quotidiennes, tu auras peut-être besoin de travailler pendant tes études. Le job étudiant est une solution idéale pour te permettre d'être indépendant et d'assumer tes frais.
+              Que ce soit pour financer ta scolarité, payer ton loyer ou gérer tes dépenses quotidiennes, tu auras peut-être besoin de travailler pendant tes études. Le job étudiant est une la solution idéale pour te permettre d'être indépendant et d'assumer tes frais.
             </p>
             
             <motion.div
@@ -594,7 +594,7 @@ const PageJobEtudiant = () => {
               Témoignages
             </span>
             <h2 className="text-3xl font-bold mb-4 text-[#18133E]">
-              Ils ont trouvé leur job avec SenFrance
+              Ils ont trouvé un job avec SenFrance
             </h2>
             <p className="text-gray-600">
               Découvre les expériences de nos étudiants qui ont trouvé un emploi grâce à nos services.
