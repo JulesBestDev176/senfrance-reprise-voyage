@@ -214,9 +214,7 @@ const Pricing = () => {
                   
                   <div className="flex items-baseline mb-6">
                     <div className="text-3xl font-bold text-[#18133E]">{plan.price}</div>
-                    {plan.id === "logement" && (
-                      <span className="text-gray-500 text-sm ml-2">/mois</span>
-                    )}
+                    
                   </div>
                   
                   <div className={`${style.light} rounded-lg p-3 mb-6`}>

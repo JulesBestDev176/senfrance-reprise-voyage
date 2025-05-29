@@ -105,7 +105,7 @@ const Navbar = () => {
                       <Link to="/visa/hebergement" className="block select-none space-y-1 rounded-md p-3 hover:bg-primary/5 transition-all duration-200">
                         <div className="font-medium">Hébergement</div>
                         <p className="text-sm text-muted-foreground">
-                          Réservation et attestation d'hébergement
+                          Réservation de logement 
                         </p>
                       </Link>
                     </li>
@@ -129,7 +129,7 @@ const Navbar = () => {
                       <Link to="/vivre-en-france/job-etudiant" className="block select-none space-y-1 rounded-md p-3 hover:bg-primary/5 transition-all duration-200">
                         <div className="font-medium">Job étudiant</div>
                         <p className="text-sm text-muted-foreground">
-                          Opportunités de travail pendant vos études
+                          Travail à temps partiel
                         </p>
                       </Link>
                     </li>
@@ -137,7 +137,7 @@ const Navbar = () => {
                       <Link to="/vivre-en-france/assurances" className="block select-none space-y-1 rounded-md p-3 hover:bg-primary/5 transition-all duration-200">
                         <div className="font-medium">Assurances</div>
                         <p className="text-sm text-muted-foreground">
-                          Protégez-vous pendant votre séjour
+                          Garanties et protection
                         </p>
                       </Link>
                     </li>
