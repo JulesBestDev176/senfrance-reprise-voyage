@@ -48,7 +48,7 @@ const StudentJob = () => {
     <motion.section 
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className="py-28 relative overflow-hidden bg-gradient-to-br from-[#18133E] via-[#231A54] to-[#2F265F]"
+      className="py-28 relative overflow-hidden bg-white"
     >
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -102,7 +102,7 @@ const StudentJob = () => {
         {[...Array(8)].map((_, i) => (
           <motion.div 
             key={i}
-            className="absolute rounded-full bg-white/30 blur-[1px]"
+            className="absolute rounded-full bg-gray-400/20 blur-[1px]"
             style={{
               top: `${20 + Math.random() * 60}%`,
               left: `${10 + Math.random() * 80}%`,
@@ -124,7 +124,7 @@ const StudentJob = () => {
 
       {/* Mouse follower light effect */}
       <motion.div
-        className="absolute w-[300px] h-[300px] rounded-full bg-gradient-to-r from-[#FFC3BC]/30 to-purple-500/10 blur-[80px] pointer-events-none z-0 opacity-50"
+        className="absolute w-[300px] h-[300px] rounded-full bg-gradient-to-r from-[#FFC3BC]/20 to-purple-500/10 blur-[80px] pointer-events-none z-0 opacity-30"
         style={{
           x: followerX,
           y: followerY,
@@ -149,7 +149,7 @@ const StudentJob = () => {
                 {titleWords.map((word, i) => (
                   <motion.span
                     key={i}
-                    className={`inline-block mr-2 ${word === "job" ? "text-[#FFC3BC]" : "text-[#FFF]"}`}
+                    className={`inline-block mr-2 ${word === "job" ? "text-[#FFC3BC]" : "text-gray-900"}`}
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -185,7 +185,7 @@ const StudentJob = () => {
             </div>
 
             <motion.p 
-              className="text-white/80 mb-10 text-lg leading-relaxed"
+              className="text-gray-600 mb-10 text-lg leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -205,7 +205,7 @@ const StudentJob = () => {
               {stats.map((stat, index) => (
                 <motion.div 
                   key={index}
-                  className="bg-white/5 backdrop-blur-sm rounded-xl p-4 flex flex-col items-center justify-center border border-white/10 hover:bg-white/10 transition-colors duration-300"
+                  className="bg-gray-50 backdrop-blur-sm rounded-xl p-4 flex flex-col items-center justify-center border border-gray-200 hover:bg-gray-100 hover:shadow-md transition-all duration-300"
                   whileHover={{ y: -5, transition: { duration: 0.2 } }}
                 >
                   <motion.div 
@@ -217,8 +217,8 @@ const StudentJob = () => {
                   >
                     {React.cloneElement(stat.icon, { className: "h-5 w-5 text-[#FFC3BC]" })}
                   </motion.div>
-                  <span className="text-xl font-bold text-white">{stat.value}</span>
-                  <span className="text-xs text-white/70">{stat.label}</span>
+                  <span className="text-xl font-bold text-gray-900">{stat.value}</span>
+                  <span className="text-xs text-gray-600">{stat.label}</span>
                 </motion.div>
               ))}
             </motion.div>
@@ -234,7 +234,7 @@ const StudentJob = () => {
               className="relative"
             >
               <motion.div 
-                className="absolute -inset-2 bg-gradient-to-r from-[#FFC3BC]/80 to-pink-500/50 rounded-full blur-md opacity-70"
+                className="absolute -inset-2 bg-gradient-to-r from-[#FFC3BC]/60 to-pink-500/40 rounded-full blur-md opacity-50"
                 animate={{
                   scale: isHovered ? 1.05 : 1,
                 }}
@@ -242,7 +242,7 @@ const StudentJob = () => {
               />
               <Button 
                 asChild 
-                className="relative bg-gradient-to-r from-[#FFC3BC] to-pink-500 hover:from-pink-500 hover:to-[#FFC3BC] text-[#18133E] font-bold rounded-full px-8 py-6 shadow-lg border-0 transition-all duration-300"
+                className="relative bg-gradient-to-r from-[#FFC3BC] to-pink-500 hover:from-pink-500 hover:to-[#FFC3BC] text-white font-bold rounded-full px-8 py-6 shadow-lg border-0 transition-all duration-300"
               >
                 <Link to="/vivre-en-france/job-etudiant" className="flex items-center gap-2">
                   <Briefcase className="h-5 w-5" />
@@ -281,7 +281,7 @@ const StudentJob = () => {
                           duration: 1,
                           delay: i * 0.05,
                         }}
-                        className="absolute top-1/2 left-1/2 w-2 h-2 rounded-full bg-white"
+                        className="absolute top-1/2 left-1/2 w-2 h-2 rounded-full bg-[#FFC3BC]"
                         style={{
                           top: "50%",
                           left: "80%",
@@ -307,15 +307,15 @@ const StudentJob = () => {
           >
             {/* Decorative elements */}
             <motion.div 
-              className="absolute inset-0 border-2 border-[#FFC3BC]/20 rounded-2xl -m-4 z-0"
+              className="absolute inset-0 border-2 border-[#FFC3BC]/30 rounded-2xl -m-4 z-0"
               whileHover={{ scale: 1.03 }}
               transition={{ duration: 0.3 }}
             />
             <motion.div 
-              className="absolute -bottom-6 -right-6 w-40 h-40 bg-gradient-to-br from-[#FFC3BC]/30 to-purple-500/20 rounded-full blur-xl z-0"
+              className="absolute -bottom-6 -right-6 w-40 h-40 bg-gradient-to-br from-[#FFC3BC]/20 to-purple-500/15 rounded-full blur-xl z-0"
               animate={{
                 scale: [1, 1.1, 1],
-                opacity: [0.3, 0.5, 0.3],
+                opacity: [0.2, 0.3, 0.2],
               }}
               transition={{
                 duration: 5,
@@ -328,10 +328,10 @@ const StudentJob = () => {
             <motion.div
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
-              className="relative z-10 overflow-hidden rounded-2xl shadow-2xl shadow-purple-900/30 border border-white/10"
+              className="relative z-10 overflow-hidden rounded-2xl shadow-2xl shadow-gray-500/20 border border-gray-200"
             >
               {/* Image gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#18133E]/80 to-transparent z-10"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#18133E]/60 to-transparent z-10"></div>
               
               {/* Image */}
               <motion.img 
@@ -352,9 +352,9 @@ const StudentJob = () => {
               >
                 <div className="flex items-center gap-2 mb-2">
                   <GraduationCap className="h-5 w-5 text-[#FFC3BC]" />
-                  <span className="text-white/90 font-medium">Concilie études et travail</span>
+                  <span className="text-white font-medium">Concilie études et travail</span>
                 </div>
-                <p className="text-white/70 text-sm">
+                <p className="text-white/80 text-sm">
                   De nombreuses opportunités existent pour les étudiants internationaux
                 </p>
               </motion.div>
