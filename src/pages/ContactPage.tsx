@@ -110,8 +110,8 @@ const handleSubmit = async (e: React.FormEvent) => {
   setLoading(true);
 
   try {
-    console.log('🚀 Envoi vers:', `${API_URL}/api/contact`);
-    console.log('📦 Données:', formData);
+    // console.log('🚀 Envoi vers:', `${API_URL}/api/contact`);
+    // console.log('📦 Données:', formData);
 
     const response = await fetch(`${API_URL}/api/contact`, {
       method: 'POST',
@@ -123,15 +123,15 @@ const handleSubmit = async (e: React.FormEvent) => {
       body: JSON.stringify(formData),
     });
 
-    console.log('📡 Réponse status:', response.status);
-    console.log('📡 Réponse headers:', response.headers);
+    // console.log('📡 Réponse status:', response.status);
+    // console.log('📡 Réponse headers:', response.headers);
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
     const data = await response.json();
-    console.log('✅ Réponse données:', data);
+    // console.log('✅ Réponse données:', data);
 
     if (data.success) {
       toast({
@@ -151,7 +151,7 @@ const handleSubmit = async (e: React.FormEvent) => {
       throw new Error(data.message || 'Erreur lors de l\'envoi');
     }
   } catch (error) {
-    console.error('❌ Erreur complète:', error);
+    // console.error('❌ Erreur complète:', error);
     
     let errorMessage = "Impossible d'envoyer le message. Veuillez réessayer.";
     
