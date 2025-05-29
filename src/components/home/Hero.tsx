@@ -286,8 +286,8 @@ const Hero = () => {
               {[
                 {
                   number: "1",
-                  label: "Solution complète",
-                  icon: <Users className="h-4 w-4 sm:h-5 sm:w-5" />,
+                  label: "Solution complète",
+                  icon: <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5" />,
                 },
                 {
                   number: "98%",
