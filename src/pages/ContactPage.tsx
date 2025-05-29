@@ -55,9 +55,9 @@ const ContactPage: React.FC = () => {
   const foregroundY = useTransform(scrollYProgress, [0, 1], [0, -100]);
 
   // URL de l'API
-  const API_URL = process.env.NODE_ENV === 'production' 
-    ? 'https://senfrance-backend.onrender.com' 
-    : 'http://localhost:5000';
+  const API_URL = import.meta.env.PROD 
+  ? (import.meta.env.VITE_API_URL || 'https://senfrance-backend.onrender.com')
+  : 'http://localhost:5000';
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -93,66 +93,83 @@ const ContactPage: React.FC = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  // Dans votre handleSubmit de ContactPage.tsx, remplacez le fetch par :
+
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  
+  if (!validateForm()) {
+    toast({
+      title: "Erreur de validation",
+      description: "Veuillez corriger les erreurs dans le formulaire.",
+      variant: "destructive",
+    });
+    return;
+  }
+
+  setLoading(true);
+
+  try {
+    console.log('🚀 Envoi vers:', `${API_URL}/api/contact`);
+    console.log('📦 Données:', formData);
+
+    const response = await fetch(`${API_URL}/api/contact`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      credentials: 'include', // Important pour CORS avec credentials
+      body: JSON.stringify(formData),
+    });
+
+    console.log('📡 Réponse status:', response.status);
+    console.log('📡 Réponse headers:', response.headers);
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log('✅ Réponse données:', data);
+
+    if (data.success) {
+      toast({
+        title: "✅ Message envoyé !",
+        description: data.message,
+        variant: "default",
+      });
+      
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+      setErrors({});
+    } else {
+      throw new Error(data.message || 'Erreur lors de l\'envoi');
+    }
+  } catch (error) {
+    console.error('❌ Erreur complète:', error);
     
-    if (!validateForm()) {
-      toast({
-        title: "Erreur de validation",
-        description: "Veuillez corriger les erreurs dans le formulaire.",
-        variant: "destructive",
-      });
-      return;
+    let errorMessage = "Impossible d'envoyer le message. Veuillez réessayer.";
+    
+    if (error instanceof TypeError && error.message.includes('fetch')) {
+      errorMessage = "Problème de connexion au serveur. Vérifiez votre réseau.";
+    } else if (error.message.includes('CORS')) {
+      errorMessage = "Erreur de configuration serveur. Contactez le support.";
     }
-
-    setLoading(true);
-
-    try {
-      const response = await fetch(`${API_URL}/api/contact`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        toast({
-          title: "✅ Message envoyé !",
-          description: data.message,
-          variant: "default",
-        });
-        
-        setFormData({
-          name: "",
-          email: "",
-          subject: "",
-          message: "",
-        });
-        setErrors({});
-      } else {
-        throw new Error(data.message || 'Erreur lors de l\'envoi');
-      }
-    } catch (error) {
-      console.error('Erreur:', error);
-      
-      let errorMessage = "Impossible d'envoyer le message. Veuillez réessayer.";
-      
-      if (error instanceof TypeError && error.message.includes('fetch')) {
-        errorMessage = "Impossible de contacter le serveur. Vérifiez votre connexion.";
-      }
-      
-      toast({
-        title: "❌ Erreur d'envoi",
-        description: errorMessage,
-        variant: "destructive",
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
+    
+    toast({
+      title: "❌ Erreur d'envoi",
+      description: errorMessage,
+      variant: "destructive",
+    });
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div ref={containerRef} className="relative">
