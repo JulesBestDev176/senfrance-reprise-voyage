@@ -170,28 +170,7 @@ const Partners = () => {
           </motion.div>
         </div>
 
-        {/* Lien vers tous les partenaires */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.8 }}
-          className="mt-8 text-center"
-        >
-          <a 
-            href="#"
-            className="inline-flex items-center text-indigo-600 hover:text-indigo-800 font-medium group transition-colors"
-          >
-            <span>Découvrir tous nos partenaires</span>
-            <motion.div
-              initial={{ x: 0 }}
-              whileHover={{ x: 5 }}
-              className="ml-2 group-hover:text-indigo-800"
-            >
-              <ExternalLink size={16} />
-            </motion.div>
-          </a>
-        </motion.div>
+        
       </div>
     </section>
   );
