@@ -589,20 +589,7 @@ const ParentsPage = () => {
                 })}
               </div>
               
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.8, duration: 0.6 }}
-                className="mt-10"
-              >
-                <Button asChild className="bg-gradient-to-r from-[#FFC3BC] to-[#ff9d94] text-[#18133E] hover:from-[#ff9d94] hover:to-[#FFC3BC] rounded-full px-8 py-6 text-lg font-medium border-0">
-                  <Link to="/parents/services" className="flex items-center gap-2">
-                    <span>Découvrir nos services</span>
-                    <ArrowRight className="h-5 w-5" />
-                  </Link>
-                </Button>
-              </motion.div>
+              
             </motion.div>
           </div>
         </div>

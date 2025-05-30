@@ -454,22 +454,7 @@ const StudentPage = () => {
             </motion.div>
           </div>
           
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 1 }}
-            className="absolute bottom-8 left-1/2 transform -translate-x-1/2 "
-          >
-            <motion.a
-              href="#services"
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="flex flex-col items-center text-white/60 hover:text-white transition-colors"
-            >
-              <span className="text-sm mb-2">Découvrir</span>
-              <ArrowDownCircle className="h-6 w-6" />
-            </motion.a>
-          </motion.div>
+          
         </div>
       </section>
 
