@@ -25,6 +25,7 @@ import {
   XCircle
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 const PrivacyPolicyPage = () => {
   const [expandedSection, setExpandedSection] = useState(null);
@@ -581,9 +582,9 @@ Vous pouvez aussi introduire une réclamation auprès de la CNIL (www.cnil.fr).`
               
               <div className="text-center">
                 <Button asChild className="bg-gradient-to-r from-[#18133E] to-[#271D5B] hover:from-[#271D5B] hover:to-[#18133E] text-white rounded-full px-8 py-3">
-                  <a href="/contact">
+                <Link to="/contact">
                     Nous contacter
-                  </a>
+                  </Link>
                 </Button>
               </div>
             </div>

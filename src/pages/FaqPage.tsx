@@ -24,6 +24,7 @@ import {
   Sparkles
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 const FAQPage = () => {
   const [expandedFAQ, setExpandedFAQ] = useState(null);
@@ -374,10 +375,10 @@ Nous sommes à l'écoute, alors vous pouvez nous soumettre votre cas. Nous l'ét
                     </p>
                     
                     <Button className="bg-[#FFC3BC] hover:bg-[#ff9d94] text-[#18133E] font-semibold px-8 py-3 rounded-full">
-                      <a href="/contact" className="flex items-center gap-2">
-                        <span>Contactez-nous sans attendre</span>
-                        <MessageCircle className="h-5 w-5" />
-                      </a>
+                     <Link to="/contact" className="flex items-center gap-2">
+  <span>Contactez-nous sans attendre</span>
+  <MessageCircle className="h-5 w-5" />
+</Link>
                     </Button>
                   </div>
                 </motion.div>
@@ -587,10 +588,13 @@ Nous sommes à l'écoute, alors vous pouvez nous soumettre votre cas. Nous l'ét
                 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button className="bg-[#FFC3BC] hover:bg-[#ff9d94] text-[#18133E] font-semibold px-6 py-3 rounded-full">
-                    <a href="/contact" className="flex items-center gap-2">
-                      <MessageCircle className="h-5 w-5" />
-                      <span>Nous contacter</span>
-                    </a>
+                    <Link
+  to="/contact"
+  className="bg-[#FFC3BC] hover:bg-[#ff9d94] text-[#18133E] font-semibold px-6 py-3 rounded-full flex items-center gap-2"
+>
+  <MessageCircle className="h-5 w-5" />
+  <span>Nous contacter</span>
+</Link>
                   </Button>
                   
                   
