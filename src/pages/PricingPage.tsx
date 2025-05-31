@@ -248,7 +248,7 @@ const PricingPage = () => {
     let discountAmount = 0;
     
     simulatedServices.forEach((serviceId, index) => {
-      const service = [...pricingPlans, ...additionalServices].find(s => s.id === serviceId);
+      const service = [...pricingPlans, ...additionalServices, ...economicPacks].find(s => s.id === serviceId);
       if (service) {
         const price = parseInt(service.price);
         total += price;
@@ -669,6 +669,29 @@ const PricingPage = () => {
                         </div>
                         
                         
+                        
+                        <div className="mt-2 flex justify-center">
+                          <button
+                            onClick={() => toggleService(pack.id)}
+                            className={`text-xs font-medium flex items-center gap-1.5 py-1 px-2 rounded-full transition-colors ${
+                              simulatedServices.includes(pack.id)
+                                ? `bg-${pack.color === 'indigo' ? 'indigo' : pack.color === 'purple' ? 'purple' : 'gray'}-50 text-${pack.color === 'indigo' ? 'indigo' : pack.color === 'purple' ? 'purple' : 'gray'}-600 border border-${pack.color === 'indigo' ? 'indigo' : pack.color === 'purple' ? 'purple' : 'gray'}-100`
+                                : "text-gray-500 hover:text-gray-700"
+                            }`}
+                          >
+                            {simulatedServices.includes(pack.id) ? (
+                              <>
+                                <CheckCircle className="h-3 w-3" />
+                                <span>Ajouté</span>
+                              </>
+                            ) : (
+                              <>
+                                <Plus className="h-3 w-3" />
+                                <span>Ajouter</span>
+                              </>
+                            )}
+                          </button>
+                        </div>
                       </div>
                     </div>
                   );
@@ -701,8 +724,8 @@ const PricingPage = () => {
             </div>
           )}
           
-          {/* Quote simulation - seulement pour À la carte */}
-          {selectedTab === "individuel" && simulatedServices.length > 0 && (
+          {/* Quote simulation - pour tous les onglets */}
+          {simulatedServices.length > 0 && (
             <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50">
               <div className="container mx-auto px-4 py-4">
                 <div className="flex flex-col md:flex-row items-center justify-between gap-4">
@@ -713,9 +736,9 @@ const PricingPage = () => {
                     <div>
                       <div className="flex items-center gap-2">
                         <span className="text-gray-500">Votre simulation:</span>
-                        <div className="flex items-center gap-1">
+                        <div className="flex items-center gap-1 flex-wrap">
                           {simulatedServices.map((serviceId) => {
-                            const service = [...pricingPlans, ...additionalServices].find(s => s.id === serviceId);
+                            const service = [...pricingPlans, ...additionalServices, ...economicPacks].find(s => s.id === serviceId);
                             return (
                               <div key={serviceId} className="bg-gray-100 px-2 py-0.5 rounded text-xs text-gray-700">
                                 {service?.title}
