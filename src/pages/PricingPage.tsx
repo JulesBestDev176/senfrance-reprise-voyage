@@ -668,12 +668,7 @@ const PricingPage = () => {
                           </button>
                         </div>
                         
-                        <div className="mt-2 flex justify-center">
-                          <button className="inline-flex items-center text-xs text-gray-500 hover:text-[#18133E] transition-colors">
-                            <span>Voir détails</span>
-                            <ChevronRight className="h-3 w-3 ml-1" />
-                          </button>
-                        </div>
+                        
                       </div>
                     </div>
                   );
