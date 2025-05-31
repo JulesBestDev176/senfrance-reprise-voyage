@@ -203,7 +203,7 @@ const PageAssurances = () => {
                     <CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
                     <div>
                       <p className="font-medium">Demande envoyée avec succès !</p>
-                      <p className="text-sm">Tu recevras un email avec les instructions pour compléter ta souscription.</p>
+                      <p className="text-sm">Tu recevras un E-mail avec les instructions pour compléter ta souscription.</p>
                     </div>
                   </motion.div>
                 )}
@@ -381,7 +381,7 @@ const PageAssurances = () => {
                     <CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
                     <div>
                       <p className="font-medium">Demande envoyée avec succès !</p>
-                      <p className="text-sm">Tu recevras un email avec les instructions pour compléter ta souscription.</p>
+                      <p className="text-sm">Tu recevras un E-mail avec les instructions pour compléter ta souscription.</p>
                     </div>
                   </motion.div>
                 )}

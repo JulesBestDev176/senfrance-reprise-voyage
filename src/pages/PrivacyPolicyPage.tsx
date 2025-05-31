@@ -94,7 +94,7 @@ const PrivacyPolicyPage = () => {
       content: `Nous collectons uniquement les données nécessaires à nos services :
       
 - Nom, prénom
-- Adresse e-mail
+- Adresse E-mail
 - Numéro de téléphone
 - Nationalité
 - Informations relatives au projet d'études (niveau, domaine, pays d'origine, destination, etc.)

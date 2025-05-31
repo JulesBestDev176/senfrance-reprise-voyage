@@ -236,7 +236,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                   "Conseil personnalisé et gratuit",
                   "Équipe d'experts dédiés",
                   "Suivi transparent de votre dossier",
-                  "Support disponible 6j/7"
+                  "Support disponible 7j/7"
                 ].map((item, index) => (
                   <motion.div 
                     key={index}
@@ -258,8 +258,8 @@ const handleSubmit = async (e: React.FormEvent) => {
                   transition={{ delay: 0.8 }}
                   className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10"
                 >
-                  <div className="text-2xl font-bold text-[#FFC3BC] mb-1">500+</div>
-                  <div className="text-white/70 text-sm">Étudiants accompagnés</div>
+                  <div className="text-2xl font-bold text-[#FFC3BC] mb-1">2000+</div>
+                  <div className="text-white/70 text-sm">Étudiants conseillés</div>
                 </motion.div>
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -281,7 +281,7 @@ const handleSubmit = async (e: React.FormEvent) => {
               className="space-y-6"
             >
               {[
-                { icon: Mail, title: "Email", info: "contact@senfrance.com", color: "from-blue-500 to-blue-600" },
+                { icon: Mail, title: "E-mail", info: "contact@senfrance.com", color: "from-blue-500 to-blue-600" },
                 { icon: Phone, title: "Téléphone", info: "+33 9 72 14 66 97", color: "from-green-500 to-green-600" },
                 { icon: MapPin, title: "Adresse", info: "15 quai des Chartrons, Bordeaux", color: "from-purple-500 to-purple-600" }
               ].map((item, index) => (
@@ -433,7 +433,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                   </li>
                   <li className="flex items-center gap-2">
                     <Mail size={16} />
-                    Confirmation automatique par email
+                    Confirmation automatique par E-mail
                   </li>
                   <li className="flex items-center gap-2">
                     <Users size={16} />
@@ -491,7 +491,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                     
                     <div className="space-y-2">
                       <label htmlFor="email" className="block font-medium text-gray-700">
-                        Adresse email *
+                        Adresse E-mail *
                       </label>
                       <Input
                         id="email"
@@ -603,7 +603,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                         Confirmation automatique
                       </p>
                       <p className="text-sm text-blue-700">
-                        Vous recevrez un email de confirmation à l'adresse indiquée.
+                        Vous recevrez un E-mail de confirmation à l'adresse indiquée.
                         Notre équipe vous répondra personnellement sous 24h.
                       </p>
                     </div>

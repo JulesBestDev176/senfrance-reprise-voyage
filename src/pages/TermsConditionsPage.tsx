@@ -82,7 +82,7 @@ SENFRANCE est spécialisée dans l'accompagnement des étudiants internationaux 
 - Dénomination sociale : SENFRANCE SAS
 - Siège social : 15 quai des Chartrons, 33000 Bordeaux
 - SIRET : 894 664 572 00027
-- Email : contact@senfrance.com`,
+- E-mail : contact@senfrance.com`,
       color: 'indigo'
     },
     {
@@ -598,7 +598,7 @@ Les parties s'efforcent de résoudre tout différend par la voie de la négociat
                   <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
                     <Mail className="h-6 w-6 text-blue-600" />
                   </div>
-                  <h4 className="font-semibold text-gray-900 mb-1">Email</h4>
+                  <h4 className="font-semibold text-gray-900 mb-1">E-mail</h4>
                   <p className="text-gray-600">contact@senfrance.com</p>
                 </div>
                 
