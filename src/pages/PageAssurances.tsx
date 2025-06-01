@@ -414,7 +414,7 @@ const PageAssurances = () => {
                       variant="outline"
                       className="w-full border-[#18133E]/20 text-[#18133E] hover:bg-[#18133E]/5 rounded-xl px-6 py-3 font-medium"
                     >
-                      <Link to="/garantie/en-savoir-plus" className="flex items-center justify-center gap-2">
+                      <Link to="/assurance/en-savoir-plus" className="flex items-center justify-center gap-2">
                         <span>En savoir plus</span>
                         <ArrowRight className="h-5 w-5" />
                       </Link>
