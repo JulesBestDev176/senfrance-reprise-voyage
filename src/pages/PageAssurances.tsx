@@ -210,29 +210,31 @@ const PageAssurances = () => {
                   </motion.div>
                 )}
                 
-                <div className="flex flex-wrap gap-4">
+                <div className="flex flex-col sm:flex-row gap-4">
                   <motion.div
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.97 }}
+                    className="flex-1"
                   >
-                    <Button
-                      onClick={soumettreFormGarantme}
-                      className="bg-gradient-to-r from-[#18133E] to-[#271D5B] hover:from-[#271D5B] hover:to-[#18133E] text-white rounded-xl px-6 py-3 font-medium shadow-md"
+                    <a
+                      href='https://app.garantme.fr/fr/senfrance'
+                      className="w-full inline-flex items-center justify-center bg-gradient-to-r from-[#18133E] to-[#271D5B] hover:from-[#271D5B] hover:to-[#18133E] text-white rounded-xl px-6 py-3 font-medium shadow-md transition-all duration-300"
                     >
                       Postuler
-                    </Button>
+                    </a>
                   </motion.div>
                   
                   <motion.div
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.97 }}
+                    className="flex-1"
                   >
                     <Button
                       asChild
                       variant="outline"
-                      className="border-[#18133E]/20 text-[#18133E] hover:bg-[#18133E]/5 rounded-xl px-6 py-3 font-medium"
+                      className="w-full border-[#18133E]/20 text-[#18133E] hover:bg-[#18133E]/5 rounded-xl px-6 py-3 font-medium"
                     >
-                      <Link to="/garantie/en-savoir-plus" className="flex items-center gap-2">
+                      <Link to="/garantie/en-savoir-plus" className="flex items-center justify-center gap-2">
                         <span>En savoir plus</span>
                         <ArrowRight className="h-5 w-5" />
                       </Link>
@@ -388,29 +390,31 @@ const PageAssurances = () => {
                   </motion.div>
                 )}
                 
-                <div className="flex flex-wrap gap-4">
+                <div className="flex flex-col sm:flex-row gap-4">
                   <motion.div
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.97 }}
+                    className="flex-1"
                   >
-                    <Button
-                      onClick={soumettreFormLuko}
-                      className="bg-gradient-to-r from-[#18133E] to-[#271D5B] hover:from-[#271D5B] hover:to-[#18133E] text-white rounded-xl px-6 py-3 font-medium shadow-md"
+                    <a
+                      href='https://app.garantme.fr/fr/senfrance'
+                      className="w-full inline-flex items-center justify-center bg-gradient-to-r from-[#18133E] to-[#271D5B] hover:from-[#271D5B] hover:to-[#18133E] text-white rounded-xl px-6 py-3 font-medium shadow-md transition-all duration-300"
                     >
-                      Souscrire
-                    </Button>
+                      Postuler
+                    </a>
                   </motion.div>
                   
                   <motion.div
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.97 }}
+                    className="flex-1"
                   >
                     <Button
                       asChild
                       variant="outline"
-                      className="border-[#18133E]/20 text-[#18133E] hover:bg-[#18133E]/5 rounded-xl px-6 py-3 font-medium"
+                      className="w-full border-[#18133E]/20 text-[#18133E] hover:bg-[#18133E]/5 rounded-xl px-6 py-3 font-medium"
                     >
-                      <Link to="/assurance/en-savoir-plus" className="flex items-center gap-2">
+                      <Link to="/garantie/en-savoir-plus" className="flex items-center justify-center gap-2">
                         <span>En savoir plus</span>
                         <ArrowRight className="h-5 w-5" />
                       </Link>

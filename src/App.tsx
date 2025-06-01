@@ -23,6 +23,8 @@ import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import TermsConditionsPage from "./pages/TermsConditionsPage";
 import LegalMentionsPage from "./pages/LegalMentionsPage";
 import FAQPage from "./pages/FaqPage";
+import PageGarantie from "./pages/PageGarantie";
+import PageAssuranceHabitation from "./pages/PageAssuranceHabitation";
 
 // Placeholder components for new routes
 
@@ -57,6 +59,8 @@ const App = () => (
               <Route path="/terms" element={<TermsConditionsPage />} />
               <Route path="/legals" element={<LegalMentionsPage />} />
               <Route path="/faq" element={<FAQPage />} />
+              <Route path="/garantie/en-savoir-plus" element={<PageGarantie />} />
+              <Route path="/assurance/en-savoir-plus" element={<PageAssuranceHabitation />} />
 
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
