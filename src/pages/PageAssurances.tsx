@@ -397,7 +397,7 @@ const PageAssurances = () => {
                     className="flex-1"
                   >
                     <a
-                      href='https://app.garantme.fr/fr/senfrance'
+                      href='https://www.luko.eu/fr/onboard#Address'
                       className="w-full inline-flex items-center justify-center bg-gradient-to-r from-[#18133E] to-[#271D5B] hover:from-[#271D5B] hover:to-[#18133E] text-white rounded-xl px-6 py-3 font-medium shadow-md transition-all duration-300"
                     >
                       Postuler
