@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { useScrollToTop } from '@/hooks/useScrollToTop';
 
 // Custom icon component
 const CustomBanknoteIcon = (props) => (
@@ -62,6 +63,7 @@ const CustomCalendarClock = (props) => (
 );
 
 const AVIPage = () => {
+  useScrollToTop();
   // Reference for the scroll progress and parallax effects
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({

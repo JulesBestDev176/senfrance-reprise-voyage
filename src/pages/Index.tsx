@@ -14,8 +14,10 @@ import LukoPartnership from '@/components/home/LukoPartnership';
 import Testimonials from '@/components/home/Testimonials';
 import Services from '@/components/home/Services';
 import BordeauxLocationCard from '@/components/home/BordeauxLocationCard';
+import { useScrollToTop } from '@/hooks/useScrollToTop';
 
 const Index = () => {
+  useScrollToTop();
   // Trigger animations on first render with scroll position
   useEffect(() => {
     window.scrollTo(0, 0);

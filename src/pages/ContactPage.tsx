@@ -22,6 +22,7 @@ import {
   Shield
 } from "lucide-react";
 import DakarOffice from "@/components/home/DakarOffice";
+import { useScrollToTop } from "@/hooks/useScrollToTop";
 
 interface FormData {
   name: string;
@@ -35,6 +36,7 @@ interface FormErrors {
 }
 
 const ContactPage: React.FC = () => {
+  useScrollToTop();
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",

@@ -22,6 +22,7 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { useScrollToTop } from '@/hooks/useScrollToTop';
 
 // Custom icon
 const GlobeIcon = (props) => (
@@ -44,6 +45,7 @@ const GlobeIcon = (props) => (
 );
 
 const HousingPage = () => {
+  useScrollToTop();
   const [activeTab, setActiveTab] = useState('abroad');
   
   // Reference for the scroll progress and parallax effects

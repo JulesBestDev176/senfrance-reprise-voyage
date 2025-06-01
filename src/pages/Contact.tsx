@@ -7,8 +7,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/components/ui/use-toast';
 import { CheckCircle, Mail, MapPin, Phone } from 'lucide-react';
+import { useScrollToTop } from '@/hooks/useScrollToTop';
 
 const Contact = () => {
+  useScrollToTop();
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   

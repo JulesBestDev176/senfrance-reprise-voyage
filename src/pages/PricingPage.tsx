@@ -23,8 +23,10 @@ import {
   Plus,
   Tag
 } from 'lucide-react';
+import { useScrollToTop } from '@/hooks/useScrollToTop';
 
 const PricingPage = () => {
+  useScrollToTop();
   const [activePlan, setActivePlan] = useState(null);
   const [selectedTab, setSelectedTab] = useState("individuel");
   

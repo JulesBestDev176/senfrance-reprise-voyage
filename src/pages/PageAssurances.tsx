@@ -15,8 +15,10 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { useScrollToTop } from '@/hooks/useScrollToTop';
 
 const PageAssurances = () => {
+  useScrollToTop();
   // États pour les formulaires
   const [formGarantmeSubmitted, setFormGarantmeSubmitted] = useState(false);
   const [formLukoSubmitted, setFormLukoSubmitted] = useState(false);

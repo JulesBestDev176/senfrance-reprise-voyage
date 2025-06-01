@@ -28,8 +28,10 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { useScrollToTop } from '@/hooks/useScrollToTop';
 
 const TermsConditionsPage = () => {
+  useScrollToTop();
   const [expandedSection, setExpandedSection] = useState(null);
   
   // Reference for the scroll progress and parallax effects

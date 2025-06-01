@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { useScrollToTop } from "@/hooks/useScrollToTop";
 
 // Team members data - updated for new business areas
 const team = [
@@ -144,6 +145,7 @@ const colorStyles = {
 };
 
 const About = () => {
+  useScrollToTop();
   const [activeFeature, setActiveFeature] = useState<number | null>(null);
 
   // Reference for the scroll progress and parallax effects

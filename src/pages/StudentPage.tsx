@@ -28,8 +28,10 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { useScrollToTop } from '@/hooks/useScrollToTop';
 
 const StudentPage = () => {
+  useScrollToTop();
   const [activeSection, setActiveSection] = useState(null);
   const [activePricing, setActivePricing] = useState(null);
   

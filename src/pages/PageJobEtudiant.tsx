@@ -18,8 +18,10 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { useScrollToTop } from '@/hooks/useScrollToTop';
 
 const PageJobEtudiant = () => {
+  useScrollToTop();
   // États pour le formulaire
   const [prénom, setPrénom] = useState('');
   const [nom, setNom] = useState('');
