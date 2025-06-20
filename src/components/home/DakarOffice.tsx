@@ -7,7 +7,7 @@ const DakarOffice = () => {
   const [mapHovered, setMapHovered] = useState(false);
 
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section className="py-8 relative overflow-hidden">
       {/* Enhanced background styling */}
       <div className="absolute inset-0 bg-gradient-to-br from-white to-gray-50">
         <div className="absolute top-0 left-0 w-full h-full">

@@ -10,7 +10,7 @@ const MainServices = () => {
       
       
       {/* Main content starts below the wave */}
-      <div className="py-24 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
+      <div className="py-8 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
         {/* Background decorative elements */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute -top-20 -right-20 w-64 h-64 bg-purple-100 rounded-full opacity-30"></div>

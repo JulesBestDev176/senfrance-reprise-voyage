@@ -103,7 +103,7 @@ const PageAssurances = () => {
   return (
     <div ref={containerRef} className="relative">
       {/* Section héro */}
-      <section className="relative py-24 md:py-32 overflow-hidden">
+      <section className="relative py-8 md:py-32 overflow-hidden">
         {/* Arrière-plan avec effet de parallaxe */}
         <motion.div 
           className="absolute inset-0 bg-gradient-to-br from-[#18133E] via-[#231A54] to-[#18133E] overflow-hidden"

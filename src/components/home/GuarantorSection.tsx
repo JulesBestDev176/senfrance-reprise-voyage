@@ -8,7 +8,7 @@ const GuarantorSection = () => {
   const controls = useAnimation();
 
   return (
-    <section className="py-28 relative overflow-hidden">
+    <section className="py-8 relative overflow-hidden">
       {/* Background with animated elements */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-gray-100 to-white -z-10">
         <motion.div 

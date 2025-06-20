@@ -461,7 +461,7 @@ const StudentPage = () => {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-24 bg-gradient-to-b from-white to-gray-50 relative">
+      <section id="services" className="py-8 bg-gradient-to-b from-white to-gray-50 relative">
         <div className="absolute inset-0 overflow-hidden -z-10">
           <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5"></div>
           <motion.div 
@@ -589,7 +589,7 @@ const StudentPage = () => {
       </section>
       
       {/* Testimonials Section */}
-      <section className="py-24 bg-[#18133E] text-white relative overflow-hidden">
+      <section className="py-8 bg-[#18133E] text-white relative overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10"></div>
           <motion.div 
@@ -680,7 +680,7 @@ const StudentPage = () => {
       
       
       {/* Values Section */}
-      <section className="py-24 bg-gradient-to-r from-[#18133E] to-[#271D5B] text-white relative">
+      <section className="py-8 bg-gradient-to-r from-[#18133E] to-[#271D5B] text-white relative">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10"></div>
           <motion.div 
@@ -770,7 +770,7 @@ const StudentPage = () => {
       </section>
       
       {/* Call-to-action Section */}
-      <section className="py-24 bg-gradient-to-b from-white to-gray-50 relative">
+      <section className="py-8 bg-gradient-to-b from-white to-gray-50 relative">
         <div className="absolute inset-0 overflow-hidden -z-10">
           <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5"></div>
           <motion.div 

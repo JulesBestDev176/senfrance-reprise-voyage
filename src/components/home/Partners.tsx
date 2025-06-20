@@ -28,7 +28,7 @@ const Partners = () => {
   }, []);
 
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section className="py-8 relative overflow-hidden">
       {/* Fond stylisé avec motifs et formes */}
       <div className="absolute inset-0 bg-gradient-to-b from-white to-gray-50">
         <div className="absolute top-0 left-0 w-full h-full">

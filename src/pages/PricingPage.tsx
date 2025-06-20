@@ -269,7 +269,7 @@ const PricingPage = () => {
   return (
     <div ref={containerRef} className="relative">
       {/* Hero Section */}
-      <section className="relative py-24 md:py-32 overflow-hidden h-screen bg-white ">
+      <section className="relative py-8 md:py-32 overflow-hidden h-screen bg-white ">
         {/* Background with parallax effect */}
         <motion.div 
           className="absolute inset-0 bg-gradient-to-br from-[#18133E] via-[#231A54] to-[#18133E] overflow-hidden"
@@ -798,7 +798,7 @@ const PricingPage = () => {
       </section>
       
       {/* Pricing FAQ */}
-      <section className="py-24 bg-[#F8F9FA] relative">
+      <section className="py-8 bg-[#F8F9FA] relative">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="inline-block py-1 px-3 rounded-full bg-[#FFC3BC]/10 text-[#18133E] text-sm font-medium mb-4 border border-[#FFC3BC]/20">
@@ -871,7 +871,7 @@ const PricingPage = () => {
       </section>
       
       {/* Call-to-action Section */}
-      <section className="py-24 bg-gradient-to-b from-white to-gray-50 relative">
+      <section className="py-8 bg-gradient-to-b from-white to-gray-50 relative">
         <div className="absolute inset-0 overflow-hidden -z-10">
           <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5"></div>
           <motion.div 

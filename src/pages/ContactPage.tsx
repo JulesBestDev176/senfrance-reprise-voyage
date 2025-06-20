@@ -311,7 +311,7 @@ const handleSubmit = async (e: React.FormEvent) => {
       </section>
 
       {/* Contact Form Section */}
-      <section className="py-24 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
+      <section className="py-8 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
         <div className="absolute inset-0 -z-10">
           <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5"></div>
           <motion.div 

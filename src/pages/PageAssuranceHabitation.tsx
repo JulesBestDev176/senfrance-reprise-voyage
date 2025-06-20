@@ -24,7 +24,7 @@ const PageAssuranceHabitation = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Section héro optimisée */}
-      <section className="relative py-16 md:py-24 lg:py-32 overflow-hidden">
+      <section className="relative py-16 md:py-8 lg:py-32 overflow-hidden">
         <motion.div 
           className="absolute inset-0 bg-gradient-to-br from-[#18133E] via-[#231A54] to-[#18133E]"
         >

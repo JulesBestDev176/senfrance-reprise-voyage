@@ -215,7 +215,7 @@ Nous sommes à l'écoute, alors vous pouvez nous soumettre votre cas. Nous l'ét
   return (
     <div ref={containerRef} className="relative min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-24 overflow-hidden">
+      <section className="relative py-8 overflow-hidden">
         {/* Background with parallax effect */}
         <motion.div 
           className="absolute inset-0 bg-gradient-to-br from-[#18133E] via-[#231A54] to-[#18133E] overflow-hidden"
@@ -391,7 +391,7 @@ Nous sommes à l'écoute, alors vous pouvez nous soumettre votre cas. Nous l'ét
       </section>
 
       {/* FAQ Section */}
-      <section className="py-24 bg-gradient-to-b from-white to-gray-50 relative">
+      <section className="py-8 bg-gradient-to-b from-white to-gray-50 relative">
         <div className="absolute inset-0 overflow-hidden -z-10">
           <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5"></div>
           <motion.div 

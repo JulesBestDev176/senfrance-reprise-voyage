@@ -17,7 +17,7 @@ const PageGarantie = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Section héro */}
-      <section className="relative py-24 md:py-32 overflow-hidden">
+      <section className="relative py-8 md:py-32 overflow-hidden">
         <motion.div 
           className="absolute inset-0 bg-gradient-to-br from-[#18133E] via-[#231A54] to-[#18133E] overflow-hidden"
         >

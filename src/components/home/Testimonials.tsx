@@ -152,7 +152,7 @@ const Testimonials = () => {
   return (
     <section 
       ref={sectionRef}
-      className="py-24 relative overflow-hidden"
+      className="py-8 relative overflow-hidden"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

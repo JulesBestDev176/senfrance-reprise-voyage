@@ -48,7 +48,7 @@ const StudentJob = () => {
     <motion.section 
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className="py-28 relative overflow-hidden bg-white"
+      className="py-8 relative overflow-hidden bg-white"
     >
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">

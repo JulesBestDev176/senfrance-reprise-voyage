@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const HousingOptions = () => {
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section className="py-8 relative overflow-hidden">
       {/* Arrière-plan stylisé */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-gray-100 to-white">
         <div className="absolute inset-0 opacity-40 bg-[url('/grid-pattern.svg')] bg-center"></div>
