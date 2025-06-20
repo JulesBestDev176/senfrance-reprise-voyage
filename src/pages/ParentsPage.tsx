@@ -276,7 +276,7 @@ const ParentsPage = () => {
                     </Link>
                   </Button>
                 </motion.div>
-                <motion.div
+                {/* <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -285,7 +285,7 @@ const ParentsPage = () => {
                       <span>Créer un compte parent</span>
                     </Link>
                   </Button>
-                </motion.div>
+                </motion.div> */}
               </div>
             </motion.div>
             
@@ -337,9 +337,9 @@ const ParentsPage = () => {
                       </motion.li>
                     ))}
                   </ul>
-                  <Button className="w-full bg-white text-[#18133E] hover:bg-white/90 rounded-lg">
+                  <a href='https://www.senfrance.fr/login-senfrance/parent' className="w-full bg-white text-[#18133E] hover:bg-white/90 rounded-lg px-3 py-2">
                     Se connecter au portail
-                  </Button>
+                  </a>
                 </motion.div>
                 
                 <motion.div

@@ -433,9 +433,9 @@ const StudentPage = () => {
                       </motion.li>
                     ))}
                   </ul>
-                  <Button className="w-full bg-white text-[#18133E] hover:bg-white/90 rounded-lg">
-                    Rencontrer un conseiller
-                  </Button>
+                  <a href='https://www.senfrance.fr/login-senfrance/student' className="w-full bg-white text-[#18133E] hover:bg-white/90 rounded-lg px-3 py-2">
+                    Se connecter au portail
+                  </a>
                 </motion.div>
                 
                 <motion.div

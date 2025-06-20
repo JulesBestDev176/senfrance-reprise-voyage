@@ -274,7 +274,7 @@ const About = () => {
                     </Link>
                   </Button>
                 </motion.div>
-                <motion.div
+                {/* <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -287,7 +287,7 @@ const About = () => {
                       <span>Témoignages clients</span>
                     </Link>
                   </Button>
-                </motion.div>
+                </motion.div> */}
               </div>
             </motion.div>
 

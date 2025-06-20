@@ -322,7 +322,7 @@ const PricingPage = () => {
               Des services <span className="font-semibold text-[#FFC3BC]">adaptés à ton parcours</span> d'études en France. Une tarification claire et sans surprise. 
             </p>
             
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.6 }}
@@ -340,7 +340,7 @@ const PricingPage = () => {
                   <ArrowDown className="h-6 w-6" />
                 </motion.div>
               </a>
-            </motion.div>
+            </motion.div> */}
           </motion.div>
         </div>
       </section>

@@ -151,7 +151,7 @@ const PageJobEtudiant = () => {
               Que ce soit pour financer ta scolarité, payer ton loyer ou gérer tes dépenses quotidiennes, tu auras peut-être besoin de travailler pendant tes études. Le job étudiant est une la solution idéale pour te permettre d'être indépendant et d'assumer tes frais.
             </p>
             
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.6 }}
@@ -169,7 +169,7 @@ const PageJobEtudiant = () => {
                   <ArrowDown className="h-6 w-6" />
                 </motion.div>
               </a>
-            </motion.div>
+            </motion.div> */}
           </motion.div>
         </div>
       </section>

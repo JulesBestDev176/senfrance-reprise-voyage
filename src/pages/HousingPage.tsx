@@ -294,7 +294,7 @@ const HousingPage = () => {
               Le logement est devenu un enjeu majeur de la vie des étudiants en mobilité. SenFrance te propose de réserver ton appartement avant ton arrivée en France. N'engage plus des frais exorbitants avant l'obtention de ton visa d'études sans savoir si tu pourras les récupérer en cas de refus.
             </p>
             
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.6 }}
@@ -312,7 +312,7 @@ const HousingPage = () => {
                   <ArrowDown className="h-6 w-6" />
                 </motion.div>
               </a>
-            </motion.div>
+            </motion.div> */}
           </motion.div>
         </div>
       </section>
