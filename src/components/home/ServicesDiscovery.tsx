@@ -45,7 +45,7 @@ const ServicesDiscovery = () => {
   ];
 
   return (
-    <section ref={containerRef} className="py-8 md:py-32 relative overflow-hidden bg-gradient-to-b from-white to-gray-50">
+    <section ref={containerRef} className="py-8 md:py-8 relative overflow-hidden bg-gradient-to-b from-white to-gray-50">
       {/* Enhanced background patterns */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5"></div>
