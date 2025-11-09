@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { 
   Shield, 
   Lock, 
@@ -31,42 +30,6 @@ import { useScrollToTop } from '@/hooks/useScrollToTop';
 const PrivacyPolicyPage = () => {
   useScrollToTop();
   const [expandedSection, setExpandedSection] = useState(null);
-  
-  // Reference for the scroll progress and parallax effects
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
-  
-  // Parallax effect values for backgrounds
-  const backgroundY = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const foregroundY = useTransform(scrollYProgress, [0, 1], [0, -50]);
-
-  // Animation variants
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 30 },
-    show: { 
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        duration: 0.8,
-        damping: 15
-      }
-    }
-  };
-
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2
-      }
-    }
-  };
 
   // Sections de la politique de confidentialité
   const privacySections = [
@@ -193,7 +156,7 @@ Vous pouvez aussi introduire une réclamation auprès de la CNIL (www.cnil.fr).`
       icon: <RefreshCw className="w-6 h-6" />,
       content: `Nous nous réservons le droit de modifier cette politique à tout moment. En cas de mise à jour, la date de dernière modification sera actualisée en haut de cette page.`,
       color: 'blue'
-    }
+  }
   ];
 
   // Droits utilisateurs avec icônes
@@ -227,7 +190,7 @@ Vous pouvez aussi introduire une réclamation auprès de la CNIL (www.cnil.fr).`
       icon: <RefreshCw className="w-5 h-5" />,
       title: 'Retrait du consentement',
       description: 'Retirer votre consentement à tout moment'
-    }
+  }
   ];
 
   // Color mappings
@@ -297,89 +260,43 @@ Vous pouvez aussi introduire une réclamation auprès de la CNIL (www.cnil.fr).`
       icon: "from-blue-500 to-blue-600",
       button: "from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700",
       shadow: "shadow-blue-500/20"
-    }
+  }
   };
 
   return (
-    <div ref={containerRef} className="relative min-h-screen">
+    <div className="relative min-h-screen">
       {/* Hero Section */}
       <section className="relative py-8 overflow-hidden">
         {/* Background with parallax effect */}
-        <motion.div 
-          className="absolute inset-0 bg-gradient-to-br from-[#18133E] via-[#231A54] to-[#18133E] overflow-hidden"
-          style={{ y: backgroundY }}
-        >
+        <div className="absolute inset-0 bg-gradient-to-br from-[#18133E] via-[#231A54] to-[#18133E] overflow-hidden">
           <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10"></div>
           
           {/* Animated decorative elements */}
-          <motion.div 
-            className="absolute -top-20 -left-20 w-80 h-80 rounded-full bg-[#FFC3BC]/20 blur-3xl"
-            animate={{
-              scale: [1, 1.1, 1],
-              opacity: [0.2, 0.3, 0.2],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-          <motion.div 
-            className="absolute -bottom-40 -right-40 w-96 h-96 rounded-full bg-purple-500/20 blur-3xl"
-            animate={{
-              scale: [1.1, 1, 1.1],
-              opacity: [0.1, 0.2, 0.1],
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1
-            }}
-          />
-        </motion.div>
+          <div className="absolute -top-20 -left-20 w-80 h-80 rounded-full bg-[#FFC3BC]/20 blur-3xl transition-all duration-300"></div>
+          <div className="absolute -bottom-40 -right-40 w-96 h-96 rounded-full bg-purple-500/20 blur-3xl"></div>
+        </div>
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center text-white">
             
             
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="w-20 h-20 bg-gradient-to-r from-[#FFC3BC] to-[#ff9d94] rounded-full flex items-center justify-center mx-auto mb-8"
-            >
+            <div className="w-20 h-20 bg-gradient-to-r from-[#FFC3BC] to-[#ff9d94] rounded-full flex items-center justify-center mx-auto mb-8">
               <Shield className="h-10 w-10 text-white" />
-            </motion.div>
+            </div>
             
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-4xl md:text-5xl font-bold mb-6"
-            >
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Politique de Confidentialité
-            </motion.h1>
+            </h1>
             
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex items-center justify-center gap-2 mb-8"
-            >
+            <div className="flex items-center justify-center gap-2 mb-8">
               <Clock className="h-5 w-5 text-[#FFC3BC]" />
               <span className="text-white/80">Dernière mise à jour : 29/05/2025</span>
-            </motion.div>
+            </div>
             
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed"
-            >
+            <p className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
               Chez SENFRANCE, nous nous engageons à protéger votre vie privée et vos données personnelles. 
               Cette politique explique comment nous collectons, utilisons et protégeons vos informations.
-            </motion.p>
+            </p>
           </div>
         </div>
       </section>
@@ -388,22 +305,13 @@ Vous pouvez aussi introduire une réclamation auprès de la CNIL (www.cnil.fr).`
       <section className="py-8 bg-gradient-to-b from-white to-gray-50 relative">
         <div className="absolute inset-0 overflow-hidden -z-10">
           <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5"></div>
-          <motion.div 
-            className="absolute top-0 right-0 w-1/2 h-1/2 rounded-full bg-[#FFC3BC]/5 blur-3xl"
-            style={{ y: foregroundY }}
-          />
+          <div className="absolute top-0 right-0 w-1/2 h-1/2 rounded-full bg-[#FFC3BC]/5 blur-3xl transition-all duration-300"></div>
         </div>
         
         <div className="container mx-auto px-4">
           {/* Important Notice */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="max-w-4xl mx-auto mb-16"
-          >
-            <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 flex items-start gap-4">
+          <div className="max-w-4xl mx-auto mb-16">
+            <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 flex items-start gap-4 transition-all duration-300">
               <Info className="h-6 w-6 text-blue-600 flex-shrink-0 mt-0.5" />
               <div>
                 <h3 className="text-blue-900 font-semibold mb-2">Information importante</h3>
@@ -413,24 +321,17 @@ Vous pouvez aussi introduire une réclamation auprès de la CNIL (www.cnil.fr).`
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Privacy Sections */}
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-50px" }}
-            className="max-w-4xl mx-auto space-y-8"
-          >
+          <div className="max-w-4xl mx-auto space-y-8">
             {privacySections.map((section, index) => {
               const style = colorStyles[section.color];
               const isExpanded = expandedSection === section.id;
               
               return (
-                <motion.div
+                <div
                   key={section.id}
-                  variants={fadeInUp}
                   className={`bg-white rounded-xl border ${style.border} ${style.shadow} overflow-hidden transition-all duration-300`}
                 >
                   <button
@@ -448,24 +349,12 @@ Vous pouvez aussi introduire une réclamation auprès de la CNIL (www.cnil.fr).`
                         Section {index + 1} de notre politique de confidentialité
                       </p>
                     </div>
-                    <motion.div
-                      animate={{ rotate: isExpanded ? 180 : 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="flex-shrink-0"
-                    >
+                    <div className="flex-shrink-0">
                       <ChevronDown className="h-5 w-5 text-gray-400" />
-                    </motion.div>
+                    </div>
                   </button>
                   
-                  <motion.div
-                    initial={false}
-                    animate={{
-                      height: isExpanded ? "auto" : 0,
-                      opacity: isExpanded ? 1 : 0
-                    }}
-                    transition={{ duration: 0.3 }}
-                    className="overflow-hidden"
-                  >
+                  <div className="overflow-hidden">
                     <div className="px-6 pb-6">
                       <div className={`${style.light} rounded-lg p-6`}>
                         <div className="prose prose-gray max-w-none">
@@ -479,7 +368,7 @@ Vous pouvez aussi introduire une réclamation auprès de la CNIL (www.cnil.fr).`
                                 </p>
                               );
                             }
-                            
+
                             if (paragraph.startsWith('- ')) {
                               return (
                                 <div key={pIndex} className="flex items-start gap-2 mb-2">
@@ -488,7 +377,7 @@ Vous pouvez aussi introduire une réclamation auprès de la CNIL (www.cnil.fr).`
                                 </div>
                               );
                             }
-                            
+
                             return (
                               <p key={pIndex} className="text-gray-700 mb-3 leading-relaxed">
                                 {paragraph}
@@ -498,31 +387,21 @@ Vous pouvez aussi introduire une réclamation auprès de la CNIL (www.cnil.fr).`
                         </div>
                       </div>
                     </div>
-                  </motion.div>
-                </motion.div>
+                  </div>
+                </div>
               );
             })}
-          </motion.div>
+          </div>
 
           {/* User Rights Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="max-w-4xl mx-auto mt-16"
-          >
-            <div className="bg-gradient-to-r from-[#18133E] to-[#271D5B] rounded-2xl p-8 text-white">
+          <div className="max-w-4xl mx-auto mt-16">
+            <div className="bg-gradient-to-r from-[#18133E] to-[#271D5B] rounded-2xl p-8 text-white transition-all duration-300">
               <h3 className="text-2xl font-bold mb-6 text-center">Vos droits en un coup d'œil</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {userRights.map((right, index) => (
-                  <motion.div
+                  <div
                     key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    className="bg-white/10 backdrop-blur-sm p-4 rounded-lg border border-white/20"
+                      className="bg-white/10 backdrop-blur-sm p-4 rounded-lg border border-white/20 transition-all duration-300"
                   >
                     <div className="flex items-start gap-3">
                       <div className="w-10 h-10 bg-[#FFC3BC]/20 rounded-full flex items-center justify-center flex-shrink-0">
@@ -533,21 +412,15 @@ Vous pouvez aussi introduire une réclamation auprès de la CNIL (www.cnil.fr).`
                         <p className="text-white/70 text-sm">{right.description}</p>
                       </div>
                     </div>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Contact Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="max-w-4xl mx-auto mt-16"
-          >
-            <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+          <div className="max-w-4xl mx-auto mt-16">
+            <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 transition-all duration-300">
               <div className="text-center mb-8">
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">Une question sur vos données ?</h3>
                 <p className="text-gray-600">
@@ -590,7 +463,7 @@ Vous pouvez aussi introduire une réclamation auprès de la CNIL (www.cnil.fr).`
                 </Button>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </div>

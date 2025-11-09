@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Menu, X, ChevronDown, User, Search, Mail } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -92,24 +91,28 @@ const Navbar = () => {
                   Demande de visa
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <ul className="grid w-[240px] gap-1 p-3 md:w-[320px] bg-white/95 backdrop-blur-md rounded-lg shadow-lg">
-                    <li>
-                      <Link to="/visa/avi" className="block select-none space-y-1 rounded-md p-3 hover:bg-primary/5 transition-all duration-200">
-                        <div className="font-medium">AVI</div>
-                        <p className="text-sm text-muted-foreground">
-                          Attestation de virement irrévocable
-                        </p>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/visa/hebergement" className="block select-none space-y-1 rounded-md p-3 hover:bg-primary/5 transition-all duration-200">
-                        <div className="font-medium">Hébergement</div>
-                        <p className="text-sm text-muted-foreground">
-                          Réservation de logement 
-                        </p>
-                      </Link>
-                    </li>
-                  </ul>
+                  <div className="w-screen">
+                    <div className="container mx-auto px-6 py-6">
+                      <ul className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                        <li>
+                          <Link to="/visa/avi" className="block select-none space-y-2 rounded-lg p-6 hover:bg-primary/5 transition-all duration-200 border border-gray-200 hover:border-primary/30 hover:shadow-md">
+                            <div className="font-semibold text-xl text-[#18133E]">AVI</div>
+                            <p className="text-sm text-gray-600">
+                              Attestation de virement irrévocable
+                            </p>
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to="/visa/hebergement" className="block select-none space-y-2 rounded-lg p-6 hover:bg-primary/5 transition-all duration-200 border border-gray-200 hover:border-primary/30 hover:shadow-md">
+                            <div className="font-semibold text-xl text-[#18133E]">Hébergement</div>
+                            <p className="text-sm text-gray-600">
+                              Réservation de logement 
+                            </p>
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
                 </NavigationMenuContent>
               </NavigationMenuItem>
               
@@ -124,24 +127,28 @@ const Navbar = () => {
                   Vivre en France
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <ul className="grid w-[240px] gap-1 p-3 md:w-[320px] bg-white/95 backdrop-blur-md rounded-lg shadow-lg">
-                    <li>
-                      <Link to="/vivre-en-france/job-etudiant" className="block select-none space-y-1 rounded-md p-3 hover:bg-primary/5 transition-all duration-200">
-                        <div className="font-medium">Job étudiant</div>
-                        <p className="text-sm text-muted-foreground">
-                          Travail à temps partiel
-                        </p>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/vivre-en-france/assurances" className="block select-none space-y-1 rounded-md p-3 hover:bg-primary/5 transition-all duration-200">
-                        <div className="font-medium">Assurances</div>
-                        <p className="text-sm text-muted-foreground">
-                          Garanties et protection
-                        </p>
-                      </Link>
-                    </li>
-                  </ul>
+                  <div className="w-screen">
+                    <div className="container mx-auto px-6 py-6">
+                      <ul className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                        <li>
+                          <Link to="/vivre-en-france/job-etudiant" className="block select-none space-y-2 rounded-lg p-6 hover:bg-primary/5 transition-all duration-200 border border-gray-200 hover:border-primary/30 hover:shadow-md">
+                            <div className="font-semibold text-xl text-[#18133E]">Job étudiant</div>
+                            <p className="text-sm text-gray-600">
+                              Travail à temps partiel
+                            </p>
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to="/vivre-en-france/assurances" className="block select-none space-y-2 rounded-lg p-6 hover:bg-primary/5 transition-all duration-200 border border-gray-200 hover:border-primary/30 hover:shadow-md">
+                            <div className="font-semibold text-xl text-[#18133E]">Assurances</div>
+                            <p className="text-sm text-gray-600">
+                              Garanties et protection
+                            </p>
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
                 </NavigationMenuContent>
               </NavigationMenuItem>
               
@@ -189,15 +196,10 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Navigation - Redesigné */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="md:hidden bg-white/95 backdrop-blur-md shadow-md absolute top-full left-0 right-0 overflow-hidden"
-          >
+      {mobileMenuOpen && (
+        <div
+          className="md:hidden bg-white/95 backdrop-blur-md shadow-md absolute top-full left-0 right-0 overflow-hidden transition-all duration-300"
+        >
             <div className="container mx-auto px-6 py-4 flex flex-col space-y-2">
               {/* Bouton Vérificateur - mobile */}
               <a
@@ -274,15 +276,15 @@ const Navbar = () => {
                 <Mail size={18} className="mr-2" />
                 Contact
               </Link>
-              
-              <a href="https://www.senfrance.fr/login-senfrance/student" className="bg-primary hover:bg-primary/90 text-white flex items-center gap-2 justify-center mt-3 py-6 rounded-lg">
+
+              <a href="https://www.senfrance.fr/login-senfrance/student"
+                className="bg-primary hover:bg-primary/90 text-white flex items-center gap-2 justify-center mt-3 py-6 rounded-lg">
                 <User size={18} />
                 <span>Connexion</span>
               </a>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+        </div>
+      )}
     </header>
   );
 };

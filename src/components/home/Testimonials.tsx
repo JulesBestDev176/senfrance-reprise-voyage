@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform, useInView } from 'framer-motion';
-import { Star, ArrowLeft, ArrowRight, Quote, ChevronRight, Heart, ThumbsUp, MessageCircle } from 'lucide-react';
+import { Star, ArrowLeft, ArrowRight, Quote, ChevronRight, Heart, ThumbsUp, MessageCircle, X } from 'lucide-react';
 
 // Enhanced testimonials data with themes
 const testimonials = [
@@ -82,46 +81,48 @@ const colorStyles = {
 const Testimonials = () => {
   const [current, setCurrent] = useState(0);
   const [autoplay, setAutoplay] = useState(true);
-  const [direction, setDirection] = useState(1); // 1 for forward, -1 for backward
+  const [direction, setDirection] = useState(1);
   const [isHovered, setIsHovered] = useState(false);
-  
-  // Refs for intersection observer
+  const [showModal, setShowModal] = useState(false);
+
   const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { 
-    once: false, 
-    margin: "-20%" 
-  });
 
   // Progress animation for timer
   const [progress, setProgress] = useState(0);
   
+  // Function to truncate text
+  const truncateText = (text: string, maxLength: number) => {
+    if (text.length <= maxLength) return text;
+    return text.substring(0, maxLength) + '...';
+  };
+
   useEffect(() => {
     let timer;
     let progressTimer;
-    
+
     // Reset progress on slide change
     setProgress(0);
-    
+
     if (autoplay && !isHovered) {
       // Progress animation
       const duration = 8000; // 8 seconds
       const interval = 50; // update every 50ms
       const increment = (interval / duration) * 100;
-      
+
       progressTimer = setInterval(() => {
         setProgress(prev => {
           if (prev >= 100) return 100;
           return prev + increment;
         });
       }, interval);
-      
+
       // Slide change timer
       timer = setTimeout(() => {
         setDirection(1);
         setCurrent((prev) => (prev + 1) % testimonials.length);
       }, duration);
     }
-    
+
     return () => {
       clearTimeout(timer);
       clearInterval(progressTimer);
@@ -139,259 +140,165 @@ const Testimonials = () => {
     setDirection(-1);
     setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   };
-  
+
   // Get color style for current testimonial
   const currentStyle = colorStyles[testimonials[current].color] || colorStyles.indigo;
-  
-  // Parallax effect for background elements
-  const { scrollYProgress } = useScroll();
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, -50]);
-  const opacity = useTransform(scrollYProgress, [0.3, 0.4, 0.8, 0.9], [0, 1, 1, 0]);
 
   return (
-    <section 
+    <section
       ref={sectionRef}
-      className="py-8 relative overflow-hidden"
+      className="h-[90vh] py-6 relative overflow-hidden flex items-center"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Enhanced background with gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#18133E] via-[#271D5B] to-[#18133E] -z-10"></div>
-      
-      {/* Background decorations with parallax and enhanced visibility effects */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#271D5B]/5 via-[#18133E]/3 to-[#271D5B]/5 -z-10"></div>
+
+      {/* Background decorations */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden -z-10">
-        <motion.div
-          style={{ y: y1 }}
-          className="absolute -top-48 -left-48 w-96 h-96 rounded-full bg-gradient-to-br from-[#FFC3BC]/20 to-pink-500/10 blur-3xl"
-          animate={isInView ? {
-            scale: [1, 1.2, 1],
-            opacity: [0.2, 0.4, 0.2]
-          } : {
-            scale: 1,
-            opacity: 0.1
-          }}
-          transition={{
-            duration: 8,
-            repeat: isInView ? Infinity : 0,
-            ease: "easeInOut"
-          }}
-        />
-        <motion.div
-          style={{ y: y2 }}
-          className="absolute -bottom-24 -right-24 w-64 h-64 rounded-full bg-gradient-to-tr from-indigo-500/20 to-purple-500/10 blur-3xl"
-          animate={isInView ? {
-            scale: [1.1, 0.9, 1.1],
-            opacity: [0.1, 0.3, 0.1]
-          } : {
-            scale: 1,
-            opacity: 0.05
-          }}
-          transition={{
-            duration: 10,
-            repeat: isInView ? Infinity : 0,
-            ease: "easeInOut",
-            delay: 1
-          }}
-        />
-        
-        {/* Additional ambient glow when visible */}
-        {isInView && (
-          <motion.div
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-gradient-to-r from-[#FFC3BC]/10 to-purple-500/5 blur-3xl"
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ 
-              opacity: [0, 0.3, 0],
-              scale: [0.5, 1.5, 0.5]
-            }}
-            transition={{
-              duration: 12,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-        )}
-        
+        <div className="absolute -top-48 -left-48 w-96 h-96 rounded-full bg-gradient-to-br from-[#FFC3BC]/15 to-pink-500/10 blur-3xl opacity-40"></div>
+        <div className="absolute -bottom-24 -right-24 w-64 h-64 rounded-full bg-gradient-to-tr from-[#271D5B]/15 to-purple-500/10 blur-3xl opacity-30"></div>
+
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-gradient-to-r from-[#FFC3BC]/10 to-[#271D5B]/10 blur-3xl opacity-30"></div>
+
         {/* Moving particles */}
         <div className="absolute inset-0">
           {[...Array(8)].map((_, i) => (
-            <motion.div
+            <div
               key={i}
-              className="absolute rounded-full bg-white/20"
+              className="absolute rounded-full bg-[#271D5B]/15"
               style={{
                 top: `${10 + Math.random() * 80}%`,
                 left: `${10 + Math.random() * 80}%`,
                 width: `${2 + Math.random() * 4}px`,
                 height: `${2 + Math.random() * 4}px`,
               }}
-              animate={{
-                y: [0, -30, 0],
-                opacity: [0.1, 0.3, 0.1],
-              }}
-              transition={{
-                duration: 5 + Math.random() * 5,
-                repeat: Infinity,
-                delay: Math.random() * 5,
-              }}
             />
           ))}
         </div>
       </div>
-      
-      {/* Grid overlay for texture - Enhanced with visibility */}
-      <motion.div 
-        className="absolute inset-0 bg-[url('/grid-pattern.svg')] -z-10"
-        animate={isInView ? {
-          opacity: [0.05, 0.15, 0.05]
-        } : {
-          opacity: 0.05
-        }}
-        transition={{
-          duration: 6,
-          repeat: isInView ? Infinity : 0,
-          ease: "easeInOut"
-        }}
-      />
-      
-      <motion.div 
-        className="container mx-auto px-4 relative z-10"
-        animate={isInView ? {
-          scale: [1, 1.005, 1]
-        } : {
-          scale: 1
-        }}
-        transition={{
-          duration: 8,
-          repeat: isInView ? Infinity : 0,
-          ease: "easeInOut"
-        }}
-      >
+
+      {/* Grid overlay for texture */}
+      <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5 -z-10" />
+
+      <div className="container mx-auto px-4 py-4 relative z-10 w-full">
         {/* Enhanced Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-16"
-        >
-          <span className="inline-block py-1 px-3 rounded-full bg-white/10 text-white text-sm font-medium mb-4 border border-white/20">
+        <div className="text-center max-w-3xl mx-auto mb-6">
+          <span className="inline-block py-1 px-3 rounded-full bg-[#18133E]/10 text-[#18133E] text-xs font-medium mb-2 border border-[#18133E]/20">
             Témoignages
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2 text-[#18133E]">
             Ce qu'en disent les <span className="text-[#FFC3BC]">étudiants</span>
           </h2>
-          
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.15 }}
-            className="h-1 w-20 bg-gradient-to-r from-[#FFC3BC] to-[#FFC3BC]/30 rounded-full mx-auto mb-6"
-          />
-        </motion.div>
+
+          <div className="h-1 w-16 bg-gradient-to-r from-[#FFC3BC] to-[#FFC3BC]/30 rounded-full mx-auto mb-3" />
+        </div>
 
         {/* Enhanced Testimonials Slider */}
-        <div className="max-w-5xl mx-auto">
-          <div className="relative min-h-[450px] md:min-h-[350px]">
-            <AnimatePresence initial={false} mode="wait" custom={direction}>
-              <motion.div
-                key={current}
-                custom={direction}
-                initial={{ opacity: 0, x: direction > 0 ? 100 : -100 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: direction > 0 ? -100 : 100 }}
-                transition={{ duration: 0.6, ease: "easeInOut" }}
-                className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 md:p-8 lg:p-10 border border-white/20 shadow-xl"
-              >
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-                  {/* Profile Section */}
-                  <div className="md:col-span-4">
-                    <div className="flex flex-col items-center md:items-start text-center md:text-left">
-                      {/* Profile image with animated border - NOW CIRCULAR */}
-                      <div className="relative mb-4 group">
-                        <motion.div 
-                          className={`absolute inset-0 rounded-full bg-gradient-to-r ${currentStyle.accent} blur-sm opacity-70`}
-                          animate={{ 
-                            scale: [1, 1.05, 1],
-                            opacity: [0.7, 0.9, 0.7]
-                          }}
-                          transition={{ duration: 3, repeat: Infinity }}
+        <div className="max-w-4xl mx-auto">
+          <div className="relative h-[280px] md:h-[260px]">
+            <div
+              key={current}
+              className="bg-gradient-to-br from-white/80 to-[#271D5B]/5 backdrop-blur-lg rounded-xl px-4 py-3 md:px-5 md:py-4 border border-[#271D5B]/10 shadow-xl transition-opacity duration-600 h-full overflow-y-auto flex items-center"
+              style={{ opacity: 1 }}
+            >
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-4 w-full">
+                {/* Profile Section */}
+                <div className="md:col-span-4">
+                  <div className="flex flex-col items-center md:items-start text-center md:text-left">
+                    {/* Profile image with animated border - NOW CIRCULAR */}
+                    <div className="relative mb-2 group">
+                      <div className={`absolute inset-0 rounded-full bg-gradient-to-r ${currentStyle.accent} blur-sm opacity-70`} />
+                      <div className="h-16 w-16 rounded-full overflow-hidden border-2 border-gray-200 relative">
+                        <img
+                          src={testimonials[current].image}
+                          alt={testimonials[current].name}
+                          className="w-full h-full object-cover"
                         />
-                        <div className="h-24 w-24 rounded-full overflow-hidden border-2 border-white/20 relative">
-                          <img 
-                            src={testimonials[current].image} 
-                            alt={testimonials[current].name} 
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                      </div>
-                      
-                      <h3 className="text-xl font-bold text-white">{testimonials[current].name}</h3>
-                      
-                      {/* Enhanced rating */}
-                      <div className="flex mt-4">
-                        {[...Array(5)].map((_, i) => (
-                          <Star
-                            key={i}
-                            size={18}
-                            className="text-yellow-400 fill-yellow-400 mr-1"
-                          />
-                        ))}
-                      </div>
-                      
-                      {/* Engagement metrics */}
-                      <div className="flex gap-4 mt-6 text-white/60">
-                        <div className="flex items-center gap-1">
-                          <Heart size={14} className="fill-[#FFC3BC] text-[#FFC3BC]" />
-                          <span className="text-xs">24</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <MessageCircle size={14} />
-                          <span className="text-xs">7</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <ThumbsUp size={14} />
-                          <span className="text-xs">18</span>
-                        </div>
                       </div>
                     </div>
-                  </div>
-                  
-                  {/* Testimonial Content */}
-                  <div className="md:col-span-8 relative">
-                    <Quote size={48} className="absolute -top-2 -left-2 text-white/20" />
-                    
-                    {/* Highlighted text badge */}
-                    <div className="mb-4">
-                      <span className={`inline-block px-3 py-1 rounded-full ${currentStyle.light} ${currentStyle.text} text-sm font-medium`}>
-                        {testimonials[current].highlight}
-                      </span>
+
+                    <h3 className="text-base font-bold text-[#18133E]">{testimonials[current].name}</h3>
+
+                    {/* Enhanced rating */}
+                    <div className="flex mt-1">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          size={14}
+                          className="text-yellow-400 fill-yellow-400 mr-1"
+                        />
+                      ))}
                     </div>
-                    
-                    <p className="text-lg md:text-xl text-white/90 italic relative z-10 leading-relaxed">
-                      "{testimonials[current].comment}"
-                    </p>
+
+                    {/* Engagement metrics */}
+                    <div className="flex gap-2 mt-2 text-gray-600">
+                      <div className="flex items-center gap-1">
+                        <Heart size={14} className="fill-[#FFC3BC] text-[#FFC3BC]" />
+                        <span className="text-xs">24</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <MessageCircle size={14} />
+                        <span className="text-xs">7</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <ThumbsUp size={14} />
+                        <span className="text-xs">18</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </motion.div>
-            </AnimatePresence>
+
+                {/* Testimonial Content */}
+                <div className="md:col-span-8 relative">
+                  <Quote size={28}
+                className="absolute -top-1 -left-1 text-[#18133E]/10" />
+
+                  {/* Highlighted text badge */}
+                  <div className="mb-2">
+                    <span className={`inline-block px-2 py-0.5 rounded-full ${currentStyle.light} ${currentStyle.text} text-xs font-medium`}>
+                      {testimonials[current].highlight}
+                    </span>
+                  </div>
+
+                  <p className="text-sm md:text-base text-gray-700 italic relative z-10 leading-relaxed mb-2">
+                    "{truncateText(testimonials[current].comment, 180)}"
+                  </p>
+                  
+                  {testimonials[current].comment.length > 180 && (
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        setShowModal(true);
+                      }}
+                      className="text-[#FFC3BC] hover:text-[#ff9d94] font-medium text-xs flex items-center gap-1 transition-colors cursor-pointer"
+                    >
+                      Lire plus
+                      <ChevronRight size={14} />
+                    </button>
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
-          
+
           {/* Progress bar */}
-          <div className="mt-8 relative max-w-xs mx-auto">
-            <div className="h-1 bg-white/20 rounded-full overflow-hidden">
-              <motion.div 
-                className={`h-full bg-gradient-to-r ${currentStyle.accent} rounded-full`}
+          <div className="mt-4 relative max-w-xs mx-auto">
+            <div className="h-1 bg-gray-200 rounded-full overflow-hidden">
+              <div
+                className={`h-full bg-gradient-to-r ${currentStyle.accent} rounded-full transition-all duration-100`}
                 style={{ width: `${progress}%` }}
               />
             </div>
           </div>
-          
+
           {/* Enhanced Controls */}
-          <div className="flex justify-between mt-8">
+          <div className="flex justify-between mt-4">
             <div className="flex gap-1">
               {testimonials.map((_, index) => (
-                <button 
+                <button
                   key={index}
                   onClick={() => {
                     setAutoplay(false);
@@ -399,48 +306,94 @@ const Testimonials = () => {
                     setCurrent(index);
                   }}
                   className={`w-10 h-1.5 rounded-full transition-colors ${
-                    index === current ? 'bg-white' : 'bg-white/30 hover:bg-white/50'
+                    index === current ? 'bg-[#18133E]' : 'bg-gray-300 hover:bg-gray-400'
                   }`}
                   aria-label={`Go to testimonial ${index + 1}`}
                 ></button>
               ))}
             </div>
-            
+
             <div className="flex space-x-3">
-              <motion.button 
-                onClick={prevTestimonial} 
-                className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 transition-colors flex items-center justify-center border border-white/20"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+              <button
+                onClick={prevTestimonial}
+                className="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 transition-all duration-300 flex items-center justify-center border border-gray-300 hover:scale-105"
               >
-                <ArrowLeft size={18} className="text-white" />
-              </motion.button>
-              <motion.button 
-                onClick={nextTestimonial} 
-                className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 transition-colors flex items-center justify-center border border-white/20"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                <ArrowLeft size={18} className="text-[#18133E]" />
+              </button>
+              <button
+                onClick={nextTestimonial}
+                className="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 transition-all duration-300 flex items-center justify-center border border-gray-300 hover:scale-105"
               >
-                <ArrowRight size={18} className="text-white" />
-              </motion.button>
+                <ArrowRight size={18} className="text-[#18133E]" />
+              </button>
             </div>
           </div>
         </div>
-        
+
         {/* Trust indicators */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.8, duration: 0.6 }}
-          className="mt-16 text-center"
-        >
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
-            <Star className="h-4 w-4 text-yellow-400 fill-yellow-400" />
-            <span className="text-white text-sm">Avis Google vérifiés  | Note moyenne: 5/5</span>
+        <div className="mt-6 text-center">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#18133E]/10 backdrop-blur-sm rounded-full border border-[#18133E]/20">
+            <Star className="h-3 w-3 text-yellow-400 fill-yellow-400" />
+            <span className="text-[#18133E] text-xs">Avis Google vérifiés  | Note moyenne: 5/5</span>
           </div>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
+      
+      {/* Modal for full testimonial */}
+      {showModal && (
+        <div 
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] flex items-center justify-center p-4"
+          onClick={() => setShowModal(false)}
+        >
+          <div 
+            className="bg-white rounded-2xl max-w-2xl w-full max-h-[80vh] overflow-y-auto p-6 md:p-8 relative shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close button */}
+            <button
+              onClick={() => setShowModal(false)}
+              className="absolute top-4 right-4 w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors"
+            >
+              <X size={20} className="text-gray-600" />
+            </button>
+            
+            {/* Modal content */}
+            <div className="flex items-center gap-4 mb-6">
+              <div className="h-16 w-16 rounded-full overflow-hidden border-2 border-[#FFC3BC]">
+                <img
+                  src={testimonials[current].image}
+                  alt={testimonials[current].name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-[#18133E]">{testimonials[current].name}</h3>
+                <div className="flex mt-1">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      size={16}
+                      className="text-yellow-400 fill-yellow-400 mr-1"
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+            
+            <div className="mb-4">
+              <span className={`inline-block px-3 py-1 rounded-full ${currentStyle.light} ${currentStyle.text} text-sm font-medium`}>
+                {testimonials[current].highlight}
+              </span>
+            </div>
+            
+            <Quote size={32} className="text-[#18133E]/10 mb-2" />
+            
+            <p className="text-lg text-gray-700 italic leading-relaxed">
+              "{testimonials[current].comment}"
+            </p>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

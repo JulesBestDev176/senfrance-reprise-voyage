@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -57,13 +56,7 @@ const Contact = () => {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Form */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="bg-muted p-6 rounded-lg"
-            >
+            <div className="bg-muted p-6 rounded-lg transition-all duration-300">
               <h2 className="text-2xl font-bold mb-6">Nous écrire</h2>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -136,17 +129,11 @@ const Contact = () => {
                   {isSubmitting ? "Envoi en cours..." : "Envoyer le message"}
                 </Button>
               </form>
-            </motion.div>
+            </div>
 
             {/* Contact Info */}
             <div className="flex flex-col justify-between">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="mb-10"
-              >
+              <div className="mb-10">
                 <h2 className="text-2xl font-bold mb-6">Nos Coordonnées</h2>
                 <div className="space-y-6">
                   <div className="flex items-start space-x-4">
@@ -186,15 +173,9 @@ const Contact = () => {
                     <li>Dimanche: Fermé</li>
                   </ul>
                 </div>
-              </motion.div>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="bg-muted p-6 rounded-lg"
-              >
+              <div className="bg-muted p-6 rounded-lg transition-all duration-300">
                 <h3 className="text-xl font-semibold mb-4">Pourquoi nous choisir ?</h3>
                 <ul className="space-y-3">
                   <li className="flex items-start">
@@ -214,18 +195,12 @@ const Contact = () => {
                     <span>Engagement pour un tourisme responsable et durable</span>
                   </li>
                 </ul>
-              </motion.div>
+              </div>
             </div>
           </div>
 
           {/* Map Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mt-16"
-          >
+          <div className="mt-16">
             <h2 className="text-2xl font-bold mb-6">Notre emplacement</h2>
             <div className="h-96 bg-gray-200 rounded-lg overflow-hidden">
               <iframe 
@@ -238,7 +213,7 @@ const Contact = () => {
                 title="SenFrance location"
               ></iframe>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -253,57 +228,33 @@ const Contact = () => {
           </div>
 
           <div className="max-w-3xl mx-auto space-y-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="bg-white p-6 rounded-lg shadow-md"
-            >
+            <div className="bg-white p-6 rounded-lg shadow-md transition-all duration-300">
               <h3 className="text-lg font-semibold mb-2">Quelle est la meilleure période pour visiter le Sénégal ?</h3>
               <p className="text-gray-600">
                 La meilleure période est de novembre à mai, pendant la saison sèche. Les températures sont agréables et les précipitations rares.
               </p>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-white p-6 rounded-lg shadow-md"
-            >
+            <div className="bg-white p-6 rounded-lg shadow-md transition-all duration-300">
               <h3 className="text-lg font-semibold mb-2">Ai-je besoin d'un visa pour le Sénégal ?</h3>
               <p className="text-gray-600">
                 Les ressortissants français et de nombreux pays européens n'ont pas besoin de visa pour des séjours de moins de 90 jours. Un passeport valide 6 mois après la date de retour est suffisant.
               </p>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="bg-white p-6 rounded-lg shadow-md"
-            >
+            <div className="bg-white p-6 rounded-lg shadow-md transition-all duration-300">
               <h3 className="text-lg font-semibold mb-2">Quelle est la monnaie utilisée au Sénégal ?</h3>
               <p className="text-gray-600">
                 La monnaie est le Franc CFA (XOF). Vous pouvez changer des euros sur place ou retirer directement aux distributeurs. Les cartes de crédit sont acceptées dans les hôtels et restaurants des grandes villes.
               </p>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="bg-white p-6 rounded-lg shadow-md"
-            >
+            <div className="bg-white p-6 rounded-lg shadow-md transition-all duration-300">
               <h3 className="text-lg font-semibold mb-2">Quelles vaccinations sont nécessaires ?</h3>
               <p className="text-gray-600">
                 Le vaccin contre la fièvre jaune est obligatoire pour entrer au Sénégal. Nous recommandons également les vaccins contre l'hépatite A, le typhus et un traitement antipaludéen.
               </p>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>

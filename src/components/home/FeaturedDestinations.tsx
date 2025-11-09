@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { ArrowRight, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
@@ -69,7 +68,6 @@ const destinations = [
     image: "https://images.unsplash.com/photo-1596005554384-d293674c91d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80",
     category: "Écotourisme",
     link: "/destinations/sine-saloum"
-  }
 ];
 
 const FeaturedDestinations = () => {
@@ -80,8 +78,6 @@ const FeaturedDestinations = () => {
       transition: { 
         staggerChildren: 0.1,
         delayChildren: 0.3,
-      }
-    }
   };
 
   const itemVariants = {
@@ -93,19 +89,13 @@ const FeaturedDestinations = () => {
         type: "spring",
         stiffness: 100,
         damping: 12
-      }
-    }
   };
 
   return (
     <section className="py-8 bg-white">
       <div className="container mx-auto px-4">
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
+        <div
           className="text-center mb-16"
         >
           <span className="inline-block py-1 px-3 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
@@ -117,26 +107,21 @@ const FeaturedDestinations = () => {
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Des plages paradisiaques aux sites historiques, découvrez les merveilles du Sénégal
           </p>
-        </motion.div>
+        </div>
 
         {/* Destinations Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+        <div}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
         >
           {destinations.map((destination) => (
-            <motion.div
-              key={destination.id}
-              variants={itemVariants}
-              whileHover={{ y: -10, transition: { duration: 0.3 } }}
+            <div
+              key={destination.id} }}
               className="group rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300"
             >
-              <Link to={destination.link} className="block h-full">
+              <Link to={destination.link className="block h-full">
                 <div className="h-full flex flex-col">
-                  <div className="relative">
+                  <div}
+                className="relative">
                     <AspectRatio ratio={4/3}>
                       <img 
                         src={destination.image}
@@ -146,7 +131,8 @@ const FeaturedDestinations = () => {
                     </AspectRatio>
                     <div className="absolute top-4 left-4">
                       <span className="bg-white/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-medium text-gray-800 flex items-center">
-                        <MapPin size={12} className="mr-1" />
+                        <MapPin size={12}
+                className="mr-1" />
                         {destination.category}
                       </span>
                     </div>
@@ -169,9 +155,9 @@ const FeaturedDestinations = () => {
                   </div>
                 </div>
               </Link>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
 
         {/* View All Button */}
         <div className="text-center mt-16">
@@ -180,7 +166,8 @@ const FeaturedDestinations = () => {
             className="inline-flex items-center px-6 py-3 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-white transition-colors font-medium"
           >
             Voir toutes les destinations
-            <ArrowRight size={18} className="ml-2" />
+            <ArrowRight size={18}
+                className="ml-2" />
           </Link>
         </div>
       </div>

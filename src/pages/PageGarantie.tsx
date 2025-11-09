@@ -1,9 +1,8 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { 
-  ArrowRight, 
-  Shield, 
-  CheckCircle, 
+import {
+  ArrowRight,
+  Shield,
+  CheckCircle,
   Clock,
   FileText,
   Users,
@@ -18,45 +17,15 @@ const PageGarantie = () => {
     <div className="min-h-screen bg-white">
       {/* Section héro */}
       <section className="relative py-8 md:py-32 overflow-hidden">
-        <motion.div 
-          className="absolute inset-0 bg-gradient-to-br from-[#18133E] via-[#231A54] to-[#18133E] overflow-hidden"
-        >
+        <div className="absolute inset-0 bg-gradient-to-br from-[#18133E] via-[#231A54] to-[#18133E] overflow-hidden">
           <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10"></div>
-          
-          <motion.div 
-            className="absolute -top-20 -left-20 w-80 h-80 rounded-full bg-[#FFC3BC]/20 blur-3xl"
-            animate={{
-              scale: [1, 1.1, 1],
-              opacity: [0.2, 0.3, 0.2],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-          <motion.div 
-            className="absolute -bottom-40 -right-40 w-96 h-96 rounded-full bg-purple-500/20 blur-3xl"
-            animate={{
-              scale: [1.1, 1, 1.1],
-              opacity: [0.1, 0.2, 0.1],
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1
-            }}
-          />
-        </motion.div>
-        
+
+          <div className="absolute -top-20 -left-20 w-80 h-80 rounded-full bg-[#FFC3BC]/20 blur-3xl" />
+          <div className="absolute -bottom-40 -right-40 w-96 h-96 rounded-full bg-purple-500/20 blur-3xl" />
+        </div>
+
         <div className="container mx-auto px-4 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center max-w-4xl mx-auto"
-          >
+          <div className="text-center max-w-4xl mx-auto">
             <div className="inline-block mb-4 px-3 py-1 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm">
               <span className="text-sm font-medium text-white">Solution de garantie</span>
             </div>
@@ -74,11 +43,8 @@ const PageGarantie = () => {
                 Il n'a jamais été aussi simple de louer. Garantme permet à nos étudiants en mobilité de décrocher leur futur logement.
               </p>
             </div>
-            
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
+
+            <div>
               <a
                 href='https://app.garantme.fr/fr/senfrance'
                 className="inline-flex items-center gap-2 bg-gradient-to-r from-[#FFC3BC] to-[#ff9d94] text-[#18133E] hover:from-[#ff9d94] hover:to-[#FFC3BC] rounded-full px-8 py-4 text-lg font-semibold shadow-xl transition-all duration-300"
@@ -86,26 +52,20 @@ const PageGarantie = () => {
                 <span>Postuler maintenant</span>
                 <ArrowRight className="h-5 w-5" />
               </a>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Section avantages */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
+          <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-[#18133E] mb-4">
               Parce que...
             </h2>
-          </motion.div>
-          
+          </div>
+
           <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
@@ -122,14 +82,10 @@ const PageGarantie = () => {
                 icon: <Users className="h-12 w-12 text-[#FFC3BC]" />,
                 title: "Confiance des propriétaires",
                 description: "Garantme est reconnue et acceptée par les propriétaires partout en France, donnant plus de crédibilité à votre candidature locative."
-              }
-            ].map((avantage, index) => (
-              <motion.div
+            }
+  ].map((avantage, index) => (
+              <div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300"
               >
                 <div className="w-20 h-20 bg-[#FFC3BC]/10 rounded-full flex items-center justify-center mb-6 mx-auto">
@@ -141,7 +97,7 @@ const PageGarantie = () => {
                 <p className="text-gray-600 text-center leading-relaxed">
                   {avantage.description}
                 </p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -150,20 +106,14 @@ const PageGarantie = () => {
       {/* Section processus */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
+          <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-[#18133E] mb-4">
               Comment ça marche ?
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Un processus simple et rapide en 3 étapes pour obtenir votre garantie locative
             </p>
-          </motion.div>
+          </div>
 
           <div className="max-w-4xl mx-auto">
             <div className="space-y-8">
@@ -190,12 +140,8 @@ const PageGarantie = () => {
                   time: "Valide partout en France"
                 }
               ].map((etape, index) => (
-                <motion.div
+                <div
                   key={index}
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.2 }}
                   className="flex flex-col md:flex-row items-center gap-8"
                 >
                   <div className="flex-shrink-0">
@@ -206,7 +152,7 @@ const PageGarantie = () => {
                       {etape.icon}
                     </div>
                   </div>
-                  
+
                   <div className="flex-1 text-center md:text-left">
                     <div className="bg-gray-50 p-6 rounded-xl border border-gray-100">
                       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
@@ -223,7 +169,7 @@ const PageGarantie = () => {
                       </p>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
@@ -233,13 +179,7 @@ const PageGarantie = () => {
       {/* Section CTA finale */}
       <section className="py-16 bg-gradient-to-r from-[#18133E] to-[#271D5B]">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto"
-          >
+          <div className="text-center max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
               Pourquoi Garantme ?
             </h2>
@@ -250,17 +190,15 @@ const PageGarantie = () => {
                 "Pas d'avance de frais",
                 "Support client réactif"
               ].map((point, index) => (
-                <div key={index} className="flex items-center justify-center md:justify-start gap-3">
+                <div key={index}
+                className="flex items-center justify-center md:justify-start gap-3">
                   <CheckCircle className="h-6 w-6 text-[#FFC3BC] flex-shrink-0" />
                   <span className="text-white font-medium">{point}</span>
                 </div>
               ))}
             </div>
-            
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
+
+            <div>
               <a
                 href='https://app.garantme.fr/fr/senfrance'
                 className="inline-flex items-center gap-2 bg-gradient-to-r from-[#FFC3BC] to-[#ff9d94] text-[#18133E] hover:from-[#ff9d94] hover:to-[#FFC3BC] rounded-full px-8 py-4 text-lg font-semibold shadow-xl transition-all duration-300"
@@ -268,8 +206,8 @@ const PageGarantie = () => {
                 <span>Commencer ma demande</span>
                 <ArrowRight className="h-5 w-5" />
               </a>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
     </div>

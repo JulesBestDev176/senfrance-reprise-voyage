@@ -33,7 +33,6 @@ const CommandDialog = ({ children, ...props }: CommandDialogProps) => {
       </DialogContent>
     </Dialog>
   )
-}
 
 const CommandInput = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive.Input>,
@@ -137,7 +136,6 @@ const CommandShortcut = ({
       {...props}
     />
   )
-}
 CommandShortcut.displayName = "CommandShortcut"
 
 export {
@@ -150,4 +148,3 @@ export {
   CommandItem,
   CommandShortcut,
   CommandSeparator,
-}

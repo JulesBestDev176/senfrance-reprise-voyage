@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Calendar, Clock, ArrowRight, ArrowUpRight, ChevronRight, Bookmark, Eye, Heart } from 'lucide-react';
 
@@ -33,7 +32,7 @@ const articles = [
     readTime: "1 min de lecture",
     category: "Emploi",
     color: "rose"
-  }
+}
 ];
 
 const BlogPreview = () => {
@@ -46,74 +45,39 @@ const BlogPreview = () => {
         <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-[#18133E]/5 rounded-full blur-3xl"></div>
         
         {/* Animated decorative elements */}
-        <motion.div 
+        <div 
           className="absolute top-1/3 left-1/4 w-6 h-6 bg-[#FFC3BC]/10 rounded-full"
-          animate={{ 
-            y: [0, -15, 0],
-            opacity: [0.3, 0.5, 0.3]
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
         />
-        <motion.div 
+        <div 
           className="absolute bottom-1/4 right-1/3 w-4 h-4 bg-[#18133E]/10 rounded-full"
-          animate={{ 
-            y: [0, -10, 0],
-            opacity: [0.2, 0.4, 0.2]
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1
-          }}
         />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+          <div
             className="inline-block mb-3"
           >
             <span className="bg-[#FFC3BC]/10 text-[#18133E] text-sm font-medium py-1 px-3 rounded-full border border-[#FFC3BC]/20 shadow-sm">
               Notre Blog
             </span>
-          </motion.div>
+          </div>
           
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+          <h2
             className="text-3xl md:text-4xl font-bold mb-4 text-[#18133E]"
           >
             Articles & Conseils
-          </motion.h2>
+          </h2>
           
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.15 }}
+          <div
             className="h-1 w-20 bg-gradient-to-r from-[#FFC3BC] to-[#FFC3BC]/30 rounded-full mx-auto mb-6"
           />
           
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+          <p
             className="text-gray-600 max-w-2xl mx-auto"
           >
             Suis les dernières actualités pour réussir ton projet d'études en France
-          </motion.p>
+          </p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
@@ -126,24 +90,18 @@ const BlogPreview = () => {
           ))}
         </div>
         
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.6 }}
+        <div
           className="flex justify-center mt-16"
         >
           <Link to="/blog" className="group inline-flex items-center gap-2 bg-gradient-to-r from-[#18133E] to-[#271D5B] py-3 px-6 rounded-full text-white font-medium shadow-md hover:shadow-lg transition-all duration-300">
             <span>Voir tous nos articles</span>
-            <motion.div
+            <div
               className="bg-white/20 p-1 rounded-full"
-              whileHover={{ x: 3 }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
               <ArrowRight className="h-4 w-4 text-white" />
-            </motion.div>
+            </div>
           </Link>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
@@ -178,25 +136,12 @@ const ArticleCard = ({ article, index }) => {
       border: "border-[#FFC3BC]/20",
       icon: "bg-[#FFC3BC]/20",
       hover: "group-hover:border-[#FFC3BC]/30 group-hover:shadow-[#FFC3BC]/20",
-    }
   };
   
   const style = colorStyles[article.color] || colorStyles.indigo;
   
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ 
-        duration: 0.7, 
-        delay: 0.3 + index * 0.1,
-        type: "spring",
-        stiffness: 100,
-        damping: 15
-      }}
-      onHoverStart={() => setIsHovered(true)}
-      onHoverEnd={() => setIsHovered(false)}
+    <div
       className={`group relative rounded-2xl overflow-hidden bg-white shadow-md hover:shadow-xl transition-all duration-300 flex flex-col h-full border ${style.border} ${style.hover}`}
     >
       {/* Category badge */}
@@ -208,40 +153,28 @@ const ArticleCard = ({ article, index }) => {
       
       {/* Enhanced engagement icons */}
       <div className="absolute top-4 right-4 z-20 flex space-x-2">
-        <motion.button 
+        <button 
           className="bg-white/80 backdrop-blur-sm text-[#18133E] p-2 rounded-full shadow-sm hover:bg-white transition-colors duration-300"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
         >
           <Heart className="h-4 w-4" />
-        </motion.button>
-        <motion.button 
+        </button>
+        <button 
           className="bg-white/80 backdrop-blur-sm text-[#18133E] p-2 rounded-full shadow-sm hover:bg-white transition-colors duration-300"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
         >
           <Bookmark className="h-4 w-4" />
-        </motion.button>
+        </button>
       </div>
       
       {/* Image container with enhanced overlay and animation */}
       <div className="relative h-56 overflow-hidden">
-        <motion.div
+        <div
           className="absolute inset-0 bg-gradient-to-t from-[#18133E]/70 to-transparent z-10"
-          animate={{
-            opacity: isHovered ? 0.8 : 0.4
-          }}
-          transition={{ duration: 0.3 }}
         />
         
-        <motion.img
+        <img
           src={article.image}
           alt={article.title}
           className="w-full h-full object-cover transition-transform duration-700 ease-in-out"
-          animate={{
-            scale: isHovered ? 1.05 : 1
-          }}
-          transition={{ duration: 0.7 }}
         />
         
         {/* View count overlay */}
@@ -275,13 +208,9 @@ const ArticleCard = ({ article, index }) => {
       
       {/* Enhanced read more button */}
       <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-white to-transparent">
-        <AnimatePresence>
+        
           {isHovered && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 10 }}
-              transition={{ duration: 0.2 }}
+            <div
               className="flex justify-center"
             >
               <Link 
@@ -289,27 +218,22 @@ const ArticleCard = ({ article, index }) => {
                 className={`inline-flex items-center ${style.text} font-medium text-sm ${style.icon} py-1.5 px-4 rounded-full`}
               >
                 Lire l'article complet
-                <motion.div
-                  initial={{ x: 0 }}
-                  whileHover={{ x: 4 }}
+                <div
                   className="ml-2"
                 >
                   <ChevronRight className="h-4 w-4" />
-                </motion.div>
+                </div>
               </Link>
-            </motion.div>
+            </div>
           )}
-        </AnimatePresence>
+        
       </div>
       
       {/* Enhanced corner decoration */}
-      <motion.div
+      <div
         className={`absolute -top-12 -right-12 w-24 h-24 ${style.bg} rounded-full`}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isHovered ? 0.6 : 0 }}
-        transition={{ duration: 0.3 }}
       />
-    </motion.div>
+    </div>
   );
 };
 

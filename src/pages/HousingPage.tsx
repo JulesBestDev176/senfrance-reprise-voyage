@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { 
   ArrowRight, 
   Check, 
@@ -47,32 +46,8 @@ const GlobeIcon = (props) => (
 const HousingPage = () => {
   useScrollToTop();
   const [activeTab, setActiveTab] = useState('abroad');
-  
-  // Reference for the scroll progress and parallax effects
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
-  
-  // Parallax effect values for backgrounds
-  const backgroundY = useTransform(scrollYProgress, [0, 1], [0, -200]);
-  const foregroundY = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  
-  // Animation variants
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 30 },
-    show: { 
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        duration: 0.8,
-        damping: 15
-      }
-    }
-  };
-  
+  const benefitsRef = useRef(null);
+
   // Abroad section benefits
   const abroadBenefits = [
     {
@@ -92,7 +67,7 @@ const HousingPage = () => {
       description: "Studios meublé, colocation ou chambre chez l’habitant",
       icon: <Building />,
       color: "amber"
-    }
+  }
   ];
   
   // In France benefits
@@ -114,7 +89,7 @@ const HousingPage = () => {
       description: "De la visite à la signature du bail",
       icon: <Key />,
       color: "amber"
-    }
+  }
   ];
   
   // Housing options
@@ -154,7 +129,7 @@ const HousingPage = () => {
       ],
       image: "https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
       color: "amber"
-    }
+  }
   ];
   
   // Steps for abroad students
@@ -174,7 +149,7 @@ const HousingPage = () => {
     {
       title: "Installation",
       description: "Nous t'accompagnons pour la signature du bail et l'état des lieux"
-    }
+  }
   ];
   
   // Steps for in-France students
@@ -194,7 +169,7 @@ const HousingPage = () => {
     {
       title: "Signature",
       description: "Nous t'accompagnons pour la signature du bail et les démarches administratives"
-    }
+  }
   ];
   
   // Color mappings
@@ -230,90 +205,50 @@ const HousingPage = () => {
       icon: "from-amber-500 to-amber-600"
     }
   };
-  
-  // References for sections
-  const benefitsRef = useRef(null);
-  const isBenefitsInView = useInView(benefitsRef, { amount: 0.2, once: false });
-  
-  const optionsRef = useRef(null);
-  const isOptionsInView = useInView(optionsRef, { amount: 0.2, once: false });
 
   return (
-    <div ref={containerRef} className="relative">
+    <div className="relative">
       {/* Hero Section */}
-      <section className="relative py-8 md:py-32 overflow-hidden">
-        {/* Background with parallax effect */}
-        <motion.div 
-          className="absolute inset-0 bg-gradient-to-br from-[#18133E] via-[#231A54] to-[#18133E] overflow-hidden"
-          style={{ y: backgroundY }}
-        >
-          <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10"></div>
-          
-          {/* Animated decorative elements */}
-          <motion.div 
-            className="absolute -top-20 -left-20 w-80 h-80 rounded-full bg-[#FFC3BC]/20 blur-3xl"
-            animate={{
-              scale: [1, 1.1, 1],
-              opacity: [0.2, 0.3, 0.2],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-          <motion.div 
-            className="absolute -bottom-40 -right-40 w-96 h-96 rounded-full bg-purple-500/20 blur-3xl"
-            animate={{
-              scale: [1.1, 1, 1.1],
-              opacity: [0.1, 0.2, 0.1],
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1
-            }}
-          />
-        </motion.div>
+      <section className="relative h-screen flex items-start justify-center overflow-hidden bg-gradient-to-b from-gray-50 to-white pt-12">
+        {/* Decorative elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-[#FFC3BC]/5 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#18133E]/5 rounded-full blur-3xl"></div>
+        </div>
         
         <div className="container mx-auto px-4 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center max-w-3xl mx-auto"
-          >
-            <div className="inline-block mb-4 px-3 py-1 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm">
-              <span className="text-sm font-medium text-white">Service logement</span>
+          <div className="text-center max-w-3xl mx-auto">
+            <div className="inline-block mb-4 px-3 py-1 rounded-full border border-[#FFC3BC]/30 bg-[#FFC3BC]/10">
+              <span className="text-sm font-medium text-[#18133E]">Service logement</span>
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-[#18133E]">
               Welcome h<span className="text-[#FFC3BC]">•</span>me
             </h1>
-            <p className="text-xl text-white/80 mb-8 leading-relaxed">
-              Le logement est devenu un enjeu majeur de la vie des étudiants en mobilité. SenFrance te propose de réserver ton appartement avant ton arrivée en France. N'engage plus des frais exorbitants avant l'obtention de ton visa d'études sans savoir si tu pourras les récupérer en cas de refus.
+            <p className="text-xl text-gray-700 mb-8 leading-relaxed max-w-2xl mx-auto">
+              Réserve ton logement étudiant avant ton arrivée en France.
             </p>
             
-            {/* <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-              className="flex justify-center mt-10"
-            >
-              <a 
-                href="#options" 
-                className="flex flex-col items-center text-white/70 hover:text-white transition-colors"
-              >
-                <span className="mb-2 text-white/90">Découvrir nos solutions</span>
-                <motion.div
-                  animate={{ y: [0, 8, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <ArrowDown className="h-6 w-6" />
-                </motion.div>
-              </a>
-            </motion.div> */}
-          </motion.div>
+            <div className="flex flex-wrap gap-4 justify-center mb-12">
+              <Button asChild className="bg-gradient-to-r from-[#FFC3BC] to-[#ff9d94] text-[#18133E] hover:from-[#ff9d94] hover:to-[#FFC3BC] rounded-full px-8 py-6 text-lg font-medium border-0">
+                <a href="#options" className="flex items-center gap-2">
+                  <span>Trouver mon logement</span>
+                  <ArrowRight className="h-5 w-5" />
+                </a>
+              </Button>
+              <Button asChild variant="outline" className="border-[#18133E]/20 text-[#18133E] hover:bg-[#18133E]/5 rounded-full px-8 py-6 text-lg font-medium">
+                <Link to="/contact">
+                  <span>Être accompagné</span>
+                </Link>
+              </Button>
+            </div>
+            
+            {/* Prix en évidence */}
+            <div className="inline-flex items-center gap-3 px-6 py-3 bg-gray-50 rounded-full border border-gray-200">
+              <span className="text-gray-600">À partir de</span>
+              <span className="text-3xl font-bold text-[#18133E]">300€</span>
+              <span className="text-gray-600">/mois</span>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -321,12 +256,7 @@ const HousingPage = () => {
       <section id="options" className="py-16 bg-white relative">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="flex flex-col items-center mb-12"
+            <div className="flex flex-col items-center mb-12"
             >
               <span className="inline-block py-1 px-3 rounded-full bg-[#FFC3BC]/10 text-[#18133E] text-sm font-medium mb-4 border border-[#FFC3BC]/20">
                 Ton statut
@@ -334,13 +264,13 @@ const HousingPage = () => {
               <h2 className="text-3xl font-bold mb-8 text-[#18133E] text-center">
                 Une solution adaptée à ta situation
               </h2>
-              <div className="bg-gray-100 p-1.5 rounded-xl shadow-sm mb-6">
+              <div className="bg-gray-100 p-1.5 rounded-xl shadow-sm mb-6 transition-all duration-300">
                 <div className="flex space-x-1">
                   <button
-                    onClick={() => setActiveTab('abroad')} 
+                    onClick={() => setActiveTab('abroad')}
                     className={`py-3 px-6 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-2 ${
-                      activeTab === 'abroad' 
-                        ? "bg-white text-[#18133E] shadow-lg" 
+                      activeTab === 'abroad'
+                        ? "bg-white text-[#18133E] shadow-lg"
                         : "text-gray-600 hover:bg-gray-200"
                     }`}
                   >
@@ -348,10 +278,10 @@ const HousingPage = () => {
                     <span>Tu es à l'étranger</span>
                   </button>
                   <button
-                    onClick={() => setActiveTab('inFrance')} 
+                    onClick={() => setActiveTab('inFrance')}
                     className={`py-3 px-6 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-2 ${
-                      activeTab === 'inFrance' 
-                        ? "bg-white text-[#18133E] shadow-lg" 
+                      activeTab === 'inFrance'
+                        ? "bg-white text-[#18133E] shadow-lg"
                         : "text-gray-600 hover:bg-gray-200"
                     }`}
                   >
@@ -360,16 +290,11 @@ const HousingPage = () => {
                   </button>
                 </div>
               </div>
-            </motion.div>
+            </div>
             
             {/* Abroad Panel */}
             {activeTab === 'abroad' && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 20 }}
-                transition={{ duration: 0.5 }}
-                className="bg-white rounded-2xl border border-gray-200 shadow-lg overflow-hidden"
+              <div className="bg-white rounded-2xl border border-gray-200 shadow-lg overflow-hidden transition-all duration-300"
               >
                 <div className="p-8 border-b border-gray-200 bg-gradient-to-r from-[#18133E]/5 to-[#18133E]/10">
                   <h3 className="text-2xl font-bold text-[#18133E] mb-4">
@@ -386,21 +311,16 @@ const HousingPage = () => {
                       const style = colorStyles[benefit.color];
                       
                       return (
-                        <motion.div
+                        <div
                           key={index}
-                          initial={{ opacity: 0, y: 20 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: index * 0.1, duration: 0.6 }}
                           className={`${style.light} rounded-xl p-6 border ${style.border}`}
-                          whileHover={{ y: -5, transition: { duration: 0.3 } }}
                         >
                           <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${style.icon} flex items-center justify-center text-white mb-4 shadow-md`}>
-                            {React.cloneElement(benefit.icon, { className: "h-6 w-6" })}
+                            {React.cloneElement(benefit.icon, { className: "h-6 w-6"})}
                           </div>
                           <h4 className="text-lg font-semibold text-[#18133E] mb-2">{benefit.title}</h4>
                           <p className="text-gray-600 text-sm">{benefit.description}</p>
-                        </motion.div>
+                        </div>
                       );
                     })}
                   </div>
@@ -409,13 +329,13 @@ const HousingPage = () => {
                   <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                     {abroadSteps.map((step, index) => (
                       <div key={index} className="relative">
-                        <div className="flex md:block items-center">
-                          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#18133E] text-white text-lg font-bold shadow-md md:mx-auto mb-4">
+                        {index < abroadSteps.length - 1 && (
+                          <div className="hidden md:block h-1 w-full bg-gray-200 absolute top-5 left-1/2 z-0"></div>
+                        )}
+                        <div className="flex md:block items-center relative z-10">
+                          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#18133E] text-white text-lg font-bold shadow-md md:mx-auto mb-4 transition-all duration-300">
                             {index + 1}
                           </div>
-                          {index < abroadSteps.length - 1 && (
-                            <div className="hidden md:block h-1 w-full bg-gray-200 absolute top-5 left-1/2 z-0"></div>
-                          )}
                         </div>
                         <div className="ml-4 md:ml-0 md:text-center">
                           <h5 className="font-semibold text-[#18133E] mb-1">{step.title}</h5>
@@ -426,30 +346,23 @@ const HousingPage = () => {
                   </div>
                   
                   <div className="mt-10 flex justify-center">
-                    <motion.div
-                      whileHover={{ scale: 1.03 }}
-                      whileTap={{ scale: 0.97 }}
-                    >
-                      <Button asChild className="bg-gradient-to-r from-[#18133E] to-[#271D5B] hover:from-[#271D5B] hover:to-[#18133E] text-white rounded-xl px-6 py-3 font-medium shadow-md">
+                    <div>
+                    
+                      <Button asChild className="bg-gradient-to-r from-[#18133E] to-[#271D5B] hover:from-[#271D5B] hover:to-[#18133E] text-white rounded-xl px-6 py-3 font-medium shadow-md transition-all duration-300">
                         <Link to="/logement/reservation" className="flex items-center gap-2">
                           <span>Réserver mon logement</span>
                           <ArrowRight className="h-5 w-5" />
                         </Link>
                       </Button>
-                    </motion.div>
+                    </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             )}
             
             {/* In France Panel */}
             {activeTab === 'inFrance' && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 20 }}
-                transition={{ duration: 0.5 }}
-                className="bg-white rounded-2xl border border-gray-200 shadow-lg overflow-hidden"
+              <div className="bg-white rounded-2xl border border-gray-200 shadow-lg overflow-hidden transition-all duration-300"
               >
                 <div className="p-8 border-b border-gray-200 bg-gradient-to-r from-[#18133E]/5 to-[#18133E]/10">
                   <h3 className="text-2xl font-bold text-[#18133E] mb-4">
@@ -466,21 +379,16 @@ const HousingPage = () => {
                       const style = colorStyles[benefit.color];
                       
                       return (
-                        <motion.div
+                        <div
                           key={index}
-                          initial={{ opacity: 0, y: 20 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: index * 0.1, duration: 0.6 }}
                           className={`${style.light} rounded-xl p-6 border ${style.border}`}
-                          whileHover={{ y: -5, transition: { duration: 0.3 } }}
                         >
                           <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${style.icon} flex items-center justify-center text-white mb-4 shadow-md`}>
                             {React.cloneElement(benefit.icon, { className: "h-6 w-6" })}
                           </div>
                           <h4 className="text-lg font-semibold text-[#18133E] mb-2">{benefit.title}</h4>
                           <p className="text-gray-600 text-sm">{benefit.description}</p>
-                        </motion.div>
+                        </div>
                       );
                     })}
                   </div>
@@ -489,13 +397,13 @@ const HousingPage = () => {
                   <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                     {inFranceSteps.map((step, index) => (
                       <div key={index} className="relative">
-                        <div className="flex md:block items-center">
-                          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#18133E] text-white text-lg font-bold shadow-md md:mx-auto mb-4">
+                        {index < inFranceSteps.length - 1 && (
+                          <div className="hidden md:block h-1 w-full bg-gray-200 absolute top-5 left-1/2 z-0"></div>
+                        )}
+                        <div className="flex md:block items-center relative z-10">
+                          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#18133E] text-white text-lg font-bold shadow-md md:mx-auto mb-4 transition-all duration-300">
                             {index + 1}
                           </div>
-                          {index < inFranceSteps.length - 1 && (
-                            <div className="hidden md:block h-1 w-full bg-gray-200 absolute top-5 left-1/2 z-0"></div>
-                          )}
                         </div>
                         <div className="ml-4 md:ml-0 md:text-center">
                           <h5 className="font-semibold text-[#18133E] mb-1">{step.title}</h5>
@@ -506,20 +414,18 @@ const HousingPage = () => {
                   </div>
                   
                   <div className="mt-10 flex justify-center">
-                    <motion.div
-                      whileHover={{ scale: 1.03 }}
-                      whileTap={{ scale: 0.97 }}
-                    >
-                      <Button asChild className="bg-gradient-to-r from-[#18133E] to-[#271D5B] hover:from-[#271D5B] hover:to-[#18133E] text-white rounded-xl px-6 py-3 font-medium shadow-md">
+                    <div>
+                    
+                      <Button asChild className="bg-gradient-to-r from-[#18133E] to-[#271D5B] hover:from-[#271D5B] hover:to-[#18133E] text-white rounded-xl px-6 py-3 font-medium shadow-md transition-all duration-300">
                         <Link to="/logement/recherche" className="flex items-center gap-2">
                           <span>Trouver mon logement</span>
                           <ArrowRight className="h-5 w-5" />
                         </Link>
                       </Button>
-                    </motion.div>
+                    </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             )}
           </div>
         </div>
@@ -528,12 +434,7 @@ const HousingPage = () => {
       {/* Housing Options Section */}
       <section className="py-16 bg-gray-50 relative">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto mb-12"
+          <div className="text-center max-w-3xl mx-auto mb-12"
           >
             <span className="inline-block py-1 px-3 rounded-full bg-[#18133E]/10 text-[#18133E] text-sm font-medium mb-4 border border-[#18133E]/20">
               Nos options
@@ -544,27 +445,22 @@ const HousingPage = () => {
             <p className="text-gray-600">
               Découvre nos différentes options de logement et trouve celle qui te correspond.
             </p>
-          </motion.div>
+          </div>
           
-          <div ref={optionsRef} className="max-w-6xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {housingOptions.map((option, index) => {
                 const style = colorStyles[option.color];
                 
                 return (
-                  <motion.div
+                  <div
                     key={index}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={isOptionsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                    transition={{ delay: index * 0.2, duration: 0.7 }}
-                    className="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100"
-                    whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                  >
+                    className="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100 transition-all duration-300">
                     <div className="h-48 overflow-hidden relative">
                       <div className="absolute inset-0 bg-gradient-to-t from-[#18133E]/70 to-transparent z-10"></div>
-                      <img 
-                        src={option.image} 
-                        alt={option.title} 
+                      <img
+                        src={option.image}
+                        alt={option.title}
                         className="w-full h-full object-cover"
                       />
                       <div className="absolute bottom-4 left-6 z-20">
@@ -590,23 +486,19 @@ const HousingPage = () => {
                         ))}
                       </ul>
                       
-                      <motion.div
-                        whileHover={{ scale: 1.03 }}
-                        whileTap={{ scale: 0.97 }}
-                      >
-                        <Button 
-                          asChild 
-                          variant="outline" 
-                          className={`w-full border-${option.color === 'rose' ? '[#FFC3BC]/20' : `${option.color}-100`} text-[#18133E] ${style.hover} rounded-lg`}
+                      <div>
+                        <Button
+                          asChild
+                          variant="outline" className={`w-full border-${option.color === 'rose' ? '[#FFC3BC]/20' : `${option.color}-100`} text-[#18133E] ${style.hover} rounded-lg`}
                         >
                           <Link to={`/logement/options/${option.title.toLowerCase().replace(/\s+/g, '-')}`} className="flex items-center justify-center gap-2">
                             <span>En savoir plus</span>
                             <ChevronRight className="h-4 w-4" />
                           </Link>
                         </Button>
-                      </motion.div>
+                      </div>
                     </div>
-                  </motion.div>
+                  </div>
                 );
               })}
             </div>
@@ -618,27 +510,11 @@ const HousingPage = () => {
       <section ref={benefitsRef} className="py-16 bg-gradient-to-br from-[#18133E] to-[#231A54] text-white relative">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10"></div>
-          <motion.div 
-            className="absolute top-1/4 right-1/4 w-64 h-64 rounded-full bg-[#FFC3BC]/10 blur-3xl"
-            animate={{
-              y: [0, -30, 0],
-              opacity: [0.2, 0.3, 0.2],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
+          <div className="absolute top-1/4 right-1/4 w-64 h-64 rounded-full bg-[#FFC3BC]/10 blur-3xl transition-all duration-300"></div>
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto mb-12"
+          <div className="text-center max-w-3xl mx-auto mb-12"
           >
             <span className="inline-block py-1 px-3 rounded-full bg-white/10 text-white text-sm font-medium mb-4 border border-white/20">
               Pourquoi nous choisir
@@ -649,7 +525,7 @@ const HousingPage = () => {
             <p className="text-white/80">
               Notre service de logement se distingue par son approche centrée sur l'étudiant international.
             </p>
-          </motion.div>
+          </div>
           
           <div className="max-w-5xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -679,13 +555,9 @@ const HousingPage = () => {
                   delay: 0.4
                 },
               ].map((benefit, index) => (
-                <motion.div
+                <div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isBenefitsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ delay: benefit.delay, duration: 0.7 }}
                   className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/15 transition-all duration-300"
-                  whileHover={{ y: -5 }}
                 >
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 bg-[#FFC3BC]/20 rounded-full flex items-center justify-center flex-shrink-0">
@@ -696,22 +568,17 @@ const HousingPage = () => {
                       <p className="text-white/70">{benefit.description}</p>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
             
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-              className="mt-12 flex justify-center"
+            <div className="mt-12 flex justify-center"
             >
-              <div className="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20 flex items-center gap-2">
+              <div className="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20 flex items-center gap-2 transition-all duration-300">
                 <Star className="h-5 w-5 text-[#FFC3BC] fill-[#FFC3BC]" />
                 <span className="text-white font-medium">100% de logements éligibles aux APL</span>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -719,12 +586,7 @@ const HousingPage = () => {
       {/* FAQ Section */}
       <section className="py-16 bg-white relative">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto mb-12"
+          <div className="text-center max-w-3xl mx-auto mb-12"
           >
             <span className="inline-block py-1 px-3 rounded-full bg-[#FFC3BC]/10 text-[#18133E] text-sm font-medium mb-4 border border-[#FFC3BC]/20">
               Questions fréquentes
@@ -735,7 +597,7 @@ const HousingPage = () => {
             <p className="text-gray-600">
               Voici les questions les plus fréquentes à propos du logement
             </p>
-          </motion.div>
+          </div>
           
           <div className="max-w-3xl mx-auto">
             <div className="space-y-6">
@@ -755,15 +617,11 @@ const HousingPage = () => {
                 {
                   question: "Puis-je visiter le logement avant de signer le bail ?",
                   answer: "Si tu es déjà en France, absolument ! Si tu es encore à l'étranger, nous proposons des visites virtuelles et te fournissons des photos détaillées et un plan précis du logement."
-                }
-              ].map((faq, index) => (
-                <motion.div
+              }
+  ].map((faq, index) => (
+                <div
                   key={index}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1, duration: 0.6 }}
-                  className="bg-gray-50 p-6 rounded-xl shadow-sm border border-gray-100"
+                    className="bg-gray-50 p-6 rounded-xl shadow-sm border border-gray-100 transition-all duration-300"
                 >
                   <div className="flex items-start gap-3">
                     <div className="w-8 h-8 rounded-full bg-[#18133E] flex items-center justify-center flex-shrink-0 mt-1">
@@ -774,7 +632,7 @@ const HousingPage = () => {
                       <p className="text-gray-600">{faq.answer}</p>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
@@ -784,52 +642,19 @@ const HousingPage = () => {
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-b from-white to-gray-50 relative">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="max-w-4xl mx-auto bg-gradient-to-br from-[#18133E] to-[#271D5B] rounded-2xl p-8 md:p-12 shadow-xl text-center text-white overflow-hidden relative"
+          <div className="max-w-4xl mx-auto bg-gradient-to-br from-[#18133E] to-[#271D5B] rounded-2xl p-8 md:p-12 shadow-xl text-center text-white overflow-hidden relative transition-all duration-300"
           >
             {/* Decorative elements */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
-              <motion.div 
-                className="absolute top-0 right-0 w-64 h-64 rounded-full bg-[#FFC3BC]/10 blur-3xl"
-                animate={{
-                  y: [0, -20, 0],
-                  opacity: [0.2, 0.3, 0.2],
-                }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              />
-              <motion.div 
-                className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-purple-500/10 blur-3xl"
-                animate={{
-                  scale: [1, 1.1, 1],
-                  opacity: [0.1, 0.2, 0.1],
-                }}
-                transition={{
-                  duration: 10,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 1
-                }}
-              />
+              <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-[#FFC3BC]/10 blur-3xl transition-all duration-300"></div>
+              <div className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-purple-500/10 blur-3xl"></div>
             </div>
             
             <div className="relative z-10">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="w-20 h-20 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-8 border border-white/20 shadow-xl"
+              <div className="w-20 h-20 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-8 border border-white/20 shadow-xl transition-all duration-300"
               >
                 <Home className="h-10 w-10 text-white" />
-              </motion.div>
+              </div>
               
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
                 Nous avons le logement idéal pour toi
@@ -839,30 +664,24 @@ const HousingPage = () => {
               </p>
               
               <div className="flex flex-wrap gap-4 justify-center">
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Button asChild className="bg-gradient-to-r from-[#FFC3BC] to-[#ff9d94] text-[#18133E] hover:from-[#ff9d94] hover:to-[#FFC3BC] rounded-full px-8 py-6 text-lg font-medium border-0 shadow-xl">
+                <div>
+                  <Button asChild className="bg-gradient-to-r from-[#FFC3BC] to-[#ff9d94] text-[#18133E] hover:from-[#ff9d94] hover:to-[#FFC3BC] rounded-full px-8 py-6 text-lg font-medium border-0 shadow-xl transition-all duration-300">
                     <Link to="/logement/contact" className="flex items-center gap-2">
                       <span>Démarrer mon projet</span>
                       <ArrowRight className="h-5 w-5" />
                     </Link>
                   </Button>
-                </motion.div>
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Button asChild variant="outline" className="bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 border-white/20 rounded-full px-8 py-6 text-lg font-medium shadow-lg">
+                </div>
+                <div>
+                  <Button asChild variant="outline" className="bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 border-white/20 rounded-full px-8 py-6 text-lg font-medium shadow-lg transition-all duration-300">
                     <Link to="/logement/options">
                       <span>Voir tous nos logements</span>
                     </Link>
                   </Button>
-                </motion.div>
+                </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </div>

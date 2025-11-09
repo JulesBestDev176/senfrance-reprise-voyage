@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { 
   ArrowRight, 
   Briefcase, 
@@ -35,19 +34,11 @@ const PageJobEtudiant = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formError, setFormError] = useState(false);
   
-  // Reference pour les effets de parallaxe
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
-  
-  // Valeurs pour les effets de parallaxe
-  const backgroundY = useTransform(scrollYProgress, [0, 1], [0, -200]);
-  const foregroundY = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  // Référence pour la section des bénéfices
+  const bénéficesRef = useRef<HTMLDivElement>(null);
   
   // Fonction de soumission du formulaire
-  const soumettreFormulaire = (e) => {
+  const soumettreFormulaire = (e: React.FormEvent) => {
     e.preventDefault();
     
     // Validation simple
@@ -55,7 +46,7 @@ const PageJobEtudiant = () => {
       setFormError(true);
       return;
     }
-    
+
     // Simulation d'envoi réussi
     setFormError(false);
     setFormSubmitted(true);
@@ -77,113 +68,65 @@ const PageJobEtudiant = () => {
     }, 5000);
   };
   
-  // Variantes d'animation
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 30 },
-    show: { 
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        duration: 0.8,
-        damping: 15
-      }
-    }
-  };
-  
-  // Références pour l'animation au défilement
-  const bénéficesRef = useRef(null);
-  const isBénéficesInView = useInView(bénéficesRef, { amount: 0.2, once: false });
-
   return (
-    <div ref={containerRef} className="relative">
+    <div className="relative">
       {/* Section héro */}
-      <section className="relative py-8 md:py-32 overflow-hidden">
-        {/* Arrière-plan avec effet de parallaxe */}
-        <motion.div 
-          className="absolute inset-0 bg-gradient-to-br from-[#18133E] via-[#231A54] to-[#18133E] overflow-hidden"
-          style={{ y: backgroundY }}
-        >
-          <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10"></div>
-          
-          {/* Éléments décoratifs animés */}
-          <motion.div 
-            className="absolute -top-20 -left-20 w-80 h-80 rounded-full bg-[#FFC3BC]/20 blur-3xl"
-            animate={{
-              scale: [1, 1.1, 1],
-              opacity: [0.2, 0.3, 0.2],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-          <motion.div 
-            className="absolute -bottom-40 -right-40 w-96 h-96 rounded-full bg-purple-500/20 blur-3xl"
-            animate={{
-              scale: [1.1, 1, 1.1],
-              opacity: [0.1, 0.2, 0.1],
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1
-            }}
-          />
-        </motion.div>
+      <section className="relative h-screen flex items-start justify-center overflow-hidden bg-gradient-to-b from-gray-50 to-white pt-12">
+        {/* Decorative elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-20 right-10 w-72 h-72 bg-[#FFC3BC]/5 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 left-10 w-96 h-96 bg-[#18133E]/5 rounded-full blur-3xl"></div>
+        </div>
         
         <div className="container mx-auto px-4 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center max-w-3xl mx-auto"
-          >
-            <div className="inline-block mb-4 px-3 py-1 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm">
-              <span className="text-sm font-medium text-white">Jobs étudiants</span>
+          <div className="text-center max-w-3xl mx-auto">
+            <div className="inline-block mb-4 px-3 py-1 rounded-full border border-[#FFC3BC]/30 bg-[#FFC3BC]/10">
+              <span className="text-sm font-medium text-[#18133E]">Jobs étudiants</span>
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">
-              Postule avec SenFrance
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-[#18133E]">
+              Trouve ton job étudiant
             </h1>
-            <p className="text-xl text-white/80 mb-8 leading-relaxed">
-              Que ce soit pour financer ta scolarité, payer ton loyer ou gérer tes dépenses quotidiennes, tu auras peut-être besoin de travailler pendant tes études. Le job étudiant est une la solution idéale pour te permettre d'être indépendant et d'assumer tes frais.
+            <p className="text-xl text-gray-700 mb-8 leading-relaxed max-w-2xl mx-auto">
+              Des opportunités adaptées à ton emploi du temps et tes études.
             </p>
             
-            {/* <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-              className="flex justify-center mt-10"
-            >
-              <a 
-                href="#candidature" 
-                className="flex flex-col items-center text-white/70 hover:text-white transition-colors"
-              >
-                <span className="mb-2 text-white/90">Déposer ma candidature</span>
-                <motion.div
-                  animate={{ y: [0, 8, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <ArrowDown className="h-6 w-6" />
-                </motion.div>
-              </a>
-            </motion.div> */}
-          </motion.div>
+            <div className="flex flex-wrap gap-4 justify-center mb-12">
+              <Button asChild className="bg-gradient-to-r from-[#FFC3BC] to-[#ff9d94] text-[#18133E] hover:from-[#ff9d94] hover:to-[#FFC3BC] rounded-full px-8 py-6 text-lg font-medium border-0">
+                <a href="#candidature" className="flex items-center gap-2">
+                  <span>Postuler maintenant</span>
+                  <ArrowRight className="h-5 w-5" />
+                </a>
+              </Button>
+              <Button asChild variant="outline" className="border-[#18133E]/20 text-[#18133E] hover:bg-[#18133E]/5 rounded-full px-8 py-6 text-lg font-medium">
+                <a href="#avantages">
+                  <span>Voir les avantages</span>
+                </a>
+              </Button>
+            </div>
+            
+            {/* Avantages rapides */}
+            <div className="grid grid-cols-3 gap-6 max-w-2xl mx-auto">
+              <div className="p-4 bg-gray-50 rounded-xl">
+                <div className="text-2xl font-bold text-[#FFC3BC] mb-1">Flexible</div>
+                <div className="text-sm text-gray-600">Horaires adaptés</div>
+              </div>
+              <div className="p-4 bg-gray-50 rounded-xl">
+                <div className="text-2xl font-bold text-[#FFC3BC] mb-1">SMIC+</div>
+                <div className="text-sm text-gray-600">Rémunération</div>
+              </div>
+              <div className="p-4 bg-gray-50 rounded-xl">
+                <div className="text-2xl font-bold text-[#FFC3BC] mb-1">Expérience</div>
+                <div className="text-sm text-gray-600">Pour ton CV</div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Section avantages */}
       <section ref={bénéficesRef} className="py-16 bg-white relative">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto mb-12"
-          >
+          <div className="text-center max-w-3xl mx-auto mb-12">
             <span className="inline-block py-1 px-3 rounded-full bg-[#FFC3BC]/10 text-[#18133E] text-sm font-medium mb-4 border border-[#FFC3BC]/20">
               Pourquoi postuler
             </span>
@@ -193,7 +136,7 @@ const PageJobEtudiant = () => {
             <p className="text-gray-600">
               Nous sélectionnons les meilleures opportunités adaptées à ton profil et à ton emploi du temps.
             </p>
-          </motion.div>
+          </div>
           
           <div className="max-w-5xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -217,20 +160,16 @@ const PageJobEtudiant = () => {
                   delay: 0.3
                 },
               ].map((avantage, index) => (
-                <motion.div
+                <div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isBénéficesInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ delay: avantage.delay, duration: 0.7 }}
                   className="bg-gray-50 p-6 rounded-xl border border-gray-100 shadow-md hover:shadow-lg transition-all duration-300"
-                  whileHover={{ y: -5 }}
                 >
                   <div className="w-14 h-14 bg-[#FFC3BC]/10 rounded-full flex items-center justify-center mx-auto mb-4">
                     {avantage.icon}
                   </div>
                   <h3 className="text-xl font-semibold text-[#18133E] text-center mb-2">{avantage.title}</h3>
                   <p className="text-gray-600 text-center">{avantage.description}</p>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
@@ -241,28 +180,11 @@ const PageJobEtudiant = () => {
       <section className="py-16 bg-gradient-to-br from-[#18133E] to-[#231A54] text-white relative">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10"></div>
-          <motion.div 
-            className="absolute top-1/4 right-1/4 w-64 h-64 rounded-full bg-[#FFC3BC]/10 blur-3xl"
-            animate={{
-              y: [0, -30, 0],
-              opacity: [0.2, 0.3, 0.2],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
+          <div className="absolute top-1/4 right-1/4 w-64 h-64 rounded-full bg-[#FFC3BC]/10 blur-3xl transition-all duration-300" />
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto mb-12"
-          >
+          <div className="text-center max-w-3xl mx-auto mb-12">
             <span className="inline-block py-1 px-3 rounded-full bg-white/10 text-white text-sm font-medium mb-4 border border-white/20">
               Nos offres
             </span>
@@ -272,17 +194,11 @@ const PageJobEtudiant = () => {
             <p className="text-white/80">
               Découvre les différents types d'emplois que nous proposons pour les étudiants et jeunes diplômés.
             </p>
-          </motion.div>
+          </div>
           
           <div className="max-w-5xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/15 transition-all duration-300"
-                whileHover={{ y: -5 }}
+              <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/15 transition-all duration-300"
               >
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 bg-[#FFC3BC]/20 rounded-full flex items-center justify-center flex-shrink-0">
@@ -301,15 +217,9 @@ const PageJobEtudiant = () => {
                     </ul>
                   </div>
                 </div>
-              </motion.div>
+              </div>
               
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/15 transition-all duration-300"
-                whileHover={{ y: -5 }}
+              <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/15 transition-all duration-300"
               >
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 bg-[#FFC3BC]/20 rounded-full flex items-center justify-center flex-shrink-0">
@@ -328,7 +238,7 @@ const PageJobEtudiant = () => {
                     </ul>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             </div>
           </div>
         </div>
@@ -337,12 +247,7 @@ const PageJobEtudiant = () => {
       {/* Section formulaire de candidature */}
       {/* <section id="candidature" className="py-16 bg-white relative">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto mb-8"
+          <div className="text-center max-w-3xl mx-auto mb-8"
           >
             <span className="inline-block py-1 px-3 rounded-full bg-[#FFC3BC]/10 text-[#18133E] text-sm font-medium mb-4 border border-[#FFC3BC]/20">
               Ta candidature
@@ -353,40 +258,30 @@ const PageJobEtudiant = () => {
             <p className="text-gray-600">
               Remplis le formulaire ci-dessous et nous te contacterons pour discuter des opportunités qui correspondent à ton profil.
             </p>
-          </motion.div>
+          </div>
           
           <div className="max-w-3xl mx-auto">
             {formSubmitted && (
-              <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="bg-green-50 border border-green-200 text-green-800 rounded-xl p-4 mb-8 flex items-start"
-              >
+              <div className="bg-green-50 border border-green-200 text-green-800 rounded-xl p-4 mb-8 flex items-start transition-all duration-300">
                 <CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="font-medium">Candidature envoyée avec succès !</p>
                   <p className="text-sm">Notre équipe analysera ton profil et te contactera très prochainement.</p>
                 </div>
-              </motion.div>
+              </div>
             )}
             
             {formError && (
-              <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="bg-red-50 border border-red-200 text-red-800 rounded-xl p-4 mb-8 flex items-start"
-              >
+              <div className="bg-red-50 border border-red-200 text-red-800 rounded-xl p-4 mb-8 flex items-start transition-all duration-300">
                 <Info className="h-5 w-5 text-red-500 mr-2 mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="font-medium">Certains champs sont incomplets</p>
                   <p className="text-sm">Veuillez remplir tous les champs obligatoires marqués d'un astérisque (*).</p>
                 </div>
-              </motion.div>
+              </div>
             )}
             
-            <form onSubmit={soumettreFormulaire} className="bg-white rounded-xl border border-gray-200 shadow-lg p-8">
+            <form onSubmit={soumettreFormulaire} className="bg-white rounded-xl border border-gray-200 shadow-lg p-8 transition-all duration-300">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
                   <label htmlFor="prénom" className="block text-sm font-medium text-gray-700 mb-1">
@@ -400,8 +295,7 @@ const PageJobEtudiant = () => {
                       type="text"
                       id="prénom"
                       value={prénom}
-                      onChange={(e) => setPrénom(e.target.value)}
-                      className="block w-full rounded-lg border border-gray-300 py-2 pl-10 pr-3 focus:outline-none focus:ring-2 focus:ring-[#18133E] focus:border-[#18133E]"
+                      onChange={(e) => setPrénom(e.target.value) className="block w-full rounded-lg border border-gray-300 py-2 pl-10 pr-3 focus:outline-none focus:ring-2 focus:ring-[#18133E] focus:border-[#18133E]"
                       placeholder="Ton prénom"
                       required
                     />
@@ -414,14 +308,14 @@ const PageJobEtudiant = () => {
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <User className="h-5 w-5 text-gray-400" />
+                      <User}
+                className="h-5 w-5 text-gray-400" />
                     </div>
                     <input
                       type="text"
                       id="nom"
                       value={nom}
-                      onChange={(e) => setNom(e.target.value)}
-                      className="block w-full rounded-lg border border-gray-300 py-2 pl-10 pr-3 focus:outline-none focus:ring-2 focus:ring-[#18133E] focus:border-[#18133E]"
+                      onChange={(e) => setNom(e.target.value) className="block w-full rounded-lg border border-gray-300 py-2 pl-10 pr-3 focus:outline-none focus:ring-2 focus:ring-[#18133E] focus:border-[#18133E]"
                       placeholder="Ton nom de famille"
                       required
                     />
@@ -436,14 +330,14 @@ const PageJobEtudiant = () => {
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <Mail className="h-5 w-5 text-gray-400" />
+                      <Mail}
+                className="h-5 w-5 text-gray-400" />
                     </div>
                     <input
                       type="email"
                       id="email"
                       value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className="block w-full rounded-lg border border-gray-300 py-2 pl-10 pr-3 focus:outline-none focus:ring-2 focus:ring-[#18133E] focus:border-[#18133E]"
+                      onChange={(e) => setEmail(e.target.value) className="block w-full rounded-lg border border-gray-300 py-2 pl-10 pr-3 focus:outline-none focus:ring-2 focus:ring-[#18133E] focus:border-[#18133E]"
                       placeholder="Ton adresse e-mail"
                       required
                     />
@@ -456,14 +350,14 @@ const PageJobEtudiant = () => {
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <Phone className="h-5 w-5 text-gray-400" />
+                      <Phone}
+                className="h-5 w-5 text-gray-400" />
                     </div>
                     <input
                       type="tel"
                       id="téléphone"
                       value={téléphone}
-                      onChange={(e) => setTéléphone(e.target.value)}
-                      className="block w-full rounded-lg border border-gray-300 py-2 pl-10 pr-3 focus:outline-none focus:ring-2 focus:ring-[#18133E] focus:border-[#18133E]"
+                      onChange={(e) => setTéléphone(e.target.value) className="block w-full rounded-lg border border-gray-300 py-2 pl-10 pr-3 focus:outline-none focus:ring-2 focus:ring-[#18133E] focus:border-[#18133E]"
                       placeholder="Ton numéro de téléphone"
                       required
                     />
@@ -479,7 +373,7 @@ const PageJobEtudiant = () => {
                   {['Amis', 'Réseaux sociaux', 'Autre'].map((option) => (
                     <div 
                       key={option}
-                      className={`p-3 border ${source === option ? 'border-[#FFC3BC] bg-[#FFC3BC]/10' : 'border-gray-200 hover:border-gray-300 bg-white'} rounded-lg cursor-pointer transition-colors text-center`}
+                className={`p-3 border ${source === option ? 'border-[#FFC3BC] bg-[#FFC3BC]/10' : 'border-gray-200 hover:border-gray-300 bg-white'} rounded-lg cursor-pointer transition-colors text-center`}
                       onClick={() => setSource(option)}
                     >
                       <span className={source === option ? 'text-[#FFC3BC] font-medium' : 'text-gray-700'}>
@@ -498,7 +392,7 @@ const PageJobEtudiant = () => {
                   {['Job étudiant', 'Job jeune diplômé(e)'].map((option) => (
                     <div 
                       key={option}
-                      className={`p-3 border ${typeJob === option ? 'border-[#FFC3BC] bg-[#FFC3BC]/10' : 'border-gray-200 hover:border-gray-300 bg-white'} rounded-lg cursor-pointer transition-colors text-center`}
+                className={`p-3 border ${typeJob === option ? 'border-[#FFC3BC] bg-[#FFC3BC]/10' : 'border-gray-200 hover:border-gray-300 bg-white'} rounded-lg cursor-pointer transition-colors text-center`}
                       onClick={() => setTypeJob(option)}
                     >
                       <span className={typeJob === option ? 'text-[#FFC3BC] font-medium' : 'text-gray-700'}>
@@ -520,8 +414,7 @@ const PageJobEtudiant = () => {
                   <textarea
                     id="description"
                     value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                    className="block w-full rounded-lg border border-gray-300 py-2 pl-10 pr-3 focus:outline-none focus:ring-2 focus:ring-[#18133E] focus:border-[#18133E] min-h-[100px]"
+                    onChange={(e) => setDescription(e.target.value) className="block w-full rounded-lg border border-gray-300 py-2 pl-10 pr-3 focus:outline-none focus:ring-2 focus:ring-[#18133E] focus:border-[#18133E] min-h-[100px]"
                     placeholder="Expériences, compétences, disponibilités..."
                   />
                 </div>
@@ -534,14 +427,14 @@ const PageJobEtudiant = () => {
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <MapPin className="h-5 w-5 text-gray-400" />
+                      <MapPin}
+                className="h-5 w-5 text-gray-400" />
                     </div>
                     <input
                       type="text"
                       id="adresse"
                       value={adresse}
-                      onChange={(e) => setAdresse(e.target.value)}
-                      className="block w-full rounded-lg border border-gray-300 py-2 pl-10 pr-3 focus:outline-none focus:ring-2 focus:ring-[#18133E] focus:border-[#18133E]"
+                      onChange={(e) => setAdresse(e.target.value) className="block w-full rounded-lg border border-gray-300 py-2 pl-10 pr-3 focus:outline-none focus:ring-2 focus:ring-[#18133E] focus:border-[#18133E]"
                       placeholder="Ton adresse en France"
                     />
                   </div>
@@ -553,30 +446,28 @@ const PageJobEtudiant = () => {
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <LinkIcon className="h-5 w-5 text-gray-400" />
+                      <LinkIcon}
+                className="h-5 w-5 text-gray-400" />
                     </div>
                     <input
                       type="url"
                       id="lienCV"
                       value={lienCV}
-                      onChange={(e) => setLienCV(e.target.value)}
-                      className="block w-full rounded-lg border border-gray-300 py-2 pl-10 pr-3 focus:outline-none focus:ring-2 focus:ring-[#18133E] focus:border-[#18133E]"
+                      onChange={(e) => setLienCV(e.target.value) className="block w-full rounded-lg border border-gray-300 py-2 pl-10 pr-3 focus:outline-none focus:ring-2 focus:ring-[#18133E] focus:border-[#18133E]"
                       placeholder="https://..."
                     />
                   </div>
                 </div>
               </div>
               
-              <motion.div
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                className="flex justify-center"
+              <div className="flex justify-center"
               >
-                <Button type="submit" className="bg-gradient-to-r from-[#18133E] to-[#271D5B] hover:from-[#271D5B] hover:to-[#18133E] text-white rounded-xl px-6 py-3 text-lg font-medium shadow-md">
+                <Button type="submit" className="bg-gradient-to-r from-[#18133E] to-[#271D5B] hover:from-[#271D5B] hover:to-[#18133E] text-white rounded-xl px-6 py-3 text-lg font-medium shadow-md transition-all duration-300">
                   <span>Envoie ta candidature</span>
-                  <ArrowRight className="h-5 w-5 ml-2" />
+                  <ArrowRight}
+                className="h-5 w-5 ml-2" />
                 </Button>
-              </motion.div>
+              </div>
             </form>
           </div>
         </div>
@@ -585,13 +476,7 @@ const PageJobEtudiant = () => {
       {/* Section témoignages */}
       <section className="py-16 bg-gray-50 relative">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto mb-12"
-          >
+          <div className="text-center max-w-3xl mx-auto mb-12">
             <span className="inline-block py-1 px-3 rounded-full bg-[#18133E]/10 text-[#18133E] text-sm font-medium mb-4 border border-[#18133E]/20">
               Témoignages
             </span>
@@ -601,7 +486,7 @@ const PageJobEtudiant = () => {
             <p className="text-gray-600">
               Découvre les expériences de nos étudiants qui ont trouvé un emploi grâce à nos services.
             </p>
-          </motion.div>
+          </div>
           
           <div className="max-w-5xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -617,13 +502,9 @@ const PageJobEtudiant = () => {
                   university: "CELSA Sorbonne Université"
                 }
               ].map((temoignage, index) => (
-                <motion.div
+                <div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.2, duration: 0.6 }}
-                  className="bg-white p-6 rounded-xl shadow-md border border-gray-100"
+                  className="bg-white p-6 rounded-xl shadow-md border border-gray-100 transition-all duration-300"
                 >
                   <div className="mb-4">
                     <div className="flex space-x-1">
@@ -639,7 +520,7 @@ const PageJobEtudiant = () => {
                     <p className="font-medium text-[#18133E]">{temoignage.author}</p>
                     <p className="text-sm text-gray-500">{temoignage.university}</p>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>

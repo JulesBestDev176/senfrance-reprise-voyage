@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { motion, useAnimation } from 'framer-motion';
 import { Building, MapPin, Award, ExternalLink } from 'lucide-react';
 
 // Liste des logos des partenaires
@@ -18,12 +17,12 @@ const Partners = () => {
   // Animation pour le défilement automatique des logos
   const [currentBatch, setCurrentBatch] = useState(0);
   const totalBatches = 1; // Nombre de groupes pour le carrousel
-  
+
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentBatch((prev) => (prev + 1) % totalBatches);
     }, 5000);
-    
+
     return () => clearInterval(timer);
   }, []);
 
@@ -34,43 +33,15 @@ const Partners = () => {
         <div className="absolute top-0 left-0 w-full h-full">
           {/* Grille de fond */}
           <div className="absolute inset-0 bg-[url('/grid-dot.svg')] bg-repeat opacity-5"></div>
-          
+
           {/* Formes décoratives */}
-          <motion.div 
-            className="absolute top-1/4 right-[15%] w-64 h-64 rounded-full bg-indigo-100 opacity-30 blur-3xl"
-            animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.3, 0.4, 0.3],
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-          <motion.div 
-            className="absolute bottom-1/4 left-[10%] w-80 h-80 rounded-full bg-pink-100 opacity-20 blur-3xl"
-            animate={{
-              scale: [1.1, 0.9, 1.1],
-              opacity: [0.2, 0.3, 0.2],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
+          <div className="absolute top-1/4 right-[15%] w-64 h-64 rounded-full bg-indigo-100 opacity-30 blur-3xl" />
+          <div className="absolute bottom-1/4 left-[10%] w-80 h-80 rounded-full bg-pink-100 opacity-20 blur-3xl" />
         </div>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16">
           <span className="inline-block text-sm font-semibold text-indigo-600 tracking-wider uppercase bg-indigo-50 py-1 px-3 rounded-full mb-3">
             Réseau d'Excellence
           </span>
@@ -80,48 +51,36 @@ const Partners = () => {
           <p className="text-gray-600 max-w-2xl mx-auto">
             Un réseau étendu de résidences étudiantes à travers toute la France pour vous offrir les meilleures opportunités
           </p>
-        </motion.div>
+        </div>
 
         {/* Statistiques en surbrillance */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="flex flex-wrap justify-center gap-8 md:gap-16 mb-14"
-        >
-          <StatItem 
+        <div className="flex flex-wrap justify-center gap-8 md:gap-16 mb-14">
+          <StatItem
             icon={<Building />}
             value="400+"
             label="Résidences étudiantes"
             color="indigo"
             delay={0.1}
           />
-          <StatItem 
+          <StatItem
             icon={<MapPin />}
             value="120"
             label="Villes en France"
             color="pink"
             delay={0.2}
           />
-          <StatItem 
+          <StatItem
             icon={<Award />}
             value="50+"
             label="Écoles de qualité"
             color="purple"
             delay={0.3}
           />
-        </motion.div>
+        </div>
 
         {/* Logo showcase avec animation carrousel */}
         <div className="relative overflow-hidden rounded-2xl bg-white/80 backdrop-blur-sm shadow-xl border border-gray-100 p-8">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="absolute top-0 left-0 w-full h-full bg-gradient-to-tr from-indigo-50/50 to-transparent opacity-60"
-          />
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-tr from-indigo-50/50 to-transparent opacity-60" />
 
           {/* Titre de la section */}
           <div className="relative mb-8 flex justify-between items-center">
@@ -140,16 +99,15 @@ const Partners = () => {
           </div>
 
           {/* Logos des partenaires */}
-          <motion.div
-            animate={{ x: -currentBatch * 100 + '%' }}
-            transition={{ duration: 0.6, ease: "easeInOut" }}
-            className="flex"
+          <div
+            className="flex transition-transform duration-600 ease-in-out"
+            style={{ transform: `translateX(-${currentBatch * 100}%)` }}
           >
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 w-full flex-shrink-0">
               {partnerLogos.slice(0, 8).map((partner, index) => (
-                <PartnerLogo 
-                  key={index} 
-                  index={index} 
+                <PartnerLogo
+                  key={index}
+                  index={index}
                   delay={index * 0.05}
                   image={partner.image}
                   name={partner.name}
@@ -158,19 +116,19 @@ const Partners = () => {
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 w-full flex-shrink-0">
               {partnerLogos.slice(8).map((partner, index) => (
-                <PartnerLogo 
-                  key={index + 8} 
-                  index={index + 8} 
+                <PartnerLogo
+                  key={index + 8}
+                  index={index + 8}
                   delay={(index + 8) * 0.05}
                   image={partner.image}
                   name={partner.name}
                 />
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
 
-        
+
       </div>
     </section>
   );
@@ -183,42 +141,30 @@ const StatItem = ({ icon, value, label, color, delay }) => {
     pink: "text-pink-600 bg-pink-50",
     purple: "text-purple-600 bg-purple-50"
   };
-  
+
   const bgColor = colors[color] || colors.indigo;
-  
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay }}
-      className="flex flex-col items-center"
-    >
+    <div className="flex flex-col items-center">
       <div className={`w-14 h-14 ${bgColor} rounded-xl flex items-center justify-center mb-3`}>
         {React.cloneElement(icon, { className: "h-6 w-6" })}
       </div>
       <span className="text-3xl font-bold text-gray-900 mb-1">{value}</span>
       <span className="text-gray-500 text-sm">{label}</span>
-    </motion.div>
+    </div>
   );
 };
 
 // Composant pour les logos des partenaires
 const PartnerLogo = ({ index, delay, image, name }) => {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay }}
-      className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow duration-300 aspect-[3/2] flex items-center justify-center"
-    >
+    <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow duration-300 aspect-[3/2] flex items-center justify-center">
       <img
         src={image}
         alt={name}
         className="max-w-full max-h-full object-contain"
       />
-    </motion.div>
+    </div>
   );
 };
 

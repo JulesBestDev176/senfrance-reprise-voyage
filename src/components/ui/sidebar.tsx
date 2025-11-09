@@ -32,7 +32,6 @@ type SidebarContext = {
   setOpenMobile: (open: boolean) => void
   isMobile: boolean
   toggleSidebar: () => void
-}
 
 const SidebarContext = React.createContext<SidebarContext | null>(null)
 
@@ -40,10 +39,8 @@ function useSidebar() {
   const context = React.useContext(SidebarContext)
   if (!context) {
     throw new Error("useSidebar must be used within a SidebarProvider.")
-  }
 
   return context
-}
 
 const SidebarProvider = React.forwardRef<
   HTMLDivElement,
@@ -51,7 +48,6 @@ const SidebarProvider = React.forwardRef<
     defaultOpen?: boolean
     open?: boolean
     onOpenChange?: (open: boolean) => void
-  }
 >(
   (
     {
@@ -79,7 +75,6 @@ const SidebarProvider = React.forwardRef<
           setOpenProp(openState)
         } else {
           _setOpen(openState)
-        }
 
         // This sets the cookie to keep the sidebar state.
         document.cookie = `${SIDEBAR_COOKIE_NAME}=${openState}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}`
@@ -103,8 +98,6 @@ const SidebarProvider = React.forwardRef<
         ) {
           event.preventDefault()
           toggleSidebar()
-        }
-      }
 
       window.addEventListener("keydown", handleKeyDown)
       return () => window.removeEventListener("keydown", handleKeyDown)
@@ -137,7 +130,6 @@ const SidebarProvider = React.forwardRef<
                 "--sidebar-width-icon": SIDEBAR_WIDTH_ICON,
                 ...style,
               } as React.CSSProperties
-            }
             className={cn(
               "group/sidebar-wrapper flex min-h-svh w-full has-[[data-variant=inset]]:bg-sidebar",
               className
@@ -150,7 +142,6 @@ const SidebarProvider = React.forwardRef<
         </TooltipProvider>
       </SidebarContext.Provider>
     )
-  }
 )
 SidebarProvider.displayName = "SidebarProvider"
 
@@ -160,7 +151,6 @@ const Sidebar = React.forwardRef<
     side?: "left" | "right"
     variant?: "sidebar" | "floating" | "inset"
     collapsible?: "offcanvas" | "icon" | "none"
-  }
 >(
   (
     {
@@ -188,7 +178,6 @@ const Sidebar = React.forwardRef<
           {children}
         </div>
       )
-    }
 
     if (isMobile) {
       return (
@@ -201,14 +190,12 @@ const Sidebar = React.forwardRef<
               {
                 "--sidebar-width": SIDEBAR_WIDTH_MOBILE,
               } as React.CSSProperties
-            }
             side={side}
           >
             <div className="flex h-full w-full flex-col">{children}</div>
           </SheetContent>
         </Sheet>
       )
-    }
 
     return (
       <div
@@ -253,7 +240,6 @@ const Sidebar = React.forwardRef<
         </div>
       </div>
     )
-  }
 )
 Sidebar.displayName = "Sidebar"
 
@@ -273,7 +259,6 @@ const SidebarTrigger = React.forwardRef<
       onClick={(event) => {
         onClick?.(event)
         toggleSidebar()
-      }}
       {...props}
     >
       <PanelLeft />
@@ -528,7 +513,6 @@ const sidebarMenuButtonVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
 )
 
 const SidebarMenuButton = React.forwardRef<
@@ -567,13 +551,10 @@ const SidebarMenuButton = React.forwardRef<
 
     if (!tooltip) {
       return button
-    }
 
     if (typeof tooltip === "string") {
       tooltip = {
         children: tooltip,
-      }
-    }
 
     return (
       <Tooltip>
@@ -586,7 +567,6 @@ const SidebarMenuButton = React.forwardRef<
         />
       </Tooltip>
     )
-  }
 )
 SidebarMenuButton.displayName = "SidebarMenuButton"
 
@@ -595,7 +575,6 @@ const SidebarMenuAction = React.forwardRef<
   React.ComponentProps<"button"> & {
     asChild?: boolean
     showOnHover?: boolean
-  }
 >(({ className, asChild = false, showOnHover = false, ...props }, ref) => {
   const Comp = asChild ? Slot : "button"
 
@@ -646,7 +625,6 @@ const SidebarMenuSkeleton = React.forwardRef<
   HTMLDivElement,
   React.ComponentProps<"div"> & {
     showIcon?: boolean
-  }
 >(({ className, showIcon = false, ...props }, ref) => {
   // Random width between 50 to 90%.
   const width = React.useMemo(() => {
@@ -673,7 +651,6 @@ const SidebarMenuSkeleton = React.forwardRef<
           {
             "--skeleton-width": width,
           } as React.CSSProperties
-        }
       />
     </div>
   )
@@ -709,7 +686,6 @@ const SidebarMenuSubButton = React.forwardRef<
     asChild?: boolean
     size?: "sm" | "md"
     isActive?: boolean
-  }
 >(({ asChild = false, size = "md", isActive, className, ...props }, ref) => {
   const Comp = asChild ? Slot : "a"
 
@@ -758,4 +734,3 @@ export {
   SidebarSeparator,
   SidebarTrigger,
   useSidebar,
-}

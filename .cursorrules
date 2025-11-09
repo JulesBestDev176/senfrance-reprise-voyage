@@ -1,0 +1,307 @@
+# Contexte du Projet SenFrance
+
+## Vue d'ensemble du projet
+
+**SenFrance** est une plateforme web moderne dédiée à l'accompagnement des étudiants internationaux dans leur projet d'études en France. Fondée en 2021, l'entreprise propose un écosystème complet de services pour faciliter la mobilité étudiante.
+
+## Stack Technique
+
+- **Framework**: React 18.3.1 avec TypeScript
+- **Build Tool**: Vite 5.4.1
+- **Routing**: React Router DOM v6
+- **UI Components**: shadcn/ui (Radix UI primitives)
+- **Styling**: Tailwind CSS 3.4.11 avec animations CSS natives
+- **State Management**: TanStack React Query v5
+- **Forms**: React Hook Form avec Zod validation
+- **Animations**: Transitions CSS et Tailwind (pas de Framer Motion)
+- **Icons**: Lucide React
+
+## Architecture du Projet
+
+```
+src/
+├── components/
+│   ├── home/          # Composants de la page d'accueil
+│   │   ├── Hero.tsx
+│   │   ├── MainServices.tsx
+│   │   ├── HousingOptions.tsx
+│   │   ├── Partners.tsx
+│   │   ├── GuarantorSection.tsx
+│   │   ├── StudentJob.tsx
+│   │   ├── Testimonials.tsx
+│   │   └── ...
+│   ├── layout/        # Composants de mise en page
+│   │   ├── Navbar.tsx
+│   │   └── Footer.tsx
+│   └── ui/            # Composants UI réutilisables (shadcn/ui)
+├── pages/             # Pages de l'application
+│   ├── Index.tsx      # Page d'accueil
+│   ├── StudentPage.tsx
+│   ├── ParentsPage.tsx
+│   ├── About.tsx
+│   ├── HousingPage.tsx
+│   ├── PageJobEtudiant.tsx
+│   ├── PageAssurances.tsx
+│   └── ...
+├── hooks/             # Hooks personnalisés
+├── lib/               # Utilitaires
+└── App.tsx            # Configuration des routes
+```
+
+## Services Principaux
+
+### 1. **Hébergement**
+- Recherche et réservation de logements étudiants
+- Attestations d'hébergement pour visa
+- Garanties locatives
+- Partenariats avec résidences étudiantes (Estudines, Studea, etc.)
+
+### 2. **AVI (Attestation de Virement Irrévocable)**
+- Document pour justifier les ressources financières
+- Édition en 48h
+- Carte bancaire internationale incluse
+- Prix: 450€
+
+### 3. **Assurances**
+- Assurance habitation (partenariat Luko)
+- Assurance voyage
+- Garanties diverses pour étudiants
+- Partenariat avec GarantMe, SmartGarant
+
+### 4. **Job Étudiant**
+- Plateforme de mise en relation
+- Offres compatibles avec les études
+- Assistance CV et préparation entretiens
+
+### 5. **Accompagnement Global**
+- Orientation académique
+- Constitution dossier de visa
+- Démarches administratives
+- Conseiller dédié
+
+## Routes Principales
+
+```typescript
+/ - Page d'accueil
+/etudiants - Page dédiée aux étudiants
+/parents - Page pour les parents
+/about - À propos de SenFrance
+/contact - Page de contact
+/tarifs - Grille tarifaire
+/visa/avi - Informations AVI
+/visa/hebergement - Solutions d'hébergement
+/vivre-en-france/job-etudiant - Jobs étudiants
+/vivre-en-france/assurances - Assurances
+/garantie/en-savoir-plus - Détails garanties
+/assurance/en-savoir-plus - Détails assurances
+/faq - Questions fréquentes
+/privacy - Politique de confidentialité
+/terms - Conditions générales
+/legals - Mentions légales
+```
+
+## Identité Visuelle
+
+### Couleurs Principales
+- **Primary Dark**: `#18133E` (violet foncé)
+- **Primary Medium**: `#271D5B` (violet moyen)
+- **Accent**: `#FFC3BC` (rose pêche)
+- **Accent Dark**: `#ff9d94` (rose corail)
+
+### Typographie
+- Police système avec fallbacks
+- Tailles responsives (mobile-first)
+- Hiérarchie claire (h1: 4xl-6xl, h2: 3xl-4xl, etc.)
+
+### Design System
+- Composants shadcn/ui personnalisés
+- Animations subtiles (hover, transitions)
+- Dégradés pour les CTA
+- Glassmorphism (backdrop-blur)
+- Ombres douces et progressives
+
+## Partenaires
+
+### Financiers
+- **VivaWallet**: Solutions de paiement
+- **GarantMe**: Garanties locatives
+- **SmartGarant**: Cautions pour étudiants
+
+### Assurances
+- **Luko**: Assurance habitation
+
+### Logement
+- **Estudines**: Résidences étudiantes
+- **Studea**: Logements étudiants
+- **Studélites**: Résidences
+- **Studyo**: Solutions d'hébergement
+
+## Fonctionnalités Clés
+
+### Navigation
+- Menu responsive avec mobile menu
+- Liens vers portail externe (senfrance.fr/login-senfrance/student)
+- Smooth scroll vers sections
+
+### Animations
+- Transitions CSS natives et Tailwind
+- Hover effects sur cartes et boutons (transition-all, duration-300, etc.)
+- Effets de scale, translate et opacity avec Tailwind
+- Animations déclaratives uniquement (pas de bibliothèque externe)
+
+### Formulaires
+- Validation avec Zod
+- React Hook Form pour la gestion
+- Messages d'erreur clairs
+- Feedback visuel
+
+### Responsive Design
+- Mobile-first approach
+- Breakpoints Tailwind (sm, md, lg, xl)
+- Grilles adaptatives
+- Images optimisées
+
+## Statistiques Clés
+
+- **2000+** étudiants accompagnés
+- **98%** de satisfaction
+- **Depuis 2021**
+- Support **24h/24**
+
+## Objectifs Business
+
+1. **Faciliter la mobilité étudiante** vers la France
+2. **Simplifier les démarches administratives**
+3. **Offrir un accompagnement personnalisé**
+4. **Garantir la sécurité financière** (AVI, assurances)
+5. **Assurer un logement décent** avant l'arrivée
+
+## Tone of Voice
+
+- **Chaleureux et rassurant**: Les étudiants sont souvent stressés
+- **Professionnel mais accessible**: Éviter le jargon
+- **Empathique**: Comprendre les défis de la mobilité
+- **Motivant**: Encourager la réussite
+- **Tutoiement**: Proximité avec les étudiants
+
+## Personas Cibles
+
+### Étudiant International
+- 18-25 ans
+- Originaire d'Afrique (principalement Sénégal)
+- Projet d'études en France
+- Besoin d'accompagnement complet
+- Budget limité
+
+### Parents d'Élèves
+- 40-60 ans
+- Soucieux de la sécurité de leur enfant
+- Besoin de garanties et transparence
+- Prêts à investir dans la réussite
+
+## Conventions de Code
+
+### TypeScript
+- Types explicites pour les props
+- Interfaces pour les objets complexes
+- Éviter `any`
+- Utiliser les types génériques de React
+
+### Composants
+- Functional components avec hooks
+- Props destructuring
+- Export default pour les pages
+- Export named pour les composants réutilisables
+
+### Styling
+- Classes Tailwind uniquement
+- Pas de CSS inline (sauf cas exceptionnels)
+- Mobile-first (classes sans préfixe = mobile)
+- Utiliser les variables de couleur personnalisées
+- Animations avec classes Tailwind (transition-*, duration-*, hover:*, etc.)
+
+### Animations
+- **INTERDICTION STRICTE** d'utiliser Framer Motion ou toute bibliothèque d'animation externe
+- Utiliser uniquement les classes Tailwind pour les animations:
+  - `transition-all`, `transition-colors`, `transition-transform`
+  - `duration-200`, `duration-300`, `duration-500`
+  - `hover:scale-105`, `hover:-translate-y-1`, `hover:shadow-xl`
+  - `group` et `group-hover:*` pour les animations parent-enfant
+- Effets visuels avec `backdrop-blur`, `opacity-*`, `blur-*`
+- Pas de composants `motion.*` (motion.div, motion.section, etc.)
+
+### Naming
+- PascalCase pour composants
+- camelCase pour fonctions/variables
+- kebab-case pour fichiers CSS
+- UPPER_CASE pour constantes
+
+## Intégrations Externes
+
+- **Portail étudiant**: https://www.senfrance.fr/login-senfrance/student
+- **Perfectible.app**: Plateforme d'orientation (https://www.perfectible.app/register)
+- **Images**: Unsplash pour photos de qualité
+- **Assets locaux**: `/public/assets/images/partners/`
+
+## Performance
+
+- Lazy loading des images
+- Code splitting par route
+- Optimisation Vite
+- Compression des assets
+- Cache des requêtes (React Query)
+
+## SEO
+
+- Meta tags appropriés
+- Structure sémantique HTML
+- Alt text sur images
+- URLs descriptives
+- Sitemap et robots.txt
+
+## Accessibilité
+
+- Contraste suffisant (WCAG AA)
+- Navigation clavier
+- ARIA labels sur composants interactifs
+- Focus visible
+- Textes alternatifs
+
+## Déploiement
+
+- Build: `npm run build`
+- Preview: `npm run preview`
+- Redirects: Fichier `_redirects` copié dans dist/
+- Plateforme: Lovable.dev
+
+## Points d'Attention
+
+1. **Cohérence visuelle**: Respecter la charte graphique
+2. **Responsive**: Tester sur tous les breakpoints
+3. **Performance**: Optimiser les images et animations
+4. **Accessibilité**: Garder le site utilisable par tous
+5. **SEO**: Maintenir une bonne structure
+6. **Multilingue**: Préparer pour FR/EN si besoin futur
+
+## Ressources Utiles
+
+- Documentation shadcn/ui: https://ui.shadcn.com
+- Tailwind CSS: https://tailwindcss.com
+- Tailwind Animations: https://tailwindcss.com/docs/animation
+- React Router: https://reactrouter.com
+
+## Évolutions Futures
+
+- [ ] Système de réservation en ligne
+- [ ] Espace client personnalisé
+- [ ] Chat en direct avec conseillers
+- [ ] Blog pour conseils étudiants
+- [ ] Témoignages vidéo
+- [ ] Version mobile native
+- [ ] Multilingue (Anglais, Espagnol)
+- [ ] Intégration paiement en ligne
+
+---
+
+**Note**: Ce projet est en développement actif. Toujours vérifier les dernières mises à jour avant de faire des modifications importantes.
+

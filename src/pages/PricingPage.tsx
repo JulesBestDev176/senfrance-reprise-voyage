@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { motion, useInView, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { 
   ArrowRight, 
   Check, 
@@ -30,18 +29,7 @@ const PricingPage = () => {
   const [activePlan, setActivePlan] = useState(null);
   const [selectedTab, setSelectedTab] = useState("individuel");
   
-  // Reference for the scroll progress and parallax effects
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
-  
-  // Parallax effect values for backgrounds
-  const backgroundY = useTransform(scrollYProgress, [0, 1], [0, -200]);
-  const foregroundY = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  
-  // Pricing plans data (pour À la carte)
+      // Pricing plans data (pour À la carte)
   const pricingPlans = [
     {
       id: "avi",
@@ -254,7 +242,7 @@ const PricingPage = () => {
       if (service) {
         const price = parseInt(service.price);
         total += price;
-        
+
         // Apply 15% discount to services after the first one
         if (index > 0) {
           discountAmount += price * 0.15;
@@ -267,81 +255,51 @@ const PricingPage = () => {
   }, [simulatedServices]);
 
   return (
-    <div ref={containerRef} className="relative">
+    <div className="relative">
       {/* Hero Section */}
-      <section className="relative py-8 md:py-32 overflow-hidden h-screen bg-white ">
-        {/* Background with parallax effect */}
-        <motion.div 
-          className="absolute inset-0 bg-gradient-to-br from-[#18133E] via-[#231A54] to-[#18133E] overflow-hidden"
-          style={{ y: backgroundY }}
-        >
-          <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10"></div>
-          
-          {/* Animated decorative elements */}
-          <motion.div 
-            className="absolute -top-20 -left-20 w-80 h-80 rounded-full bg-[#FFC3BC]/20 blur-3xl"
-            animate={{
-              scale: [1, 1.1, 1],
-              opacity: [0.2, 0.3, 0.2],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-          <motion.div 
-            className="absolute -bottom-40 -right-40 w-96 h-96 rounded-full bg-purple-500/20 blur-3xl"
-            animate={{
-              scale: [1.1, 1, 1.1],
-              opacity: [0.1, 0.2, 0.1],
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1
-            }}
-          />
-        </motion.div>
+      <section className="relative h-screen flex items-start justify-center overflow-hidden bg-gradient-to-b from-gray-50 to-white pt-12">
+        {/* Decorative elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-20 right-10 w-72 h-72 bg-[#FFC3BC]/5 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 left-10 w-96 h-96 bg-[#18133E]/5 rounded-full blur-3xl"></div>
+        </div>
         
         <div className="container mx-auto px-4 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center max-w-3xl mx-auto"
-          >
-            <div className="inline-block mb-4 px-3 py-1 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm">
-              <span className="text-sm font-medium text-white">Facturation avantageuse</span>
+          <div className="text-center max-w-3xl mx-auto">
+            <div className="inline-block mb-4 px-3 py-1 rounded-full border border-[#FFC3BC]/30 bg-[#FFC3BC]/10">
+              <span className="text-sm font-medium text-[#18133E]">Facturation avantageuse</span>
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-[#18133E]">
               Nos tarifs et services
             </h1>
-            <p className="text-xl text-white/80 mb-8 leading-relaxed">
-              Des services <span className="font-semibold text-[#FFC3BC]">adaptés à ton parcours</span> d'études en France. Une tarification claire et sans surprise. 
+            <p className="text-xl text-gray-700 mb-12 leading-relaxed max-w-2xl mx-auto">
+              Des services adaptés à ton parcours avec une tarification claire et transparente.
             </p>
             
-            {/* <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-              className="flex justify-center mt-10"
-            >
-              <a 
-                href="#pricing" 
-                className="flex flex-col items-center text-white/70 hover:text-white transition-colors"
+            {/* Tabs de navigation */}
+            <div className="flex flex-wrap gap-4 justify-center">
+              <button
+                onClick={() => setSelectedTab("individuel")}
+                className={`px-6 py-3 rounded-full font-medium transition-all ${
+                  selectedTab === "individuel"
+                    ? "bg-gradient-to-r from-[#FFC3BC] to-[#ff9d94] text-[#18133E]"
+                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                }`}
               >
-                <span className="mb-2 text-white/90">Découvrir nos offres</span>
-                <motion.div
-                  animate={{ y: [0, 8, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <ArrowDown className="h-6 w-6" />
-                </motion.div>
-              </a>
-            </motion.div> */}
-          </motion.div>
+                Services à la carte
+              </button>
+              <button
+                onClick={() => setSelectedTab("packs")}
+                className={`px-6 py-3 rounded-full font-medium transition-all ${
+                  selectedTab === "packs"
+                    ? "bg-gradient-to-r from-[#FFC3BC] to-[#ff9d94] text-[#18133E]"
+                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                }`}
+              >
+                Packs économiques
+              </button>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -349,20 +307,20 @@ const PricingPage = () => {
       <section id="pricing" className="py-12 bg-gradient-to-b from-white to-gray-50 relative">
         <div className="container mx-auto px-4">
           <div className="flex flex-col items-center justify-center mb-16">
-            <div className="bg-white p-1.5 rounded-xl shadow-md mb-8">
+            <div className="bg-white p-1.5 rounded-xl shadow-md mb-8 transition-all duration-300">
               <div className="flex space-x-1">
                 <button
-                  onClick={() => setSelectedTab("individuel")} 
+                  onClick={() => setSelectedTab("individuel")}
                   className={`py-2.5 px-6 rounded-lg text-sm font-medium transition-all duration-200 ${
-                    selectedTab === "individuel" 
-                      ? "bg-gradient-to-r from-[#18133E] to-[#271D5B] text-white shadow-lg" 
+                    selectedTab === "individuel"
+                      ? "bg-gradient-to-r from-[#18133E] to-[#271D5B] text-white shadow-lg"
                       : "text-gray-600 hover:bg-gray-100"
                   }`}
                 >
                   À la carte
                 </button>
                 <button
-                  onClick={() => setSelectedTab("pack")} 
+                  onClick={() => setSelectedTab("pack")}
                   className={`py-2.5 px-6 rounded-lg text-sm font-medium transition-all duration-200 ${
                     selectedTab === "pack" 
                       ? "bg-gradient-to-r from-[#18133E] to-[#271D5B] text-white shadow-lg" 
@@ -378,18 +336,13 @@ const PricingPage = () => {
               {selectedTab === "individuel" ? "Services à la carte" : "Offres packagées"}
             </span>
             <h2 className="text-3xl md:text-5xl font-bold mb-3 text-center text-[#18133E]">
-              {selectedTab === "individuel" 
-                ? "Choisissez tes services" 
+              {selectedTab === "individuel"
+                ? "Choisissez tes services"
                 : "Économisez avec nos packs"}
             </h2>
-            <motion.div
-              initial={{ opacity: 0, width: 0 }}
-              animate={{ opacity: 1, width: "5rem" }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="h-1 bg-gradient-to-r from-[#FFC3BC] to-[#FFC3BC]/30 rounded-full mb-6"
-            />
+            <div className="h-1 bg-gradient-to-r from-[#FFC3BC] to-[#FFC3BC]/30 rounded-full mb-6"></div>
             <p className="text-gray-600 text-center max-w-2xl">
-              {selectedTab === "individuel" 
+              {selectedTab === "individuel"
                 ? "Nous proposons une gamme complète de services pour t'accompagner dans toutes tes démarches. Souscris plusieurs services et bénéficie d'une remise de -15% sur la deuxième souscription."
                 : "Économisez en optant pour nos packs de services. Nous avons regroupé les services les plus complémentaires pour t'offrir une solution complète à un tarif avantageux."}
             </p>
@@ -401,14 +354,8 @@ const PricingPage = () => {
       <section className="pb-24 pt-0 bg-gradient-to-b from-white to-gray-50 relative">
         <div className="absolute inset-0 overflow-hidden -z-10">
           <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5"></div>
-          <motion.div 
-            className="absolute top-0 right-0 w-1/2 h-1/2 rounded-full bg-[#FFC3BC]/5 blur-3xl"
-            style={{ y: foregroundY }}
-          />
-          <motion.div 
-            className="absolute bottom-0 left-0 w-1/2 h-1/2 rounded-full bg-[#18133E]/5 blur-3xl"
-            style={{ y: foregroundY }}
-          />
+          <div className="absolute top-0 right-0 w-1/2 h-1/2 rounded-full bg-[#FFC3BC]/5 blur-3xl transition-all duration-300"></div>
+          <div className="absolute bottom-0 left-0 w-1/2 h-1/2 rounded-full bg-[#18133E]/5 blur-3xl"></div>
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
@@ -439,7 +386,7 @@ const PricingPage = () => {
                       
                       {plan.promo && (
                         <div className="absolute top-4 left-4 z-10">
-                          <div className="flex items-center gap-1.5 bg-[#FFC3BC]/10 text-[#FFC3BC] px-2.5 py-1 rounded-full text-xs font-medium border border-[#FFC3BC]/20">
+                          <div className="flex items-center gap-1.5 bg-[#FFC3BC]/10 text-[#FFC3BC] px-2.5 py-1 rounded-full text-xs font-medium border border-[#FFC3BC]/20 transition-all duration-300">
                             <Tag size={12} />
                             <span>{plan.promo}</span>
                           </div>
@@ -468,7 +415,7 @@ const PricingPage = () => {
                       <div className="p-4 flex-grow flex flex-col">
                         <ul className="space-y-2 mb-4 flex-grow">
                           {plan.features.map((feature, idx) => (
-                            <li 
+                            <li
                               key={idx}
                               className="flex items-start"
                             >
@@ -481,8 +428,7 @@ const PricingPage = () => {
                         </ul>
                         
                         <div className="mt-auto">
-                          <button
-                            className={`inline-flex items-center justify-center w-full bg-gradient-to-r ${style.button} text-white font-medium py-2.5 px-4 rounded-lg transition-all duration-300 shadow-md text-sm`}
+                          <button className={`inline-flex items-center justify-center w-full bg-gradient-to-r ${style.button} text-white font-medium py-2.5 px-4 rounded-lg transition-all duration-300 shadow-md text-sm`}
                           >
                             <span>Souscrire</span>
                             <div className="ml-2">
@@ -550,7 +496,7 @@ const PricingPage = () => {
                       title = "SIM Card";
                       subTitle = "française";
                     }
-                    
+
                     return (
                       <div
                         key={service.id}
@@ -649,7 +595,7 @@ const PricingPage = () => {
                       <div className="p-4 flex-grow flex flex-col">
                         <ul className="space-y-2 mb-4 flex-grow">
                           {pack.items.concat(pack.benefits).map((item, idx) => (
-                            <li 
+                            <li
                               key={idx}
                               className="flex items-start"
                             >
@@ -662,8 +608,7 @@ const PricingPage = () => {
                         </ul>
                         
                         <div className="mt-auto">
-                          <button
-                            className={`inline-flex items-center justify-center w-full bg-gradient-to-r ${style.button} text-white font-medium py-2.5 px-4 rounded-lg transition-all duration-300 shadow-md text-sm`}
+                          <button className={`inline-flex items-center justify-center w-full bg-gradient-to-r ${style.button} text-white font-medium py-2.5 px-4 rounded-lg transition-all duration-300 shadow-md text-sm`}
                           >
                             <span>Souscrire au pack</span>
                             <ArrowRight className="h-4 w-4 ml-2" />
@@ -675,7 +620,7 @@ const PricingPage = () => {
                         <div className="mt-2 flex justify-center">
                           <button
                             onClick={() => toggleService(pack.id)}
-                            className={`text-xs font-medium flex items-center gap-1.5 py-1 px-2 rounded-full transition-colors ${
+                              className={`text-xs font-medium flex items-center gap-1.5 py-1 px-2 rounded-full transition-colors ${
                               simulatedServices.includes(pack.id)
                                 ? `bg-${pack.color === 'indigo' ? 'indigo' : pack.color === 'purple' ? 'purple' : 'gray'}-50 text-${pack.color === 'indigo' ? 'indigo' : pack.color === 'purple' ? 'purple' : 'gray'}-600 border border-${pack.color === 'indigo' ? 'indigo' : pack.color === 'purple' ? 'purple' : 'gray'}-100`
                                 : "text-gray-500 hover:text-gray-700"
@@ -700,9 +645,9 @@ const PricingPage = () => {
                 })}
               </div>
               
-              <div className="mt-16 p-8 bg-[#18133E] rounded-xl border border-[#18133E]/30 max-w-3xl mx-auto text-white shadow-xl">
+              <div className="mt-16 p-8 bg-[#18133E] rounded-xl border border-[#18133E]/30 max-w-3xl mx-auto text-white shadow-xl transition-all duration-300">
                 <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
-                  <div className="w-16 h-16 rounded-xl bg-white/10 backdrop-blur-sm flex items-center justify-center flex-shrink-0 border border-white/20">
+                  <div className="w-16 h-16 rounded-xl bg-white/10 backdrop-blur-sm flex items-center justify-center flex-shrink-0 border border-white/20 transition-all duration-300">
                     <Gift className="h-8 w-8 text-[#FFC3BC]" />
                   </div>
                   <div>
@@ -742,7 +687,8 @@ const PricingPage = () => {
                           {simulatedServices.map((serviceId) => {
                             const service = [...pricingPlans, ...additionalServices, ...economicPacks].find(s => s.id === serviceId);
                             return (
-                              <div key={serviceId} className="bg-gray-100 px-2 py-0.5 rounded text-xs text-gray-700">
+                              <div key={serviceId}
+                                  className="bg-gray-100 px-2 py-0.5 rounded text-xs text-gray-700">
                                 {service?.title}
                               </div>
                             );
@@ -759,8 +705,8 @@ const PricingPage = () => {
                   </div>
                   <div className="flex gap-3">
                     <button 
-                      onClick={() => setSimulatedServices([])} 
-                      className="border border-[#18133E]/20 text-[#18133E] hover:bg-[#18133E]/5 px-4 py-2 rounded-lg transition-colors"
+                      onClick={() => setSimulatedServices([])}
+                                className="border border-[#18133E]/20 text-[#18133E] hover:bg-[#18133E]/5 px-4 py-2 rounded-lg transition-colors"
                     >
                       Réinitialiser
                     </button>
@@ -775,7 +721,7 @@ const PricingPage = () => {
           
           {/* Section conseil - seulement pour À la carte */}
           {selectedTab === "individuel" && (
-            <div className="mt-16 p-6 bg-gradient-to-br from-[#FFC3BC]/10 to-[#FFC3BC]/5 rounded-xl border border-[#FFC3BC]/20 max-w-3xl mx-auto">
+            <div className="mt-16 p-6 bg-gradient-to-br from-[#FFC3BC]/10 to-[#FFC3BC]/5 rounded-xl border border-[#FFC3BC]/20 max-w-3xl mx-auto transition-all duration-300">
               <div className="flex items-start gap-4">
                 <div className="w-10 h-10 rounded-full bg-[#FFC3BC]/20 flex items-center justify-center flex-shrink-0 mt-1">
                   <Info className="h-5 w-5 text-[#FFC3BC]" />
@@ -842,8 +788,7 @@ const PricingPage = () => {
                 }
               ].map((faq, index) => (
                 <div
-                  key={index}
-                  className="bg-white p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+                  key={index} className="bg-white p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
                 >
                   <div className="flex items-start gap-3">
                     <div className="w-8 h-8 rounded-full bg-[#18133E] flex items-center justify-center flex-shrink-0 mt-1">
@@ -874,45 +819,19 @@ const PricingPage = () => {
       <section className="py-8 bg-gradient-to-b from-white to-gray-50 relative">
         <div className="absolute inset-0 overflow-hidden -z-10">
           <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5"></div>
-          <motion.div 
-            className="absolute top-0 right-0 w-1/2 h-1/2 rounded-full bg-[#FFC3BC]/5 blur-3xl"
-            style={{ y: foregroundY }}
-          />
+          <div className="absolute top-0 right-0 w-1/2 h-1/2 rounded-full bg-[#FFC3BC]/5 blur-3xl transition-all duration-300"></div>
         </div>
         
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto bg-gradient-to-br from-[#18133E] to-[#271D5B] rounded-2xl p-8 md:p-12 shadow-xl text-center text-white overflow-hidden relative">
+          <div className="max-w-4xl mx-auto bg-gradient-to-br from-[#18133E] to-[#271D5B] rounded-2xl p-8 md:p-12 shadow-xl text-center text-white overflow-hidden relative transition-all duration-300">
             {/* Decorative elements */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
-              <motion.div 
-                className="absolute top-0 right-0 w-64 h-64 rounded-full bg-[#FFC3BC]/10 blur-3xl"
-                animate={{
-                  y: [0, -20, 0],
-                  opacity: [0.2, 0.3, 0.2],
-                }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              />
-              <motion.div 
-                className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-purple-500/10 blur-3xl"
-                animate={{
-                  scale: [1, 1.1, 1],
-                  opacity: [0.1, 0.2, 0.1],
-                }}
-                transition={{
-                  duration: 10,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 1
-                }}
-              />
+              <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-[#FFC3BC]/10 blur-3xl transition-all duration-300"></div>
+              <div className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-purple-500/10 blur-3xl"></div>
             </div>
             
             <div className="relative z-10">
-              <div className="w-20 h-20 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-8 border border-white/20 shadow-xl">
+              <div className="w-20 h-20 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-8 border border-white/20 shadow-xl transition-all duration-300">
                 <Calendar className="h-10 w-10 text-white" />
               </div>
               

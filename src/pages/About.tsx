@@ -1,5 +1,4 @@
-import React, { useRef, useState } from "react";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import React, { useState } from "react";
 import {
   CheckCircle,
   Shield,
@@ -148,87 +147,28 @@ const About = () => {
   useScrollToTop();
   const [activeFeature, setActiveFeature] = useState<number | null>(null);
 
-  // Reference for the scroll progress and parallax effects
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
-
-  // Parallax effect values for backgrounds
-  const backgroundY = useTransform(scrollYProgress, [0, 1], [0, -200]);
-  const foregroundY = useTransform(scrollYProgress, [0, 1], [0, -100]);
-
-  // Animation variants
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
-      },
-    },
-  };
-
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 30 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        duration: 0.8,
-        damping: 15,
-      },
-    },
-  };
-
   return (
-    <div ref={containerRef} className="relative">
+    <div className="relative">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
         {/* Background with parallax effect */}
-        <motion.div
+        <div
           className="absolute inset-0 bg-gradient-to-br from-[#18133E] via-[#231A54] to-[#18133E] overflow-hidden"
-          style={{ y: backgroundY }}
         >
           <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10"></div>
 
           {/* Animated decorative elements */}
-          <motion.div
+          <div
             className="absolute -top-20 -left-20 w-80 h-80 rounded-full bg-[#FFC3BC]/20 blur-3xl"
-            animate={{
-              scale: [1, 1.1, 1],
-              opacity: [0.2, 0.3, 0.2],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
           />
-          <motion.div
+          <div
             className="absolute -bottom-40 -right-40 w-96 h-96 rounded-full bg-purple-500/20 blur-3xl"
-            animate={{
-              scale: [1.1, 1, 1.1],
-              opacity: [0.1, 0.2, 0.1],
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1,
-            }}
           />
-        </motion.div>
+        </div>
 
         <div className="container mx-auto px-4 relative z-10 py-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.2 }}
+            <div
               className="text-white"
             >
               <div className="inline-block mb-4 px-3 py-1 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm">
@@ -260,9 +200,8 @@ const About = () => {
                 - forment un écosystème complet pour votre réussite.
               </p>
               <div className="flex flex-wrap gap-4">
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                <div
+                  className="transition-transform duration-200 hover:scale-105"
                 >
                   <Button
                     asChild
@@ -273,45 +212,22 @@ const About = () => {
                       <ArrowRight className="h-5 w-5" />
                     </Link>
                   </Button>
-                </motion.div>
-                {/* <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Button
-                    asChild
-                    variant="outline"
-                    className="bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 border-white/20 rounded-full px-8 py-6 text-lg font-medium"
-                  >
-                    <Link to="/temoignages">
-                      <span>Témoignages clients</span>
-                    </Link>
-                  </Button>
-                </motion.div> */}
+                </div>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.4 }}
+            <div
               className="bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 p-8 shadow-xl"
             >
               <div className="relative">
-                <motion.div
+                <div
                   className="absolute -top-4 -right-4 bg-gradient-to-r from-[#FFC3BC] to-[#ff9d94] text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg z-10 flex items-center gap-1.5"
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.8 }}
                 >
                   <Sparkles className="h-4 w-4" />
                   <span>Depuis 2021</span>
-                </motion.div>
+                </div>
 
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 0.6 }}
+                <div
                   className="p-6 bg-white/5 backdrop-blur-sm rounded-xl mb-6 border border-white/10"
                 >
                   <h3 className="text-xl font-semibold mb-3 text-[#FFC3BC]">
@@ -327,24 +243,18 @@ const About = () => {
                       "Un suivi transparent en temps réel",
                       "Une équipe d'experts dédiés",
                     ].map((item, index) => (
-                      <motion.li
+                      <li
                         key={index}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.8 + index * 0.1 }}
                         className="flex items-start"
                       >
                         <CheckCircle className="h-5 w-5 text-[#FFC3BC] mr-2 mt-0.5 flex-shrink-0" />
                         <span className="text-white/90">{item}</span>
-                      </motion.li>
+                      </li>
                     ))}
                   </ul>
-                </motion.div>
+                </div>
 
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 1 }}
+                <div
                   className="grid grid-cols-2 gap-4"
                 >
                   <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10 text-center">
@@ -363,9 +273,9 @@ const About = () => {
                       Taux de satisfaction
                     </div>
                   </div>
-                </motion.div>
+                </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -374,22 +284,16 @@ const About = () => {
       <section className="py-8 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
         <div className="absolute inset-0 -z-10">
           <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5"></div>
-          <motion.div
+          <div
             className="absolute top-0 right-0 w-1/2 h-1/2 rounded-full bg-[#FFC3BC]/5 blur-3xl"
-            style={{ y: foregroundY }}
           />
-          <motion.div
+          <div
             className="absolute bottom-0 left-0 w-1/2 h-1/2 rounded-full bg-[#18133E]/5 blur-3xl"
-            style={{ y: foregroundY }}
           />
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+          <div
             className="text-center max-w-3xl mx-auto mb-16"
           >
             <span className="inline-block py-1 px-3 rounded-full bg-[#FFC3BC]/10 text-[#18133E] text-sm font-medium mb-4 border border-[#FFC3BC]/20">
@@ -398,24 +302,17 @@ const About = () => {
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#18133E]">
               Quatre domaines d'expertise pour ta réussite
             </h2>
-            <motion.div
-              initial={{ opacity: 0, width: 0 }}
-              whileInView={{ opacity: 1, width: "5rem" }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.3 }}
+            <div
               className="h-1 bg-gradient-to-r from-[#FFC3BC] to-[#FFC3BC]/30 rounded-full mx-auto mb-6"
+              style={{ width: "5rem" }}
             />
             <p className="text-gray-600">
               Une approche intégrée qui couvre tous vos les besoins, de la
               recherche de logement au job étudiant .
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-50px" }}
+          <div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
           >
             {[
@@ -472,32 +369,23 @@ const About = () => {
                 colorStyles[service.color as keyof typeof colorStyles];
 
               return (
-                <motion.div
+                <div
                   key={index}
-                  variants={fadeInUp}
-                  whileHover={{ y: -10, scale: 1.02 }}
                   onMouseEnter={() => setActiveFeature(index)}
                   onMouseLeave={() => setActiveFeature(null)}
-                  className={`group bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border ${style.border} ${style.hover} h-full relative overflow-hidden`}
+                  className={`group bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border ${style.border} ${style.hover} h-full relative overflow-hidden hover:-translate-y-2 hover:scale-105`}
                 >
                   <div
                     className={`absolute inset-0 bg-gradient-to-br ${style.icon} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}
                   ></div>
 
-                  <motion.div
-                    className={`w-14 h-14 mb-4 rounded-xl bg-gradient-to-br ${style.icon} flex items-center justify-center text-white relative z-10`}
-                    animate={
-                      activeFeature === index
-                        ? {
-                            scale: 1.1,
-                            rotate: [0, -5, 5, 0],
-                          }
-                        : { scale: 1, rotate: 0 }
-                    }
-                    transition={{ duration: 0.5 }}
+                  <div
+                    className={`w-14 h-14 mb-4 rounded-xl bg-gradient-to-br ${style.icon} flex items-center justify-center text-white relative z-10 transition-transform duration-500 ${
+                      activeFeature === index ? "scale-110" : "scale-100"
+                    }`}
                   >
                     <service.icon className="h-6 w-6" />
-                  </motion.div>
+                  </div>
 
                   <h3 className="text-lg font-bold mb-2 text-[#18133E] relative z-10">
                     {service.title}
@@ -521,20 +409,16 @@ const About = () => {
                     ))}
                   </div>
 
-                  <motion.div
-                    className={`mt-4 h-0.5 bg-gradient-to-r ${style.icon} rounded-full relative z-10`}
-                    initial={{ width: 0 }}
-                    animate={
-                      activeFeature === index
-                        ? { width: "100%" }
-                        : { width: "20%" }
-                    }
-                    transition={{ duration: 0.5 }}
+                  <div
+                    className={`mt-4 h-0.5 bg-gradient-to-r ${style.icon} rounded-full relative z-10 transition-all duration-500`}
+                    style={{
+                      width: activeFeature === index ? "100%" : "20%"
+                    }}
                   />
-                </motion.div>
+                </div>
               );
             })}
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -542,86 +426,14 @@ const About = () => {
       <section className="py-8 bg-[#18133E] text-white relative overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10"></div>
-          <motion.div
+          <div
             className="absolute top-1/4 right-1/4 w-64 h-64 rounded-full bg-[#FFC3BC]/10 blur-3xl"
-            animate={{
-              y: [0, -30, 0],
-              opacity: [0.2, 0.3, 0.2],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
           />
         </div>
 
-        {/* <div className="container mx-auto px-4 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto mb-16"
-          >
-            <span className="inline-block py-1 px-3 rounded-full bg-white/10 text-white text-sm font-medium mb-4 border border-white/20">
-              Notre Équipe
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Des experts passionnés à votre service
-            </h2>
-            <motion.div
-              initial={{ opacity: 0, width: 0 }}
-              whileInView={{ opacity: 1, width: "5rem" }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="h-1 bg-gradient-to-r from-[#FFC3BC] to-transparent rounded-full mx-auto mb-6"
-            />
-            <p className="text-white/80">
-              Une équipe multidisciplinaire qui met son expertise au service de votre réussite.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {team.map((member, index) => {
-              const style = colorStyles[member.color as keyof typeof colorStyles];
-              
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  whileHover={{ y: -10, scale: 1.02 }}
-                  className="group bg-white/10 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10 hover:bg-white/15 transition-all duration-300"
-                >
-                  <div className="relative overflow-hidden">
-                    <img 
-                      src={member.image} 
-                      alt={member.name} 
-                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className={`absolute inset-0 bg-gradient-to-t ${style.icon} opacity-0 group-hover:opacity-20 transition-opacity duration-300`}></div>
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-lg font-bold mb-1 group-hover:text-[#FFC3BC] transition-colors">
-                      {member.name}
-                    </h3>
-                    <p className="text-[#FFC3BC] font-medium mb-3 text-sm">{member.role}</p>
-                    <p className="text-white/70 text-sm leading-relaxed">{member.bio}</p>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div> */}
+        {/* Commented out team section - can be re-enabled if needed */}
         <div className="container mx-auto px-4 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+          <div
             className="text-center max-w-4xl mx-auto mb-16"
           >
             <span className="inline-block py-1 px-3 rounded-full bg-white/10 text-white text-sm font-medium mb-4 border border-white/20">
@@ -630,20 +442,13 @@ const About = () => {
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Comment SenFrance est née
             </h2>
-            <motion.div
-              initial={{ opacity: 0, width: 0 }}
-              whileInView={{ opacity: 1, width: "5rem" }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.3 }}
+            <div
               className="h-1 bg-gradient-to-r from-[#FFC3BC] to-transparent rounded-full mx-auto mb-8"
+              style={{ width: "5rem" }}
             />
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+          <div
             className="max-w-4xl mx-auto"
           >
             <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 md:p-12 border border-white/20 relative overflow-hidden">
@@ -652,18 +457,14 @@ const About = () => {
               <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full blur-xl"></div>
 
               <div className="relative z-10">
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 1, delay: 0.4 }}
+                <div
                   className="prose prose-lg text-white/90 max-w-none"
                 >
                   <p className="text-lg md:text-xl leading-relaxed mb-6 first-letter:text-5xl first-letter:font-bold first-letter:text-[#FFC3BC] first-letter:float-left first-letter:leading-none first-letter:mr-2 first-letter:mt-1">
                     <strong className="text-[#FFC3BC]">
                       SenFrance est née de la volonté de ses associés et d'une
                       idée simple :
-                    </strong>{" "}
+                    </strong> 
                     offrir un service dont nous n'avions pas pu bénéficier en
                     tant qu'étudiants internationaux dans une société et une
                     culture nouvelles.
@@ -672,7 +473,7 @@ const About = () => {
                   <p className="text-lg leading-relaxed mb-6">
                     Nous sommes persuadés que la cause principale de l'échec
                     chez beaucoup d'étudiants (qu'ils viennent de loin ou non)
-                    tient aux{" "}
+                    tient aux 
                     <span className="text-[#FFC3BC] font-semibold">
                       conditions de vie
                     </span>
@@ -692,11 +493,7 @@ const About = () => {
                     qualité.
                   </p>
 
-                  <motion.p
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.6 }}
+                  <p
                     className="text-xl font-semibold text-center p-6 bg-[#FFC3BC]/10 rounded-2xl border border-[#FFC3BC]/20 mt-8"
                   >
                     <span className="text-[#FFC3BC]">
@@ -707,15 +504,11 @@ const About = () => {
                     <span className="text-white">
                       Nous sommes ravis de vous y aider.
                     </span>
-                  </motion.p>
-                </motion.div>
+                  </p>
+                </div>
 
                 {/* Key points */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.8 }}
+                <div
                   className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12"
                 >
                   <div className="text-center">
@@ -753,10 +546,10 @@ const About = () => {
                       Des services adaptés à vos besoins uniques
                     </p>
                   </div>
-                </motion.div>
+                </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -764,18 +557,13 @@ const About = () => {
       <section className="py-8 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
         <div className="absolute inset-0 -z-10">
           <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5"></div>
-          <motion.div
+          <div
             className="absolute top-0 right-0 w-1/2 h-1/2 rounded-full bg-[#FFC3BC]/5 blur-3xl"
-            style={{ y: foregroundY }}
           />
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+          <div
             className="text-center max-w-3xl mx-auto mb-16"
           >
             <span className="inline-block py-1 px-3 rounded-full bg-[#FFC3BC]/10 text-[#18133E] text-sm font-medium mb-4 border border-[#FFC3BC]/20">
@@ -784,18 +572,15 @@ const About = () => {
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#18133E]">
               L'évolution de SenFrance depuis 2021
             </h2>
-            <motion.div
-              initial={{ opacity: 0, width: 0 }}
-              whileInView={{ opacity: 1, width: "5rem" }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.3 }}
+            <div
               className="h-1 bg-gradient-to-r from-[#FFC3BC] to-[#FFC3BC]/30 rounded-full mx-auto mb-6"
+              style={{ width: "5rem" }}
             />
             <p className="text-gray-600">
               Découvrez les étapes clés qui ont façonné notre entreprise et
               notre vision.
             </p>
-          </motion.div>
+          </div>
 
           <div className="max-w-4xl mx-auto">
             <div className="relative">
@@ -807,12 +592,8 @@ const About = () => {
                   colorStyles[item.color as keyof typeof colorStyles];
 
                 return (
-                  <motion.div
+                  <div
                     key={index}
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: index * 0.2 }}
                     className={`relative flex items-center mb-16 ${
                       index % 2 === 0 ? "flex-row" : "flex-row-reverse"
                     }`}
@@ -822,9 +603,8 @@ const About = () => {
                         index % 2 === 0 ? "pr-8 text-right" : "pl-8 text-left"
                       }`}
                     >
-                      <motion.div
-                        whileHover={{ scale: 1.05 }}
-                        className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300"
+                      <div
+                        className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:scale-105"
                       >
                         <div className="text-3xl mb-3">{item.icon}</div>
                         <h3 className="text-xl font-bold mb-3 text-[#18133E]">
@@ -833,20 +613,19 @@ const About = () => {
                         <p className="text-gray-600 leading-relaxed">
                           {item.description}
                         </p>
-                      </motion.div>
+                      </div>
                     </div>
 
                     <div className="w-2/12 flex justify-center">
-                      <motion.div
-                        className={`w-14 h-14 rounded-full bg-gradient-to-br ${style.icon} flex items-center justify-center text-white font-bold text-sm shadow-lg`}
-                        whileHover={{ scale: 1.1 }}
+                      <div
+                        className={`w-14 h-14 rounded-full bg-gradient-to-br ${style.icon} flex items-center justify-center text-white font-bold text-sm shadow-lg transition-transform duration-200 hover:scale-110`}
                       >
                         {item.year}
-                      </motion.div>
+                      </div>
                     </div>
 
                     <div className="w-5/12"></div>
-                  </motion.div>
+                  </div>
                 );
               })}
             </div>
@@ -858,42 +637,32 @@ const About = () => {
       <section className="py-8 bg-gradient-to-b from-white to-gray-50 relative">
         <div className="absolute inset-0 overflow-hidden -z-10">
           <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5"></div>
-          <motion.div
+          <div
             className="absolute top-0 right-0 w-1/2 h-1/2 rounded-full bg-[#FFC3BC]/5 blur-3xl"
-            style={{ y: foregroundY }}
           />
         </div>
 
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+          <div
             className="max-w-4xl mx-auto bg-white rounded-2xl p-8 md:p-12 shadow-xl border border-gray-100 text-center"
           >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+            <div
               className="w-16 h-16 bg-gradient-to-r from-[#18133E] to-[#271D5B] rounded-full flex items-center justify-center mx-auto mb-6"
             >
               <Star className="h-8 w-8 text-white" />
-            </motion.div>
+            </div>
 
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#18133E]">
               Confiez-nous votre projet
             </h2>
             <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
-              Rejoignez les centaines d'étudiants et parents d’élèves qui nous
+              Rejoignez les centaines d'étudiants et parents d'élèves qui nous
               font confiance pour leur projet de mobilité vers la France.
             </p>
 
             <div className="flex flex-wrap gap-4 justify-center">
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+              <div
+                className="transition-transform duration-200 hover:scale-105"
               >
                 <Button
                   asChild
@@ -904,10 +673,9 @@ const About = () => {
                     <ArrowRight className="h-5 w-5" />
                   </Link>
                 </Button>
-              </motion.div>
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+              </div>
+              <div
+                className="transition-transform duration-200 hover:scale-105"
               >
                 <Button
                   asChild
@@ -918,9 +686,9 @@ const About = () => {
                     <span>Découvrir nos services</span>
                   </Link>
                 </Button>
-              </motion.div>
+              </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </div>

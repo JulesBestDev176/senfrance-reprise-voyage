@@ -1,5 +1,4 @@
 import React, { useState, useRef } from "react";
-import { motion, useScroll, useTransform } from 'framer-motion';
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -47,16 +46,6 @@ const ContactPage: React.FC = () => {
   const [errors, setErrors] = useState<FormErrors>({});
   const { toast } = useToast();
 
-  // Scroll animations
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
-  
-  const backgroundY = useTransform(scrollYProgress, [0, 1], [0, -200]);
-  const foregroundY = useTransform(scrollYProgress, [0, 1], [0, -100]);
-
   // URL de l'API
   const API_URL = import.meta.env.PROD 
   ? (import.meta.env.VITE_API_URL || 'https://senfrance-backend.onrender.com')
@@ -65,7 +54,7 @@ const ContactPage: React.FC = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    
+
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: "" }));
     }
@@ -73,46 +62,46 @@ const ContactPage: React.FC = () => {
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
-    
+
     if (!formData.name.trim() || formData.name.trim().length < 2) {
       newErrors.name = "Le nom doit contenir au moins 2 caractères";
     }
-    
+
     if (!formData.email.trim()) {
       newErrors.email = "L'email est obligatoire";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = "Format d'email invalide";
     }
-    
+
     if (!formData.subject.trim() || formData.subject.trim().length < 3) {
       newErrors.subject = "Le sujet doit contenir au moins 3 caractères";
     }
-    
+
     if (!formData.message.trim() || formData.message.trim().length < 10) {
       newErrors.message = "Le message doit contenir au moins 10 caractères";
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   // Dans votre handleSubmit de ContactPage.tsx, remplacez le fetch par :
 
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  
-  if (!validateForm()) {
-    toast({
-      title: "Erreur de validation",
-      description: "Veuillez corriger les erreurs dans le formulaire.",
-      variant: "destructive",
-    });
-    return;
-  }
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
 
-  setLoading(true);
+    if (!validateForm()) {
+      toast({
+        title: "Erreur de validation",
+        description: "Veuillez corriger les erreurs dans le formulaire.",
+        variant: "destructive",
+      });
+      return;
+    }
 
-  try {
+    setLoading(true);
+
+    try {
     // console.log('🚀 Envoi vers:', `${API_URL}/api/contact`);
     // console.log('📦 Données:', formData);
 
@@ -129,183 +118,105 @@ const handleSubmit = async (e: React.FormEvent) => {
     // console.log('📡 Réponse status:', response.status);
     // console.log('📡 Réponse headers:', response.headers);
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
 
-    const data = await response.json();
-    // console.log('✅ Réponse données:', data);
+      const data = await response.json();
+      // console.log('✅ Réponse données:', data);
 
-    if (data.success) {
-      toast({
-        title: "✅ Message envoyé !",
-        description: data.message,
-        variant: "default",
-      });
-      
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-      });
-      setErrors({});
-    } else {
-      throw new Error(data.message || 'Erreur lors de l\'envoi');
-    }
-  } catch (error) {
+      if (data.success) {
+        toast({
+          title: "✅ Message envoyé !",
+          description: data.message,
+          variant: "default",
+        });
+        
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+        setErrors({});
+      } else {
+        throw new Error(data.message || 'Erreur lors de l\'envoi');
+      }
+    } catch (error) {
     // console.error('❌ Erreur complète:', error);
     
     let errorMessage = "Impossible d'envoyer le message. Veuillez réessayer.";
     
-    if (error instanceof TypeError && error.message.includes('fetch')) {
-      errorMessage = "Problème de connexion au serveur. Vérifiez votre réseau.";
-    } else if (error.message.includes('CORS')) {
-      errorMessage = "Erreur de configuration serveur. Contactez le support.";
+      if (error instanceof TypeError && error.message.includes('fetch')) {
+        errorMessage = "Problème de connexion au serveur. Vérifiez votre réseau.";
+      } else if (error.message.includes('CORS')) {
+        errorMessage = "Erreur de configuration serveur. Contactez le support.";
+      }
+
+      toast({
+        title: "❌ Erreur d'envoi",
+        description: errorMessage,
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
     }
-    
-    toast({
-      title: "❌ Erreur d'envoi",
-      description: errorMessage,
-      variant: "destructive",
-    });
-  } finally {
-    setLoading(false);
-  }
-};
+  };
 
   return (
-    <div ref={containerRef} className="relative">
+    <div className="relative">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
-        <motion.div 
-          className="absolute inset-0 bg-gradient-to-br from-[#18133E] via-[#231A54] to-[#18133E] overflow-hidden"
-          style={{ y: backgroundY }}
-        >
-          <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10"></div>
-          
-          {/* Animated decorative elements */}
-          <motion.div 
-            className="absolute -top-20 -left-20 w-80 h-80 rounded-full bg-[#FFC3BC]/20 blur-3xl"
-            animate={{
-              scale: [1, 1.1, 1],
-              opacity: [0.2, 0.3, 0.2],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-          <motion.div 
-            className="absolute -bottom-40 -right-40 w-96 h-96 rounded-full bg-purple-500/20 blur-3xl"
-            animate={{
-              scale: [1.1, 1, 1.1],
-              opacity: [0.1, 0.2, 0.1],
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1
-            }}
-          />
-        </motion.div>
+      <section className="relative h-screen flex items-start justify-center overflow-hidden bg-gradient-to-b from-gray-50 to-white pt-12">
+        {/* Decorative elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-[#FFC3BC]/5 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#18133E]/5 rounded-full blur-3xl"></div>
+        </div>
         
-        <div className="container mx-auto px-4 relative z-10 py-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.2 }}
-              className="text-white"
-            >
-              <div className="inline-block mb-4 px-3 py-1 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm">
-                <span className="text-sm font-medium">Contactez SenFrance</span>
-              </div>
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                Parlons de votre{' '}
-                <span className="bg-gradient-to-r from-[#FFC3BC] to-[#ff9d94] bg-clip-text text-transparent">
-                  projet
-                </span>
-              </h1>
-              <p className="text-xl text-white/80 mb-6 leading-relaxed">
-                Notre équipe d'experts est à votre disposition pour vous accompagner dans toutes vos démarches. 
-                <span className="font-semibold text-[#FFC3BC]"> Réponse garantie sous 24h.</span>
-              </p>
-              <div className="space-y-4 mb-8">
-                {[
-                  "Conseil personnalisé et gratuit",
-                  "Équipe d'experts dédiés",
-                  "Suivi transparent de votre dossier",
-                  "Support disponible 7j/7"
-                ].map((item, index) => (
-                  <motion.div 
-                    key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.4 + index * 0.1 }}
-                    className="flex items-center"
-                  >
-                    <CheckCircle className="h-5 w-5 text-[#FFC3BC] mr-3 flex-shrink-0" />
-                    <span className="text-white/90">{item}</span>
-                  </motion.div>
-                ))}
-              </div>
-              
-              <div className="grid grid-cols-2 gap-4">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.8 }}
-                  className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10"
-                >
-                  <div className="text-2xl font-bold text-[#FFC3BC] mb-1">2000+</div>
-                  <div className="text-white/70 text-sm">Étudiants conseillés</div>
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.9 }}
-                  className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10"
-                >
-                  <div className="text-2xl font-bold text-[#FFC3BC] mb-1">24h</div>
-                  <div className="text-white/70 text-sm">Délai de réponse</div>
-                </motion.div>
-              </div>
-            </motion.div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="inline-block mb-4 px-3 py-1 rounded-full border border-[#FFC3BC]/30 bg-[#FFC3BC]/10">
+              <span className="text-sm font-medium text-[#18133E]">Contactez SenFrance</span>
+            </div>
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-[#18133E]">
+              Parlons de votre{' '}
+              <span className="text-[#FFC3BC]">projet</span>
+            </h1>
+            <p className="text-xl text-gray-700 mb-12 leading-relaxed max-w-2xl mx-auto">
+              Notre équipe est à votre disposition. Réponse garantie sous 24h.
+            </p>
             
-            {/* Contact Methods Preview */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.4 }}
-              className="space-y-6"
-            >
+            {/* Méthodes de contact rapides */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
               {[
-                { icon: Mail, title: "E-mail", info: "contact@senfrance.com", color: "from-blue-500 to-blue-600" },
-                { icon: Phone, title: "Téléphone", info: "+33 9 72 14 66 97", color: "from-green-500 to-green-600" },
-                { icon: MapPin, title: "Adresse", info: "15 quai des Chartrons, Bordeaux", color: "from-purple-500 to-purple-600" }
+                { icon: Mail, title: "E-mail", info: "contact@senfrance.com" },
+                { icon: Phone, title: "Téléphone", info: "+33 9 72 14 66 97" },
+                { icon: MapPin, title: "Adresse", info: "15 quai des Chartrons, Bordeaux" }
               ].map((item, index) => (
-                <motion.div
+                <div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6 + index * 0.1 }}
-                  className="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300 group"
+                  className="bg-gray-50 rounded-xl p-6 border border-gray-200 hover:border-[#FFC3BC] hover:shadow-lg transition-all group"
                 >
-                  <div className="flex items-center">
-                    <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${item.color} flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300`}>
-                      <item.icon className="h-6 w-6 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-white mb-1">{item.title}</h3>
-                      <p className="text-white/80 text-sm">{item.info}</p>
-                    </div>
+                  <div className="w-12 h-12 bg-[#FFC3BC]/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <item.icon className="h-6 w-6 text-[#FFC3BC]" />
                   </div>
-                </motion.div>
+                  <h3 className="font-semibold text-[#18133E] mb-1">{item.title}</h3>
+                  <p className="text-gray-600 text-sm">{item.info}</p>
+                </div>
               ))}
-            </motion.div>
+            </div>
+            
+            {/* Stats */}
+            <div className="grid grid-cols-2 gap-6 max-w-md mx-auto">
+              <div className="p-4 bg-gray-50 rounded-xl">
+                <div className="text-3xl font-bold text-[#FFC3BC] mb-1">2000+</div>
+                <div className="text-gray-600 text-sm">Étudiants conseillés</div>
+              </div>
+              <div className="p-4 bg-gray-50 rounded-xl">
+                <div className="text-3xl font-bold text-[#FFC3BC] mb-1">24h</div>
+                <div className="text-gray-600 text-sm">Délai de réponse</div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -314,53 +225,32 @@ const handleSubmit = async (e: React.FormEvent) => {
       <section className="py-8 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
         <div className="absolute inset-0 -z-10">
           <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5"></div>
-          <motion.div 
-            className="absolute top-0 right-0 w-1/2 h-1/2 rounded-full bg-[#FFC3BC]/5 blur-3xl"
-            style={{ y: foregroundY }}
-          />
+          <div className="absolute top-0 right-0 w-1/2 h-1/2 rounded-full bg-[#FFC3BC]/5 blur-3xl transition-all duration-300"></div>
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto mb-16"
-          >
+          <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="inline-block py-1 px-3 rounded-full bg-[#FFC3BC]/10 text-[#18133E] text-sm font-medium mb-4 border border-[#FFC3BC]/20">
               Formulaire de Contact
             </span>
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#18133E]">
               Envoyez-nous un message
             </h2>
-            <motion.div
-              initial={{ opacity: 0, width: 0 }}
-              whileInView={{ opacity: 1, width: "5rem" }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="h-1 bg-gradient-to-r from-[#FFC3BC] to-[#FFC3BC]/30 rounded-full mx-auto mb-6"
-            />
+            <div className="h-1 bg-gradient-to-r from-[#FFC3BC] to-[#FFC3BC]/30 rounded-full mx-auto mb-6"></div>
             <p className="text-gray-600">
               Décrivez votre projet et nous vous recontacterons rapidement avec une solution personnalisée.
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Informations de contact */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="lg:col-span-1 space-y-8"
-            >
-              <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+            <div className="lg:col-span-1 space-y-8">
+              <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 transition-all duration-300">
                 <h3 className="text-2xl font-bold mb-6 text-[#18133E]">Nos coordonnées</h3>
                 
                 <div className="space-y-6">
                   <div className="flex items-start space-x-4">
-                    <div className="bg-[#FFC3BC]/10 p-3 rounded-full text-[#18133E]">
+                    <div className="bg-[#FFC3BC]/10 p-3 rounded-full text-[#18133E] transition-all duration-300">
                       <MapPin size={24} />
                     </div>
                     <div>
@@ -374,7 +264,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                   </div>
 
                   <div className="flex items-start space-x-4">
-                    <div className="bg-[#FFC3BC]/10 p-3 rounded-full text-[#18133E]">
+                    <div className="bg-[#FFC3BC]/10 p-3 rounded-full text-[#18133E] transition-all duration-300">
                       <Mail size={24} />
                     </div>
                     <div>
@@ -386,7 +276,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                   </div>
 
                   <div className="flex items-start space-x-4">
-                    <div className="bg-[#FFC3BC]/10 p-3 rounded-full text-[#18133E]">
+                    <div className="bg-[#FFC3BC]/10 p-3 rounded-full text-[#18133E] transition-all duration-300">
                       <Phone size={24} />
                     </div>
                     <div>
@@ -404,7 +294,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                 </div>
               </div>
 
-              <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+              <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 transition-all duration-300">
                 <h3 className="text-2xl font-bold mb-6 text-[#18133E]">Horaires d'ouverture</h3>
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
@@ -423,8 +313,8 @@ const handleSubmit = async (e: React.FormEvent) => {
               </div>
 
               {/* Service Status */}
-              <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-6 border border-green-200">
-                <div className="flex items-center gap-3 mb-4">
+              <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-6 border border-green-200 transition-all duration-300">
+                <div className="flex items-start gap-4 mb-4">
                   <CheckCircle className="text-green-600" size={24} />
                   <h3 className="font-semibold text-green-800">Service actif</h3>
                 </div>
@@ -443,19 +333,13 @@ const handleSubmit = async (e: React.FormEvent) => {
                   </li>
                 </ul>
               </div>
-            </motion.div>
+            </div>
 
             {/* Formulaire de contact */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="lg:col-span-2"
-            >
-              <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+            <div className="lg:col-span-2">
+              <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 transition-all duration-300">
                 <div className="flex items-center gap-3 mb-8">
-                  <div className="bg-gradient-to-r from-[#18133E] to-[#271D5B] p-3 rounded-xl">
+                  <div className="bg-gradient-to-r from-[#18133E] to-[#271D5B] p-3 rounded-xl transition-all duration-300">
                     <MessageSquare className="h-6 w-6 text-white" />
                   </div>
                   <div>
@@ -475,8 +359,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
-                        placeholder="Votre nom complet"
-                        className={`rounded-xl border-2 transition-all duration-200 ${
+                        placeholder="Votre nom complet" className={`rounded-xl border-2 transition-all duration-200 ${
                           errors.name 
                             ? 'border-red-500 focus:border-red-500' 
                             : 'border-gray-200 focus:border-[#FFC3BC]'
@@ -501,8 +384,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                         type="email"
                         value={formData.email}
                         onChange={handleChange}
-                        placeholder="votre@email.com"
-                        className={`rounded-xl border-2 transition-all duration-200 ${
+                        placeholder="votre@email.com" className={`rounded-xl border-2 transition-all duration-200 ${
                           errors.email 
                             ? 'border-red-500 focus:border-red-500' 
                             : 'border-gray-200 focus:border-[#FFC3BC]'
@@ -527,8 +409,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                       name="subject"
                       value={formData.subject}
                       onChange={handleChange}
-                      placeholder="Exemple: Demande d'information sur les études en France"
-                      className={`rounded-xl border-2 transition-all duration-200 ${
+                      placeholder="Exemple: Demande d'information sur les études en France" className={`rounded-xl border-2 transition-all duration-200 ${
                         errors.subject 
                           ? 'border-red-500 focus:border-red-500' 
                           : 'border-gray-200 focus:border-[#FFC3BC]'
@@ -552,8 +433,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
-                      placeholder="Décrivez votre projet d'études, vos questions ou vos besoins en détail..."
-                      className={`rounded-xl border-2 transition-all duration-200 min-h-[150px] resize-none ${
+                      placeholder="Décrivez votre projet d'études, vos questions ou vos besoins en détail..." className={`rounded-xl border-2 transition-all duration-200 min-h-[150px] resize-none ${
                         errors.message 
                           ? 'border-red-500 focus:border-red-500' 
                           : 'border-gray-200 focus:border-[#FFC3BC]'
@@ -571,10 +451,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                     </div>
                   </div>
 
-                  <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
+                  <div>
                     <Button
                       onClick={handleSubmit}
                       disabled={loading}
@@ -592,12 +469,12 @@ const handleSubmit = async (e: React.FormEvent) => {
                         </>
                       )}
                     </Button>
-                  </motion.div>
+                  </div>
                 </div>
 
-                <div className="mt-8 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-200">
+                <div className="mt-8 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-200 transition-all duration-300">
                   <div className="flex items-start gap-4">
-                    <div className="bg-gradient-to-r from-blue-500 to-indigo-500 p-2 rounded-lg">
+                    <div className="bg-gradient-to-r from-blue-500 to-indigo-500 p-2 rounded-lg transition-all duration-300">
                       <Mail className="text-white" size={20} />
                     </div>
                     <div>
@@ -612,7 +489,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -620,26 +497,14 @@ const handleSubmit = async (e: React.FormEvent) => {
       {/* Map Section */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
+          <div className="text-center mb-12">
             <h3 className="text-2xl font-bold mb-4 text-[#18133E]">Venez nous rendre visite</h3>
             <p className="text-gray-600">
               Situés au cœur de Bordeaux, nous sommes facilement accessibles en transport en commun.
             </p>
-          </motion.div>
+          </div>
           
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="rounded-2xl overflow-hidden shadow-2xl border border-gray-200"
-          >
+          <div className="rounded-2xl overflow-hidden shadow-2xl border border-gray-200 transition-all duration-300">
             <iframe
               title="Carte interactive SenFrance"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2889.397894793511!2d-0.5756728848831083!3d44.84827157909892!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd5527f479f41a9b%3A0x2b6b50f91b6bb366!2s15%20Quai%20des%20Chartrons%2C%2033000%20Bordeaux%2C%20France!5e0!3m2!1sfr!2sfr!4v1699198669254!5m2!1sfr!2sfr"
@@ -650,7 +515,7 @@ const handleSubmit = async (e: React.FormEvent) => {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
-          </motion.div>
+          </div>
         </div>
       </section>
 

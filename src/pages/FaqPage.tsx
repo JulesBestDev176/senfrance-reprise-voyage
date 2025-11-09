@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { 
   HelpCircle, 
   ArrowLeft,
@@ -31,42 +30,6 @@ const FAQPage = () => {
   useScrollToTop();
   const [expandedFAQ, setExpandedFAQ] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
-  
-  // Reference for the scroll progress and parallax effects
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
-  
-  // Parallax effect values for backgrounds
-  const backgroundY = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const foregroundY = useTransform(scrollYProgress, [0, 1], [0, -50]);
-
-  // Animation variants
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 30 },
-    show: { 
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        duration: 0.8,
-        damping: 15
-      }
-    }
-  };
-
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2
-      }
-    }
-  };
 
   // FAQ Data
   const faqData = [
@@ -153,7 +116,7 @@ Nous sommes à l'écoute, alors vous pouvez nous soumettre votre cas. Nous l'ét
       icon: <GraduationCap className="w-6 h-6" />,
       category: 'Étudiants français',
       color: 'rose'
-    }
+  }
   ];
 
   // Color styles
@@ -199,7 +162,7 @@ Nous sommes à l'écoute, alors vous pouvez nous soumettre votre cas. Nous l'ét
       text: "text-[#FFC3BC]",
       border: "border-[#FFC3BC]/20",
       icon: "from-[#FFC3BC] to-[#ff9d94]"
-    }
+  }
   };
 
   // Filter FAQs based on search term
@@ -213,63 +176,27 @@ Nous sommes à l'écoute, alors vous pouvez nous soumettre votre cas. Nous l'ét
   const categories = [...new Set(faqData.map(faq => faq.category))];
 
   return (
-    <div ref={containerRef} className="relative min-h-screen">
+    <div className="relative min-h-screen">
       {/* Hero Section */}
       <section className="relative py-8 overflow-hidden">
         {/* Background with parallax effect */}
-        <motion.div 
-          className="absolute inset-0 bg-gradient-to-br from-[#18133E] via-[#231A54] to-[#18133E] overflow-hidden"
-          style={{ y: backgroundY }}
-        >
+        <div className="absolute inset-0 bg-gradient-to-br from-[#18133E] via-[#231A54] to-[#18133E] overflow-hidden">
           <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10"></div>
           
           {/* Animated decorative elements */}
-          <motion.div 
-            className="absolute -top-20 -left-20 w-80 h-80 rounded-full bg-[#FFC3BC]/20 blur-3xl"
-            animate={{
-              scale: [1, 1.1, 1],
-              opacity: [0.2, 0.3, 0.2],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-          <motion.div 
-            className="absolute -bottom-40 -right-40 w-96 h-96 rounded-full bg-purple-500/20 blur-3xl"
-            animate={{
-              scale: [1.1, 1, 1.1],
-              opacity: [0.1, 0.2, 0.1],
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1
-            }}
-          />
-        </motion.div>
+          <div className="absolute -top-20 -left-20 w-80 h-80 rounded-full bg-[#FFC3BC]/20 blur-3xl transition-all duration-300"></div>
+          <div className="absolute -bottom-40 -right-40 w-96 h-96 rounded-full bg-purple-500/20 blur-3xl"></div>
+        </div>
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center text-white">
             
             
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="w-20 h-20 bg-gradient-to-r from-[#FFC3BC] to-[#ff9d94] rounded-full flex items-center justify-center mx-auto mb-8"
-            >
+            <div className="w-20 h-20 bg-gradient-to-r from-[#FFC3BC] to-[#ff9d94] rounded-full flex items-center justify-center mx-auto mb-8">
               <HelpCircle className="h-10 w-10 text-white" />
-            </motion.div>
+            </div>
             
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="mb-8"
-            >
+            <div className="mb-8">
               <span className="inline-block py-1 px-3 rounded-full bg-white/10 text-white text-sm font-medium mb-4 border border-white/20">
                 Questions fréquentes
               </span>
@@ -279,17 +206,12 @@ Nous sommes à l'écoute, alors vous pouvez nous soumettre votre cas. Nous l'ét
               <p className="text-xl text-[#FFC3BC] font-semibold mb-4">
                 Partenaire des étudiants
               </p>
-            </motion.div>
+            </div>
             
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="text-lg text-white/80 max-w-3xl mx-auto leading-relaxed"
-            >
+            <p className="text-lg text-white/80 max-w-3xl mx-auto leading-relaxed">
               Trouvez rapidement les réponses à vos questions sur nos services d'accompagnement 
               pour étudiants internationaux en France.
-            </motion.p>
+            </p>
           </div>
         </div>
       </section>
@@ -297,50 +219,34 @@ Nous sommes à l'écoute, alors vous pouvez nous soumettre votre cas. Nous l'ét
       {/* Story Section */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="max-w-4xl mx-auto"
-          >
-            <div className="bg-gradient-to-r from-[#18133E] to-[#271D5B] rounded-2xl p-8 md:p-12 text-white relative overflow-hidden">
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-gradient-to-r from-[#18133E] to-[#271D5B] rounded-2xl p-8 md:p-12 text-white relative overflow-hidden transition-all duration-300">
               {/* Background decoration */}
               <div className="absolute inset-0 opacity-10">
-                <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-[#FFC3BC] blur-3xl"></div>
+                <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-[#FFC3BC] blur-3xl transition-all duration-300"></div>
                 <div className="absolute bottom-0 left-0 w-48 h-48 rounded-full bg-purple-400 blur-3xl"></div>
               </div>
               
               <div className="relative z-10">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  className="text-center mb-8"
-                >
+                <div className="text-center mb-8">
                   <div className="flex items-center justify-center gap-2 mb-4">
                     <Sparkles className="h-6 w-6 text-[#FFC3BC]" />
                     <span className="text-[#FFC3BC] font-semibold">Notre histoire</span>
                   </div>
                   <h2 className="text-2xl md:text-3xl font-bold mb-6">Comment SenFrance est née</h2>
-                </motion.div>
-                
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                  className="prose prose-lg prose-invert max-w-none"
-                >
+                </div>
+
+                <div className="prose prose-lg prose-invert max-w-none">
                   <p className="text-white/90 mb-6 leading-relaxed text-center">
-                    SenFrance est née de la volonté de ses associés et d'une idée simple : <strong className="text-[#FFC3BC]">offrir un service dont nous n'avions pas pu bénéficier</strong> en tant qu'étudiants étrangers dans une société et une culture nouvelles.
+                    SenFrance est née de la volonté de ses associés et d'une idée simple :{' '}
+                    <strong className="text-[#FFC3BC]">offrir un service dont nous n'avions pas pu bénéficier</strong> en tant qu'étudiants étrangers dans une société et une culture nouvelles.
                   </p>
-                  
+
                   <p className="text-white/90 mb-6 leading-relaxed text-center">
-                    Nous sommes persuadés que la cause principale de l'échec chez beaucoup d'étudiants (qu'ils viennent de loin ou non) tient aux <strong className="text-[#FFC3BC]">conditions de vie</strong>. Notre engagement est donc né d'un constat sans appel : un besoin réel existe sans solution adaptée.
+                    Nous sommes persuadés que la cause principale de l'échec chez beaucoup d'étudiants (qu'ils viennent de loin ou non) tient aux{' '}
+                    <strong className="text-[#FFC3BC]">conditions de vie</strong>. Notre engagement est donc né d'un constat sans appel : un besoin réel existe sans solution adaptée.
                   </p>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
                     <div className="text-center">
                       <div className="w-16 h-16 bg-[#FFC3BC]/20 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -349,7 +255,7 @@ Nous sommes à l'écoute, alors vous pouvez nous soumettre votre cas. Nous l'ét
                       <h3 className="font-semibold text-white mb-2">Notre mission</h3>
                       <p className="text-white/70 text-sm">Être le partenaire de l'étudiant</p>
                     </div>
-                    
+
                     <div className="text-center">
                       <div className="w-16 h-16 bg-[#FFC3BC]/20 rounded-full flex items-center justify-center mx-auto mb-4">
                         <Heart className="h-8 w-8 text-[#FFC3BC]" />
@@ -357,7 +263,7 @@ Nous sommes à l'écoute, alors vous pouvez nous soumettre votre cas. Nous l'ét
                       <h3 className="font-semibold text-white mb-2">Notre engagement</h3>
                       <p className="text-white/70 text-sm">Solutions sur mesure</p>
                     </div>
-                    
+
                     <div className="text-center">
                       <div className="w-16 h-16 bg-[#FFC3BC]/20 rounded-full flex items-center justify-center mx-auto mb-4">
                         <Star className="h-8 w-8 text-[#FFC3BC]" />
@@ -366,27 +272,26 @@ Nous sommes à l'écoute, alors vous pouvez nous soumettre votre cas. Nous l'ét
                       <p className="text-white/70 text-sm">Votre stabilité pendant vos études</p>
                     </div>
                   </div>
-                  
+
                   <p className="text-white/90 mb-8 leading-relaxed text-center">
-                    Nous nous considérons comme <strong className="text-[#FFC3BC]">le partenaire de l'étudiant</strong>. Nos solutions sur mesure seront pour lui un bâton de pèlerin. Nous travaillons avec des organisations, des particuliers et des entreprises pour fournir un service de qualité.
+                    Nous nous considérons comme{' '}
+                    <strong className="text-[#FFC3BC]">le partenaire de l'étudiant</strong>. Nos solutions sur mesure seront pour lui un bâton de pèlerin. Nous travaillons avec des organisations, des particuliers et des entreprises pour fournir un service de qualité.
                   </p>
-                  
+
                   <div className="text-center">
                     <p className="text-white/90 mb-6">
                       Vous êtes évidemment en quête de stabilité pendant vos études. Nous sommes ravis de vous y aider.
                     </p>
-                    
-                    <Button className="bg-[#FFC3BC] hover:bg-[#ff9d94] text-[#18133E] font-semibold px-8 py-3 rounded-full">
-                     <Link to="/contact" className="flex items-center gap-2">
-  <span>Contactez-nous sans attendre</span>
-  <MessageCircle className="h-5 w-5" />
-</Link>
-                    </Button>
+
+                    <Link to="/contact" className="bg-[#FFC3BC] hover:bg-[#ff9d94] text-[#18133E] font-semibold px-8 py-3 rounded-full flex items-center gap-2 transition-all duration-300">
+                      <MessageCircle className="h-5 w-5" />
+                      <span>Contactez-nous sans attendre</span>
+                    </Link>
                   </div>
-                </motion.div>
+                </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -394,28 +299,19 @@ Nous sommes à l'écoute, alors vous pouvez nous soumettre votre cas. Nous l'ét
       <section className="py-8 bg-gradient-to-b from-white to-gray-50 relative">
         <div className="absolute inset-0 overflow-hidden -z-10">
           <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5"></div>
-          <motion.div 
-            className="absolute top-0 right-0 w-1/2 h-1/2 rounded-full bg-[#FFC3BC]/5 blur-3xl"
-            style={{ y: foregroundY }}
-          />
+          <div className="absolute top-0 right-0 w-1/2 h-1/2 rounded-full bg-[#FFC3BC]/5 blur-3xl transition-all duration-300"></div>
         </div>
-        
+
         <div className="container mx-auto px-4">
           {/* Search and Filters */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="max-w-4xl mx-auto mb-12"
-          >
+          <div className="max-w-4xl mx-auto mb-12">
             <div className="text-center mb-8">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">Questions fréquentes</h2>
               <p className="text-gray-600">
                 Trouvez rapidement les réponses à vos questions ou contactez notre équipe pour un accompagnement personnalisé.
               </p>
             </div>
-            
+
             {/* Search Bar */}
             <div className="relative mb-8">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -441,36 +337,31 @@ Nous sommes à l'écoute, alors vous pouvez nous soumettre votre cas. Nous l'ét
                 </span>
               ))}
             </div>
-          </motion.div>
+          </div>
 
           {/* FAQ Items */}
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-50px" }}
-            className="max-w-4xl mx-auto space-y-6"
-          >
+          <div className="max-w-4xl mx-auto space-y-6">
             {filteredFAQs.map((faq, index) => {
               const style = colorStyles[faq.color];
               const isExpanded = expandedFAQ === faq.id;
-              
+
               return (
-                <motion.div
+                <div
                   key={faq.id}
-                  variants={fadeInUp}
                   className={`bg-white rounded-xl border ${style.border} shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl`}
                 >
                   <button
                     onClick={() => setExpandedFAQ(isExpanded ? null : faq.id)}
                     className="w-full p-6 text-left hover:bg-gray-50 transition-colors flex items-center gap-4"
                   >
-                    <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${style.icon} flex items-center justify-center text-white flex-shrink-0`}>
+                    <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${style.icon} flex items-center justify-center text-white flex-shrink-0`}
+                    >
                       {faq.icon}
                     </div>
                     <div className="flex-grow">
                       <div className="flex items-center gap-2 mb-2">
-                        <span className={`px-2 py-1 ${style.light} ${style.text} rounded-full text-xs font-medium`}>
+                        <span className={`px-2 py-1 ${style.light} ${style.text} rounded-full text-xs font-medium`}
+                        >
                           {faq.category}
                         </span>
                       </div>
@@ -478,53 +369,53 @@ Nous sommes à l'écoute, alors vous pouvez nous soumettre votre cas. Nous l'ét
                         {faq.question}
                       </h3>
                     </div>
-                    <motion.div
-                      animate={{ rotate: isExpanded ? 180 : 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="flex-shrink-0"
-                    >
+                    <div className="flex-shrink-0">
                       {isExpanded ? (
                         <Minus className="h-5 w-5 text-gray-400" />
                       ) : (
                         <Plus className="h-5 w-5 text-gray-400" />
                       )}
-                    </motion.div>
+                    </div>
                   </button>
-                  
-                  <motion.div
-                    initial={false}
-                    animate={{
-                      height: isExpanded ? "auto" : 0,
-                      opacity: isExpanded ? 1 : 0
-                    }}
-                    transition={{ duration: 0.3 }}
-                    className="overflow-hidden"
-                  >
+
+                  <div className="overflow-hidden">
                     <div className="px-6 pb-6">
                       <div className={`${style.light} rounded-lg p-6`}>
                         <div className="prose prose-gray max-w-none">
                           {faq.answer.split('\n').map((paragraph, pIndex) => {
                             if (paragraph.trim() === '') return null;
-                            
+
                             if (paragraph.startsWith('**') && paragraph.endsWith('**')) {
                               return (
-                                <h4 key={pIndex} className="font-semibold text-gray-900 mb-3 text-base">
+                                <h4
+                                  key={pIndex}
+                                  className="font-semibold text-gray-900 mb-3 text-base"
+                                >
                                   {paragraph.replace(/\*\*/g, '')}
                                 </h4>
                               );
                             }
-                            
+
                             if (paragraph.startsWith('- ')) {
                               return (
-                                <div key={pIndex} className="flex items-start gap-2 mb-2">
-                                  <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
-                                  <span className="text-gray-700">{paragraph.substring(2)}</span>
+                                <div
+                                  key={pIndex}
+                                  className="flex items-start gap-2 mb-2"
+                                >
+                                  <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5"
+                                  />
+                                  <span className="text-gray-700">
+                                    {paragraph.substring(2)}
+                                  </span>
                                 </div>
                               );
                             }
-                            
+
                             return (
-                              <p key={pIndex} className="text-gray-700 mb-3 leading-relaxed">
+                              <p
+                                key={pIndex}
+                                className="text-gray-700 mb-3 leading-relaxed"
+                              >
                                 {paragraph}
                               </p>
                             );
@@ -532,33 +423,32 @@ Nous sommes à l'écoute, alors vous pouvez nous soumettre votre cas. Nous l'ét
                         </div>
                       </div>
                     </div>
-                  </motion.div>
-                </motion.div>
+                  </div>
+                </div>
               );
             })}
-          </motion.div>
+          </div>
 
           {/* No Results */}
           {filteredFAQs.length === 0 && searchTerm && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="max-w-4xl mx-auto text-center py-12"
-            >
+            <div className="max-w-4xl mx-auto text-center py-12">
               <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Search className="h-8 w-8 text-gray-400" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Aucun résultat trouvé</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                Aucun résultat trouvé
+              </h3>
               <p className="text-gray-600 mb-6">
-                Nous n'avons pas trouvé de réponse correspondant à votre recherche "<strong>{searchTerm}</strong>".
+                Nous n'avons pas trouvé de réponse correspondant à votre recherche "
+                <strong>{searchTerm}</strong>".
               </p>
-              <Button 
+              <Button
                 onClick={() => setSearchTerm('')}
                 className="bg-[#18133E] hover:bg-[#271D5B] text-white"
               >
                 Effacer la recherche
               </Button>
-            </motion.div>
+            </div>
           )}
         </div>
       </section>
@@ -566,16 +456,10 @@ Nous sommes à l'écoute, alors vous pouvez nous soumettre votre cas. Nous l'ét
       {/* Contact CTA */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="max-w-4xl mx-auto"
-          >
-            <div className="bg-gradient-to-r from-[#18133E] to-[#271D5B] rounded-2xl p-8 text-center text-white relative overflow-hidden">
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-gradient-to-r from-[#18133E] to-[#271D5B] rounded-2xl p-8 text-center text-white relative overflow-hidden transition-all duration-300">
               <div className="absolute inset-0 opacity-10">
-                <div className="absolute top-0 right-0 w-32 h-32 rounded-full bg-[#FFC3BC] blur-2xl"></div>
+                <div className="absolute top-0 right-0 w-32 h-32 rounded-full bg-[#FFC3BC] blur-2xl transition-all duration-300"></div>
                 <div className="absolute bottom-0 left-0 w-24 h-24 rounded-full bg-purple-400 blur-2xl"></div>
               </div>
               
@@ -591,8 +475,7 @@ Nous sommes à l'écoute, alors vous pouvez nous soumettre votre cas. Nous l'ét
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button className="bg-[#FFC3BC] hover:bg-[#ff9d94] text-[#18133E] font-semibold px-6 py-3 rounded-full">
                     <Link
-  to="/contact"
-  className="bg-[#FFC3BC] hover:bg-[#ff9d94] text-[#18133E] font-semibold px-6 py-3 rounded-full flex items-center gap-2"
+  to="/contact" className="bg-[#FFC3BC] hover:bg-[#ff9d94] text-[#18133E] font-semibold px-6 py-3 rounded-full flex items-center gap-2 transition-all duration-300"
 >
   <MessageCircle className="h-5 w-5" />
   <span>Nous contacter</span>
@@ -603,7 +486,7 @@ Nous sommes à l'écoute, alors vous pouvez nous soumettre votre cas. Nous l'ét
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </div>

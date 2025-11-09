@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find:*)",
+      "Bash(for file in AviPage.tsx TermsConditionsPage.tsx StudentPage.tsx PrivacyPolicyPage.tsx PricingPage.tsx PageJobEtudiant.tsx PageAssurances.tsx HousingPage.tsx FaqPage.tsx)",
+      "Bash(do sed -i '/const containerRef = useRef(null);/d' \"$file\")",
+      "Bash(done)",
+      "Bash(do sed -i '/const containerRef = useRef(null);/d' \"src/pages/$file\")",
+      "Bash(python fix-syntax.py:*)",
+      "Bash(python fix-syntax2.py:*)",
+      "Bash(timeout /t 5)",
+      "Bash(nul)",
+      "Bash(python remove-framer-motion.py:*)",
+      "Bash(python remove-framer-motion-v2.py:*)",
+      "Bash(npm run build:*)",
+      "Bash(for file in src/components/home/Hero.tsx src/components/home/MainServices.tsx src/components/home/Partners.tsx src/components/home/Pricing.tsx src/components/home/Services.tsx src/components/home/ServicesDiscovery.tsx src/components/home/Testimonials.tsx src/components/layout/Navbar.tsx src/pages/About.tsx src/pages/Contact.tsx src/pages/Index.tsx src/pages/LegalMentionsPage.tsx src/pages/NotFound.tsx src/pages/PageAssuranceHabitation.tsx src/pages/PageGarantie.tsx src/pages/ParentsPage.tsx)",
+      "Bash(tee:*)",
+      "Bash(python clean-all-syntax.py:*)",
+      "Bash(while read f)",
+      "Bash(do sed -i '/color:/{ N; s/color: \"\"\"\"\\([^\"\"\"\"]*\\)\"\"\"\"\\n\\s*\\]/color: \"\"\"\"\\1\"\"\"\"\\n    }\\n  ]/g; }' \"$f\")",
+      "Bash(python fix-missing-braces.py:*)",
+      "Bash(python fix-colorstyles.py:*)",
+      "Bash(npx tsc:*)",
+      "Bash(python:*)",
+      "Bash(cat:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
