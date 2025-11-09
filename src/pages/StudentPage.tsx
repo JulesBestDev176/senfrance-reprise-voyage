@@ -411,7 +411,7 @@ const StudentPage = () => {
                     <div className="mt-auto">
                       <Link
                         to={section.ctaLink}
-                        className={`inline-flex items-center justify-center w-full bg-gradient-to-r ${style.button} text-white font-medium py-3 px-6 rounded-xl transition-all duration-300`}
+                        className="inline-flex items-center justify-center w-full bg-gradient-to-r from-[#FFC3BC] to-[#ff9d94] text-[#18133E] hover:from-[#ff9d94] hover:to-[#FFC3BC] font-medium py-3 px-6 rounded-xl transition-all duration-300"
                       >
                         <span>{section.cta}</span>
                         <div className="ml-2">
@@ -551,7 +551,7 @@ const StudentPage = () => {
             
             <div className="flex flex-wrap gap-4 justify-center">
               <div>
-                <Button asChild className="bg-gradient-to-r from-[#18133E] to-[#271D5B] hover:from-[#271D5B] hover:to-[#18133E] text-white rounded-full px-8 py-6 text-lg font-medium">
+                <Button asChild className="bg-gradient-to-r from-[#FFC3BC] to-[#ff9d94] text-[#18133E] hover:from-[#ff9d94] hover:to-[#FFC3BC] rounded-full px-8 py-6 text-lg font-medium border-0">
                   <Link to="/contact" className="flex items-center gap-2">
                     <span>Prendre rendez-vous</span>
                     <ArrowRight className="h-5 w-5" />

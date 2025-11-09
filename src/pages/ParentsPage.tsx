@@ -249,21 +249,21 @@ const ParentsPage = () => {
                   key={feature.id}
                   onMouseEnter={() => setActiveFeature(feature.id)}
                   onMouseLeave={() => setActiveFeature(null)}
-                  className={`group bg-white rounded-2xl p-8 shadow-md hover:shadow-lg transition-all duration-300 border border-gray-200 h-full`}
+                  className="group bg-white rounded-2xl p-8 shadow-md hover:shadow-lg transition-all duration-300 border border-gray-200 flex flex-col h-full"
                 >
-                  <div className="w-16 h-16 mb-6 rounded-2xl bg-gradient-to-br from-[#FFC3BC] to-[#ff9d94] flex items-center justify-center text-white">
+                  <div className="w-16 h-16 mb-6 rounded-2xl bg-gradient-to-br from-[#FFC3BC] to-[#ff9d94] flex items-center justify-center text-white mx-auto">
                     {React.cloneElement(feature.icon, { className: "h-7 w-7" })}
                   </div>
                   
-                  <h3 className="text-xl font-bold mb-3 text-[#18133E]">
+                  <h3 className="text-xl font-bold mb-3 text-[#18133E] text-center">
                     {feature.title}
                   </h3>
                   
-                  <p className="text-gray-600">
+                  <p className="text-gray-600 text-center flex-grow mb-6">
                     {feature.description}
                   </p>
                   
-                  <div className="mt-6 h-1 bg-gradient-to-r from-[#FFC3BC] to-[#ff9d94] rounded-full">
+                  <div className="h-1 bg-gradient-to-r from-[#FFC3BC] to-[#ff9d94] rounded-full w-16 mx-auto mt-auto">
                   </div>
                 </div>
               );
@@ -373,7 +373,7 @@ const ParentsPage = () => {
         
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto bg-white rounded-2xl p-8 md:p-12 shadow-xl border border-gray-100 text-center transition-all duration-300">
-            <div className="w-16 h-16 bg-gradient-to-r from-[#18133E] to-[#271D5B] rounded-full flex items-center justify-center mx-auto mb-6">
+            <div className="w-16 h-16 bg-gradient-to-r from-[#FFC3BC] to-[#ff9d94] rounded-full flex items-center justify-center mx-auto mb-6">
               <Users className="h-8 w-8 text-white" />
             </div>
             
@@ -385,7 +385,7 @@ const ParentsPage = () => {
             </p>
             
             <div className="flex flex-wrap gap-4 justify-center">
-              <Button asChild className="bg-gradient-to-r from-[#18133E] to-[#271D5B] hover:from-[#271D5B] hover:to-[#18133E] text-white rounded-full px-8 py-6 text-lg font-medium">
+              <Button asChild className="bg-gradient-to-r from-[#FFC3BC] to-[#ff9d94] text-[#18133E] hover:from-[#ff9d94] hover:to-[#FFC3BC] rounded-full px-8 py-6 text-lg font-medium border-0">
                 <Link to="/contact" className="flex items-center gap-2">
                   <span>Prendre rendez-vous</span>
                   <ArrowRight className="h-5 w-5" />

@@ -313,7 +313,7 @@ const PricingPage = () => {
                   onClick={() => setSelectedTab("individuel")}
                   className={`py-2.5 px-6 rounded-lg text-sm font-medium transition-all duration-200 ${
                     selectedTab === "individuel"
-                      ? "bg-gradient-to-r from-[#18133E] to-[#271D5B] text-white shadow-lg"
+                      ? "bg-gradient-to-r from-[#FFC3BC] to-[#ff9d94] text-[#18133E] shadow-lg"
                       : "text-gray-600 hover:bg-gray-100"
                   }`}
                 >
@@ -323,7 +323,7 @@ const PricingPage = () => {
                   onClick={() => setSelectedTab("pack")}
                   className={`py-2.5 px-6 rounded-lg text-sm font-medium transition-all duration-200 ${
                     selectedTab === "pack" 
-                      ? "bg-gradient-to-r from-[#18133E] to-[#271D5B] text-white shadow-lg" 
+                      ? "bg-gradient-to-r from-[#FFC3BC] to-[#ff9d94] text-[#18133E] shadow-lg" 
                       : "text-gray-600 hover:bg-gray-100"
                   }`}
                 >
@@ -474,7 +474,7 @@ const PricingPage = () => {
                   <h2 className="text-2xl md:text-3xl font-bold mb-4 text-[#18133E]">
                     Pour aller plus loin
                   </h2>
-                  <div className="h-1 bg-gradient-to-r from-[#18133E] to-[#18133E]/30 rounded-full mx-auto mb-6 w-16"></div>
+                  <div className="h-1 bg-gradient-to-r from-[#FFC3BC] to-[#FFC3BC]/30 rounded-full mx-auto mb-6 w-16"></div>
                   <p className="text-gray-600">
                     Complète ton parcours avec nos services additionnels. Ces services peuvent être ajoutés à n'importe quelle offre principale.
                   </p>
@@ -710,7 +710,7 @@ const PricingPage = () => {
                     >
                       Réinitialiser
                     </button>
-                    <button className="bg-gradient-to-r from-[#18133E] to-[#271D5B] hover:from-[#271D5B] hover:to-[#18133E] text-white px-4 py-2 rounded-lg transition-all">
+                    <button className="bg-gradient-to-r from-[#FFC3BC] to-[#ff9d94] hover:from-[#ff9d94] hover:to-[#FFC3BC] text-[#18133E] px-4 py-2 rounded-lg transition-all border-0">
                       Obtenir un devis
                     </button>
                   </div>

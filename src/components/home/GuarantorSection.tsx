@@ -24,14 +24,14 @@ const GuarantorSection = () => {
         <div
           className="text-center mb-16"
         >
-          <span className="inline-block text-sm font-semibold text-indigo-600 tracking-wider uppercase bg-indigo-50 py-1 px-3 rounded-full mb-3">
+          <span className="inline-block text-sm font-semibold text-[#271D5B] tracking-wider uppercase bg-[#FFC3BC]/10 py-1 px-3 rounded-full mb-3 border border-[#FFC3BC]/20">
             Protection & Tranquillité
           </span>
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
             Solutions de garantie pour ton logement
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Sécurise ta location et protège ton habitat avec nos solutions d’assurance
+            Sécurise ta location et protège ton habitat avec nos solutions d'assurance
           </p>
         </div>
 
@@ -107,60 +107,30 @@ const GuarantorCard = ({ title, icon, description, benefits, ctaText, logoText, 
     mouseY.set(e.clientY - centerY);
   };
 
-  // Dynamic colors based on the color prop
-  const colorStyles = {
-    indigo: {
-      primary: "text-indigo-600",
-      secondary: "text-indigo-500",
-      bg: "bg-indigo-50",
-      bgHover: "group-hover:bg-indigo-100",
-      border: "border-indigo-100",
-      borderHover: "group-hover:border-indigo-200",
-      gradient: "from-indigo-500 to-indigo-600",
-      gradientHover: "hover:from-indigo-600 hover:to-indigo-700",
-      shadow: "group-hover:shadow-indigo-200/40",
-      icon: "bg-indigo-100 text-indigo-600"
-    },
-    pink: {
-      primary: "text-pink-600",
-      secondary: "text-pink-500",
-      bg: "bg-pink-50",
-      bgHover: "group-hover:bg-pink-100",
-      border: "border-pink-100",
-      borderHover: "group-hover:border-pink-200",
-      gradient: "from-pink-500 to-pink-600",
-      gradientHover: "hover:from-pink-600 hover:to-pink-700",
-      shadow: "group-hover:shadow-pink-200/40",
-      icon: "bg-pink-100 text-pink-600"
-    }
-  };
-
-  const styles = colorStyles[color] || colorStyles.indigo;
-
   return (
     <div
       className="relative group"
     >
       {/* Card glow effect on hover */}
       <div 
-        className={`absolute -inset-1 rounded-2xl opacity-0 group-hover:opacity-70 transition-opacity duration-500 bg-gradient-to-r ${styles.gradient} blur-lg`}
+        className="absolute -inset-1 rounded-2xl opacity-0 group-hover:opacity-70 transition-opacity duration-500 bg-gradient-to-r from-[#FFC3BC] to-[#ff9d94] blur-lg"
       />
       
       {/* Main card */}
       <div 
-        className={`bg-white border ${styles.border} ${styles.borderHover} rounded-2xl shadow-lg overflow-hidden transition-all duration-300 group-hover:shadow-xl ${styles.shadow} relative z-10 h-full`}
+        className="bg-white border border-gray-200 hover:border-[#FFC3BC]/30 rounded-2xl shadow-lg overflow-hidden transition-all duration-300 group-hover:shadow-xl hover:shadow-[#271D5B]/10 relative z-10 h-full"
       >
         <div className="p-8 md:p-10 flex flex-col h-full relative overflow-hidden">
           {/* Icon and title section */}
           <div className="flex items-start mb-6">
             <div 
-              className={`rounded-2xl p-4 ${styles.icon} transition-all duration-300 relative z-10`}
+              className="rounded-2xl p-4 bg-gradient-to-br from-[#FFC3BC] to-[#ff9d94] text-white transition-transform duration-300 group-hover:scale-110 relative z-10"
             >
               {React.cloneElement(icon, { className: "h-6 w-6" })}
             </div>
             <div className="ml-4 flex-1">
               <h3 className="text-2xl font-bold text-gray-900 mb-1">{title}</h3>
-              <div className={`h-1 w-16 ${styles.bg} rounded-full transition-all duration-300 group-hover:w-24`}></div>
+              <div className="h-1 w-16 bg-gradient-to-r from-[#FFC3BC] to-[#ff9d94] rounded-full transition-all duration-300 group-hover:w-24"></div>
             </div>
           </div>
           
@@ -168,7 +138,7 @@ const GuarantorCard = ({ title, icon, description, benefits, ctaText, logoText, 
           <div
             className="mb-6 relative"
           >
-            <div className={`h-16 w-40 rounded-xl bg-gradient-to-r ${styles.gradient} flex items-center justify-center text-white font-bold text-xl relative overflow-hidden`}>
+            <div className="h-16 w-40 rounded-xl bg-gradient-to-r from-[#FFC3BC] to-[#ff9d94] flex items-center justify-center text-[#18133E] font-bold text-xl relative overflow-hidden">
               {logoText}
               
               {/* Logo spotlight effect */}
@@ -195,9 +165,9 @@ const GuarantorCard = ({ title, icon, description, benefits, ctaText, logoText, 
                 className="flex items-center gap-3"
               >
                 <div
-                  className={`rounded-full ${styles.bg} p-1`}
+                  className="rounded-full bg-[#FFC3BC]/20 p-1"
                 >
-                  <Check className={`h-3.5 w-3.5 ${styles.primary}`} />
+                  <Check className="h-3.5 w-3.5 text-[#271D5B]" />
                 </div>
                 <span className="text-gray-700 text-sm">{benefit}</span>
               </div>
@@ -210,7 +180,7 @@ const GuarantorCard = ({ title, icon, description, benefits, ctaText, logoText, 
             >
               <Link 
                 to={link} 
-                className={`inline-flex items-center justify-center w-full py-3.5 px-6 rounded-xl bg-gradient-to-r ${styles.gradient} ${styles.gradientHover} text-white font-medium text-sm md:text-base transition-all duration-300 shadow-sm hover:shadow relative overflow-hidden`}
+                className="inline-flex items-center justify-center w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-[#FFC3BC] to-[#ff9d94] hover:from-[#ff9d94] hover:to-[#FFC3BC] text-[#18133E] font-medium text-sm md:text-base transition-all duration-300 shadow-sm hover:shadow relative overflow-hidden border-0"
               >
                 <span>{ctaText}</span>
                 <div

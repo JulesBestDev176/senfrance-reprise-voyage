@@ -462,7 +462,7 @@ const PageJobEtudiant = () => {
               
               <div className="flex justify-center"
               >
-                <Button type="submit" className="bg-gradient-to-r from-[#18133E] to-[#271D5B] hover:from-[#271D5B] hover:to-[#18133E] text-white rounded-xl px-6 py-3 text-lg font-medium shadow-md transition-all duration-300">
+                <Button type="submit" className="bg-gradient-to-r from-[#FFC3BC] to-[#ff9d94] hover:from-[#ff9d94] hover:to-[#FFC3BC] text-[#18133E] rounded-xl px-6 py-3 text-lg font-medium shadow-md transition-all duration-300 border-0">
                   <span>Envoie ta candidature</span>
                   <ArrowRight}
                 className="h-5 w-5 ml-2" />

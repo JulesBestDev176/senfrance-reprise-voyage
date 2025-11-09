@@ -132,7 +132,7 @@ const PageAssurances = () => {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <div className="flex-1">
                     <a
-                      href='https://app.garantme.fr/fr/senfrance' className="w-full inline-flex items-center justify-center bg-gradient-to-r from-[#18133E] to-[#271D5B] hover:from-[#271D5B] hover:to-[#18133E] text-white rounded-xl px-6 py-3 font-medium shadow-md transition-all duration-300"
+                      href='https://app.garantme.fr/fr/senfrance' className="w-full inline-flex items-center justify-center bg-gradient-to-r from-[#FFC3BC] to-[#ff9d94] hover:from-[#ff9d94] hover:to-[#FFC3BC] text-[#18133E] rounded-xl px-6 py-3 font-medium shadow-md transition-all duration-300 border-0"
                     >
                       Postuler
                     </a>

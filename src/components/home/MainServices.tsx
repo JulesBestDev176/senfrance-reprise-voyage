@@ -67,42 +67,18 @@ const MainServices = () => {
 
 // Enhanced service card component with advanced animations
 const ServiceCard = ({ icon, title, description, buttonText, link, direction, delay, color }) => {
-  // Dynamic color styles based on the color prop
-  const colorStyles = {
-    indigo: {
-      light: 'bg-indigo-50',
-      medium: 'bg-indigo-100',
-      dark: 'text-indigo-900',
-      button: 'from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800',
-      hover: 'group-hover:text-indigo-600',
-      shadow: 'group-hover:shadow-indigo-200/50',
-      iconBg: 'bg-indigo-100 text-indigo-600'
-    },
-    purple: {
-      light: 'bg-purple-50',
-      medium: 'bg-purple-100',
-      dark: 'text-purple-900',
-      button: 'from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800',
-      hover: 'group-hover:text-purple-600',
-      shadow: 'group-hover:shadow-purple-200/50',
-      iconBg: 'bg-purple-100 text-purple-600'
-    }
-  };
-
-  const styles = colorStyles[color] || colorStyles.indigo;
-
   return (
-    <div className={`rounded-2xl p-8 border border-gray-100 bg-white shadow-lg transition-all duration-300 group hover:shadow-xl hover:-translate-y-1 ${styles.shadow}`}>
+    <div className="rounded-2xl p-8 border border-gray-100 bg-white shadow-lg transition-all duration-300 group hover:shadow-xl hover:-translate-y-1 hover:shadow-[#271D5B]/10">
       <div className="flex flex-col h-full">
         <div className="flex items-start mb-5">
-          <div className={`rounded-2xl w-14 h-14 flex items-center justify-center ${styles.iconBg} transition-transform duration-300 group-hover:scale-110`}>
+          <div className="rounded-2xl w-14 h-14 flex items-center justify-center bg-gradient-to-br from-[#FFC3BC] to-[#ff9d94] text-white transition-transform duration-300 group-hover:scale-110">
             {React.cloneElement(icon, { className: "h-7 w-7" })}
           </div>
           <div className="ml-5 flex-1">
-            <h3 className={`text-2xl font-bold mb-1 transition-colors duration-300 ${styles.hover}`}>
+            <h3 className="text-2xl font-bold mb-1 text-[#271D5B] transition-colors duration-300 group-hover:text-[#18133E]">
               {title}
             </h3>
-            <div className="w-20 h-1 bg-gradient-to-r from-gray-200 to-gray-300 rounded group-hover:from-indigo-300 group-hover:to-purple-300 transition-colors duration-500"></div>
+            <div className="w-20 h-1 bg-gradient-to-r from-[#FFC3BC] to-[#ff9d94] rounded transition-all duration-500"></div>
           </div>
         </div>
 
@@ -113,7 +89,7 @@ const ServiceCard = ({ icon, title, description, buttonText, link, direction, de
         <div className="mt-auto">
           <Button
             asChild
-            className={`bg-gradient-to-r ${styles.button} text-white font-medium px-6 py-2 rounded-full shadow-md transition-all duration-300 hover:shadow-lg hover:scale-105 flex items-center justify-center`}
+            className="bg-gradient-to-r from-[#FFC3BC] to-[#ff9d94] hover:from-[#ff9d94] hover:to-[#FFC3BC] text-[#18133E] font-medium px-6 py-2 rounded-full shadow-md transition-all duration-300 hover:shadow-lg hover:scale-105 flex items-center justify-center border-0"
           >
             <Link to={link}
                 className="flex items-center">

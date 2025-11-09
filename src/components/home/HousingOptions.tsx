@@ -20,7 +20,7 @@ const HousingOptions = () => {
         <div
           className="text-center mb-16"
         >
-          <span className="inline-block text-sm font-semibold text-indigo-600 tracking-wider uppercase bg-indigo-50 py-1 px-3 rounded-full mb-3">
+          <span className="inline-block text-sm font-semibold text-[#271D5B] tracking-wider uppercase bg-[#FFC3BC]/10 py-1 px-3 rounded-full mb-3 border border-[#FFC3BC]/20">
             Solutions de logement
           </span>
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
@@ -72,7 +72,7 @@ const HousingOptions = () => {
         >
           <Link 
             to="/visa/hebergement" 
-            className="inline-flex items-center text-indigo-600 font-medium hover:text-indigo-800 transition-colors group bg-white/80 backdrop-blur-sm py-3 px-6 rounded-full shadow-sm hover:shadow transition-all duration-300"
+            className="inline-flex items-center text-[#271D5B] font-medium hover:text-[#18133E] transition-colors group bg-white/80 backdrop-blur-sm py-3 px-6 rounded-full shadow-sm hover:shadow transition-all duration-300"
           >
             <span>Explorer toutes nos options de logement</span>
             <div
@@ -90,45 +90,21 @@ const HousingOptions = () => {
 // Composant de carte de logement avec animations et effets de survol
 const HousingCard = ({ icon, title, subtitle, description, features, link, linkText, color, delay }) => {
   const [isHovered, setIsHovered] = useState(false);
-  
-  // Styles dynamiques selon la couleur
-  const colorStyles = {
-    indigo: {
-      light: 'bg-indigo-50',
-      border: 'border-indigo-100',
-      icon: 'text-indigo-600 bg-indigo-50 group-hover:bg-indigo-100',
-      accent: 'bg-indigo-600',
-      text: 'text-indigo-600',
-      hover: 'group-hover:border-indigo-200 group-hover:shadow-indigo-100/40',
-      button: 'from-indigo-500 to-indigo-600 hover:from-indigo-600 hover:to-indigo-700'
-    },
-    pink: {
-      light: 'bg-pink-50',
-      border: 'border-pink-100',
-      icon: 'text-pink-600 bg-pink-50 group-hover:bg-pink-100',
-      accent: 'bg-pink-600',
-      text: 'text-pink-600',
-      hover: 'group-hover:border-pink-200 group-hover:shadow-pink-100/40',
-      button: 'from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700'
-    }
-  };
-
-  const styles = colorStyles[color] || colorStyles.indigo;
 
   return (
     <div
-      className={`bg-white border ${styles.border} rounded-2xl shadow-lg group transition-all duration-500 ${styles.hover} hover:shadow-xl`}
+      className="bg-white border border-gray-200 rounded-2xl shadow-lg group transition-all duration-500 hover:shadow-xl hover:shadow-[#271D5B]/10 hover:border-[#FFC3BC]/30"
     >
       <div className="p-8 md:p-10 h-full flex flex-col">
         <div className="flex items-center mb-6">
           <div 
-            className={`p-3 rounded-xl ${styles.icon} transition-colors duration-300`}
+            className="p-3 rounded-xl bg-gradient-to-br from-[#FFC3BC] to-[#ff9d94] text-white transition-transform duration-300 group-hover:scale-110"
           >
             {React.cloneElement(icon, { className: "h-6 w-6" })}
           </div>
           <div className="ml-4">
             <h3 className="text-2xl font-bold text-gray-900">{title}</h3>
-            <p className={`${styles.text} font-medium`}>{subtitle}</p>
+            <p className="text-[#271D5B] font-medium">{subtitle}</p>
           </div>
         </div>
 
@@ -144,7 +120,7 @@ const HousingCard = ({ icon, title, subtitle, description, features, link, linkT
                 key={index}
                 className="flex items-start"
               >
-                <CheckCircle className={`h-5 w-5 mr-2 mt-0.5 ${styles.text} flex-shrink-0`} />
+                <CheckCircle className="h-5 w-5 mr-2 mt-0.5 text-[#271D5B] flex-shrink-0" />
                 <span className="text-gray-700">{feature}</span>
               </div>
             ))}
@@ -157,7 +133,7 @@ const HousingCard = ({ icon, title, subtitle, description, features, link, linkT
         >
           <Link 
             to={link} 
-            className={`inline-flex items-center justify-center w-full py-3 px-6 rounded-xl bg-gradient-to-r ${styles.button} text-white font-medium transition-all duration-300 shadow-sm hover:shadow`}
+            className="inline-flex items-center justify-center w-full py-3 px-6 rounded-xl bg-gradient-to-r from-[#FFC3BC] to-[#ff9d94] hover:from-[#ff9d94] hover:to-[#FFC3BC] text-[#18133E] font-medium transition-all duration-300 shadow-sm hover:shadow border-0"
           >
             <span>{linkText}</span>
             <div
@@ -171,7 +147,7 @@ const HousingCard = ({ icon, title, subtitle, description, features, link, linkT
 
       {/* Background spotlight effect on hover */}
       <div className="absolute inset-0 -z-10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-        <div className={`absolute -inset-[3px] ${styles.light} blur-md rounded-2xl opacity-0 group-hover:opacity-70 transition-opacity duration-700`}></div>
+        <div className="absolute -inset-[3px] bg-[#FFC3BC]/5 blur-md rounded-2xl opacity-0 group-hover:opacity-70 transition-opacity duration-700"></div>
       </div>
     </div>
   );

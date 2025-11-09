@@ -324,13 +324,13 @@ const AVIPage = () => {
               <div className="flex flex-col justify-center">
                 <div className="p-6 bg-gray-50 rounded-xl mb-6 border border-gray-100 transition-all duration-300">
                   <div className="flex items-end gap-3 mb-2">
-                    <span className="text-4xl font-bold bg-gradient-to-r from-[#18133E] to-[#271D5B] bg-clip-text text-transparent">450 €</span>
+                    <span className="text-4xl font-bold text-[#18133E]">450 €</span>
                   </div>
                   <p className="text-gray-500 text-sm mb-6">Prix tout compris, sans frais cachés</p>
                   
                   <div className="mb-4"
                   >
-                    <Button className="w-full bg-gradient-to-r from-[#18133E] to-[#271D5B] hover:from-[#271D5B] hover:to-[#18133E] text-white font-medium py-4 px-6 rounded-xl transition-all duration-300 shadow-md">
+                    <Button className="w-full bg-gradient-to-r from-[#FFC3BC] to-[#ff9d94] hover:from-[#ff9d94] hover:to-[#FFC3BC] text-[#18133E] font-medium py-4 px-6 rounded-xl transition-all duration-300 shadow-md border-0">
                       <span>SOUSCRIRE MAINTENANT</span>
                     </Button>
                   </div>
@@ -412,7 +412,7 @@ const AVIPage = () => {
               <p className="text-gray-600 mb-4">
                 Vous avez d'autres questions ? Notre équipe est à votre disposition.
               </p>
-              <Button asChild className="bg-[#18133E] hover:bg-[#231A54] text-white">
+              <Button asChild className="bg-gradient-to-r from-[#FFC3BC] to-[#ff9d94] hover:from-[#ff9d94] hover:to-[#FFC3BC] text-[#18133E] border-0">
                 <Link to="/contact">
                   Contacter un conseiller
                 </Link>
