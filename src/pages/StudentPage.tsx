@@ -369,7 +369,6 @@ const StudentPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 xl:gap-12">
             {sections.map((section, index) => {
               const isActive = activeSection === section.id;
-              const style = colorStyles[section.color as ColorStyleKey];
 
               return (
                 <div
@@ -377,18 +376,18 @@ const StudentPage = () => {
                   key={section.id}
                   onMouseEnter={() => setActiveSection(section.id)}
                   onMouseLeave={() => setActiveSection(null)}
-                  className={`group bg-white rounded-2xl overflow-hidden shadow-lg ${style.shadow} border ${style.border} ${style.hover} transition-all duration-300 flex flex-col h-full relative`}
+                  className="group bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-200 hover:border-[#FFC3BC]/30 hover:shadow-[#271D5B]/10 transition-all duration-300 flex flex-col h-full relative"
                 >
                   {/* Background image with overlay */}
                   <div className="h-48 overflow-hidden relative">
-                    <div className={`absolute inset-0 bg-gradient-to-t from-[#18133E]/70 to-transparent z-10`}></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#18133E]/70 to-transparent z-10"></div>
                     <img
                       src={section.image}
                       alt={section.title}
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute bottom-4 left-6 z-20 flex items-center">
-                      <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${style?.icon || ''} flex items-center justify-center mr-3`}>
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#FFC3BC] to-[#ff9d94] flex items-center justify-center mr-3">
                         {section?.icon}
                       </div>
                       <h3 className="text-xl font-bold text-white">
@@ -399,7 +398,7 @@ const StudentPage = () => {
                   
                   <div className="p-6 flex-grow flex flex-col">
                     <div className="mb-4">
-                      <h4 className={`text-lg font-semibold ${style.text}`}>
+                      <h4 className="text-lg font-semibold text-[#271D5B]">
                         {section.description}
                       </h4>
                     </div>
@@ -411,7 +410,7 @@ const StudentPage = () => {
                     <div className="mt-auto">
                       <Link
                         to={section.ctaLink}
-                        className="inline-flex items-center justify-center w-full bg-gradient-to-r from-[#FFC3BC] to-[#ff9d94] text-[#18133E] hover:from-[#ff9d94] hover:to-[#FFC3BC] font-medium py-3 px-6 rounded-xl transition-all duration-300"
+                        className="inline-flex items-center justify-center w-full bg-gradient-to-r from-[#FFC3BC] to-[#ff9d94] text-[#18133E] hover:from-[#ff9d94] hover:to-[#FFC3BC] font-medium py-3 px-6 rounded-xl transition-all duration-300 border-0"
                       >
                         <span>{section.cta}</span>
                         <div className="ml-2">
